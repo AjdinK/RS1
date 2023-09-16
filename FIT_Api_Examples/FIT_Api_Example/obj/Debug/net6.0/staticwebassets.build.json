@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qHYBJJLjPEPHmuypYiOq/CAefX/jotqrKctSrEYBMDg=",
+  "Hash": "3GcJVt6s2/l3E5tKUUHduxCi3k4CEyORNNlB5H7HApk=",
   "Source": "FIT_Api_Example",
   "BasePath": "_content/FIT_Api_Example",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "FIT_Api_Example\\wwwroot",
       "Source": "FIT_Api_Example",
-      "ContentRoot": "C:\\Users\\loww\\Desktop\\RSI\\rs1-2022-23\\FIT_Api_Examples\\FIT_Api_Example\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\wwwroot\\",
       "BasePath": "_content/FIT_Api_Example",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\loww\\Desktop\\RSI\\rs1-2022-23\\FIT_Api_Examples\\FIT_Api_Example\\wwwroot\\profile_images\\empty.png",
+      "Identity": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\wwwroot\\profile_images\\empty.png",
       "SourceId": "FIT_Api_Example",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\loww\\Desktop\\RSI\\rs1-2022-23\\FIT_Api_Examples\\FIT_Api_Example\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\wwwroot\\",
       "BasePath": "_content/FIT_Api_Example",
       "RelativePath": "profile_images/empty.png",
       "AssetKind": "All",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj": {}
+    "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj": {}
   },
   "projects": {
-    "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj": {
+    "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj",
+        "projectUniqueName": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj",
         "projectName": "FIT_Api_Example",
-        "projectPath": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj",
+        "projectPath": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\FIT_Api_Example.csproj",
         "packagesPath": "C:\\Users\\loww\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\FIT_Api_Examples\\FIT_Api_Example\\obj\\",
+        "outputPath": "C:\\Users\\loww\\Desktop\\RSI\\vjezbe\\RS1\\FIT_Api_Examples\\FIT_Api_Example\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\loww\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,12 +53,6 @@
               "version": "[6.0.9, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[6.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.9, )"
             },
