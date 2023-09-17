@@ -39,7 +39,7 @@ namespace FIT_Api_Example.Migrations
                         column: x => x.drzava_id,
                         principalTable: "Drzava",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,7 +64,7 @@ namespace FIT_Api_Example.Migrations
                         column: x => x.opstina_rodjenja_id,
                         principalTable: "Opstina",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
