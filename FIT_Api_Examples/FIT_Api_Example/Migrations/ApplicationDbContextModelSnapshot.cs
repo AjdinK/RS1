@@ -55,7 +55,14 @@ namespace FIT_Api_Example.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<int>("ECTS")
+                        .HasColumnType("int");
+
                     b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Skracenica")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

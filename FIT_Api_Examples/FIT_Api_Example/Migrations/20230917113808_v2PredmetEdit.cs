@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FIT_Api_Example.Migrations
 {
-    public partial class init : Migration
+    public partial class v2PredmetEdit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,11 +15,27 @@ namespace FIT_Api_Example.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    skracenica = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Drzava", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Predmet",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Skracenica = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ECTS = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Predmet", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,6 +55,27 @@ namespace FIT_Api_Example.Migrations
                         column: x => x.drzava_id,
                         principalTable: "Drzava",
                         principalColumn: "id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ispit",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Datum = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PredmetID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ispit", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ispit_Predmet_PredmetID",
+                        column: x => x.PredmetID,
+                        principalTable: "Predmet",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -68,6 +105,11 @@ namespace FIT_Api_Example.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ispit_PredmetID",
+                table: "Ispit",
+                column: "PredmetID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Opstina_drzava_id",
                 table: "Opstina",
                 column: "drzava_id");
@@ -81,7 +123,13 @@ namespace FIT_Api_Example.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Ispit");
+
+            migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Predmet");
 
             migrationBuilder.DropTable(
                 name: "Opstina");

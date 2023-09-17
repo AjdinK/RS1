@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Example.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230917095935_initv2")]
-    partial class initv2
+    [Migration("20230917113808_v2PredmetEdit")]
+    partial class v2PredmetEdit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,55 @@ namespace FIT_Api_Example.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Ispit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PredmetID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PredmetID");
+
+                    b.ToTable("Ispit");
+                });
+
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Predmet", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("ECTS")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Skracenica")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Predmet");
+                });
 
             modelBuilder.Entity("FIT_Api_Example.Modul2.Models.Drzava", b =>
                 {
@@ -34,6 +83,9 @@ namespace FIT_Api_Example.Migrations
 
                     b.Property<string>("naziv")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("skracenica")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -101,6 +153,17 @@ namespace FIT_Api_Example.Migrations
                     b.HasIndex("opstina_rodjenja_id");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Ispit", b =>
+                {
+                    b.HasOne("FIT_Api_Example.Modul1.Models.Predmet", "Predmet")
+                        .WithMany()
+                        .HasForeignKey("PredmetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Predmet");
                 });
 
             modelBuilder.Entity("FIT_Api_Example.Modul2.Models.Opstina", b =>
