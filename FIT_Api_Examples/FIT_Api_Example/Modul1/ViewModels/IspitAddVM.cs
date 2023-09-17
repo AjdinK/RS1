@@ -7,7 +7,6 @@ namespace FIT_Api_Example.Modul1.ViewModels
     {
         public string Naziv { get; set; }
         public DateTime Datum { get; set; }
-        public Predmet Predmet { get; set; }
         public int PredmetID { get; set; }
     }
 
