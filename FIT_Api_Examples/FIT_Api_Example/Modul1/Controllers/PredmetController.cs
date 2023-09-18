@@ -25,9 +25,9 @@ namespace FIT_Api_Example.Modul2.Controllers
         {
             var newPredmet = new Predmet
             {
-                Naziv = x.Naziv,
-                Skracenica = x.Skracenica,
-                ECTS = x.ECTS,
+                Naziv = x.nazivPredmeta,
+                Skracenica = x.skracenicaPredmeta,
+                ECTS = x.ectsPredmeta,
             };
 
             _dbContext.Add(newPredmet);

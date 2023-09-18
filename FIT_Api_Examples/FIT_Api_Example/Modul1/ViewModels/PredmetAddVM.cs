@@ -2,9 +2,9 @@
 {
     public class PredmetAddVM
     {
-        public string Naziv { get; set; }
-        public string Skracenica { get; set; }
-        public int ECTS { get; set; }
+        public string nazivPredmeta { get; set; }
+        public string skracenicaPredmeta { get; set; }
+        public int ectsPredmeta { get; set; }
     }
 
 }

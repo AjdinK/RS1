@@ -4,19 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FIT_Api_Example.Modul1.Models
 {
-    public class PrijavaIspita
+    public class Ocjena
+
     {
         [Key]
-        public int Id { get; set; }
-        public DateTime DatumPrijave { get; set; }
+        public int ID { get; set; }
+        public int ocjena { get; set; }
+
+        [ForeignKey (nameof(PredmetID))]
+        public Predmet Predmet { get; set; }
+        public int PredmetID { get; set; }
 
         [ForeignKey(nameof(StudentID))]
-        public Student? Student { get; set; }
+        public Student Student { get; set; }
         public int StudentID { get; set; }
-
-        [ForeignKey(nameof(IspitID))]
-        public Ispit? Ispit { get; set; }
-        public int IspitID { get; set; }
 
     }
 }
