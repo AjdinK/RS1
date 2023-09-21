@@ -4,6 +4,7 @@ using FIT_Api_Example.Modul1.Models;
 using FIT_Api_Example.Modul1.ViewModels;
 using FIT_Api_Example.Modul2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Azure;
 
 namespace FIT_Api_Example.Modul2.Controllers
 {
@@ -36,17 +37,30 @@ namespace FIT_Api_Example.Modul2.Controllers
         }
 
         [HttpGet]
-        public List<CmbStavke> GetAll()
+        public List<PredmetGetAllVM> GetAll()
         {
-            var data = _dbContext.Predmet
-                .OrderBy(s => s.Naziv)
-                .Select(s => new CmbStavke()
+            var upit = _dbContext.Predmet
+                .Where(p => p.Naziv.StartsWith("R"))
+                .OrderBy(p => p.Naziv)
+                .ThenBy(p => p.Skracenica)
+                .Take(100)
+                .Select(p => new PredmetGetAllVM
                 {
-                    id = s.ID,
-                    opis = s.Naziv,
-                })
-                .AsQueryable();
-            return data.Take(100).ToList();
+                    ectsPredmeta = p.ECTS,
+                    nazivPredmeta = p.Naziv,
+                    prosjecnaOcjena = 0,
+                    skracenicaPredmeta = p.Skracenica,
+                });
+
+            return upit.ToList();
         }
+    }
+
+    public class PredmetGetAllVM
+    {
+        public string nazivPredmeta { get; set; }
+        public string skracenicaPredmeta { get; set; }
+        public int ectsPredmeta { get; set; }
+        public float prosjecnaOcjena { get; set; }
     }
 }
