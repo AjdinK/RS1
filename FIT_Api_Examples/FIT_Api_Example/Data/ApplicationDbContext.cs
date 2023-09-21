@@ -13,6 +13,7 @@ namespace FIT_Api_Example.Data
         public DbSet<Predmet> Predmet { get; set; }
         public DbSet<PrijavaIspita> PrijavaIspita { get; set; }
         public DbSet<Ocjena> Ocjena { get; set; }
+        public DbSet<Regija> Regija { get; set; }
 
         public ApplicationDbContext(
             DbContextOptions options) : base(options)
