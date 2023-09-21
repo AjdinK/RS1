@@ -4,7 +4,9 @@ using FIT_Api_Example.Modul1.Models;
 using FIT_Api_Example.Modul1.ViewModels;
 using FIT_Api_Example.Modul2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Azure;
+using System.Runtime.CompilerServices;
 
 namespace FIT_Api_Example.Modul2.Controllers
 {
@@ -37,10 +39,11 @@ namespace FIT_Api_Example.Modul2.Controllers
         }
 
         [HttpGet]
-        public List<PredmetGetAllVM> GetAll()
+        public List<PredmetGetAllVM> GetAll(string ? nazivFilter , float minProsjecnaOcjena)
         {
             var upit = _dbContext.Predmet
-                .Where(p => p.Naziv.StartsWith("R"))
+                .Where(p => (nazivFilter == null || p.Naziv.ToLower() == nazivFilter.ToLower()) &&  
+                (_dbContext.Ocjena.Where(o=> o.PredmetID == p.ID).Average(x=>x.BrojacnaOcjena)<=minProsjecnaOcjena))
                 .OrderBy(p => p.Naziv)
                 .ThenBy(p => p.Skracenica)
                 .Take(100)

@@ -18,6 +18,7 @@ namespace FIT_Api_Example.Modul1.Models
         [ForeignKey(nameof(StudentID))]
         public Student Student { get; set; }
         public int StudentID { get; set; }
+        public int? BrojacnaOcjena { get; set; }
 
     }
 }
