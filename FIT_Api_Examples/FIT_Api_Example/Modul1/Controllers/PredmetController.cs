@@ -38,17 +38,36 @@ namespace FIT_Api_Example.Modul2.Controllers
             return newPredmet;
         }
 
+        [HttpPost]
+        public Predmet Update( int ID , [FromBody] PredmetUpdateVM x)
+        {
+            var updatePredmet = _dbContext.Predmet.Find(ID);
+            if (updatePredmet != null) {
+                updatePredmet.Naziv = x.nazivPredmeta;
+                updatePredmet.Skracenica = x.skracenicaPredmeta;
+                updatePredmet.ECTS = x.ectsPredmeta;
+
+                _dbContext.SaveChanges();
+            }
+           
+            return updatePredmet;
+        }
+
         [HttpGet]
         public List<PredmetGetAllVM> GetAll(string ? nazivFilter , float minProsjecnaOcjena)
         {
             var upit = _dbContext.Predmet
-                .Where(p => (nazivFilter == null || p.Naziv.ToLower() == nazivFilter.ToLower()) &&  
-                (_dbContext.Ocjena.Where(o=> o.PredmetID == p.ID).Average(x=>x.BrojacnaOcjena)<=minProsjecnaOcjena))
+
+                .Where(p => (nazivFilter == null || p.Naziv.ToLower() == nazivFilter.ToLower()) ||
+                (_dbContext.Ocjena.Where(o => o.PredmetID == p.ID)
+                .Average(x => x.BrojacnaOcjena) <= minProsjecnaOcjena))
+
                 .OrderBy(p => p.Naziv)
                 .ThenBy(p => p.Skracenica)
                 .Take(100)
                 .Select(p => new PredmetGetAllVM
                 {
+                    Id = p.ID,
                     ectsPredmeta = p.ECTS,
                     nazivPredmeta = p.Naziv,
                     prosjecnaOcjena = 0,
@@ -57,13 +76,5 @@ namespace FIT_Api_Example.Modul2.Controllers
 
             return upit.ToList();
         }
-    }
-
-    public class PredmetGetAllVM
-    {
-        public string nazivPredmeta { get; set; }
-        public string skracenicaPredmeta { get; set; }
-        public int ectsPredmeta { get; set; }
-        public float prosjecnaOcjena { get; set; }
-    }
+    } 
 }
