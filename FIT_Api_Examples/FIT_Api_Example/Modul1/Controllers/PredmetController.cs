@@ -22,36 +22,30 @@ namespace FIT_Api_Example.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-    
         [HttpPost]
-        public Predmet Add([FromBody] PredmetAddVM x)
+        public Predmet Snimi([FromBody] PredmetSnimiVM x)
         {
-            var newPredmet = new Predmet
+
+            Predmet? obj;
+
+            if (x.ID == 0)
             {
-                Naziv = x.nazivPredmeta,
-                Skracenica = x.skracenicaPredmeta,
-                ECTS = x.ectsPredmeta,
-            };
-
-            _dbContext.Add(newPredmet);
-            _dbContext.SaveChanges();
-            return newPredmet;
-        }
-
-        [HttpPost]
-        public Predmet Update( int ID , [FromBody] PredmetUpdateVM x)
-        {
-            var updatePredmet = _dbContext.Predmet.Find(ID);
-            if (updatePredmet != null) {
-                updatePredmet.Naziv = x.nazivPredmeta;
-                updatePredmet.Skracenica = x.skracenicaPredmeta;
-                updatePredmet.ECTS = x.ectsPredmeta;
-
-                _dbContext.SaveChanges();
+                obj = new Predmet();
+                _dbContext.Add(obj);
             }
-           
-            return updatePredmet;
+            else
+            {
+                obj = _dbContext.Predmet.Find(x.ID);
+            }
+            obj.Naziv = x.nazivPredmeta;
+            obj.Skracenica = x.sifraPredmeta;
+            obj.ECTS = x.ectsBodov;
+
+        _dbContext.SaveChanges();//exceute sql -- insert into Predmet
+            return obj;
         }
+
+
 
         [HttpGet]
         public List<PredmetGetAllVM> GetAll(string ? nazivFilter , float minProsjecnaOcjena)
