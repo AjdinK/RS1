@@ -1,3 +1,11 @@
-<h1>welcome to angular</h1>
-<button (click)="dugme1()">Click me</button>
+<h1>welcome to angular {{ime}}</h1>
+<input [(ngModel)]="ime"><br>
+<button (click)="dugme1()">change name</button><br>
+<button (click)="PreuzmiPodatke()">Preuzmi</button><br><br>
+<div>
+  {{Podaci[0].nazivPredmeta}}
+  {{Podaci[0].skracenicaPredmeta}}
+  {{Podaci[0].ectsPredmeta}}
+  {{Podaci[0].prosjecnaOcjena}}
+</div>
 
