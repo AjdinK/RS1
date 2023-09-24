@@ -1,0 +1,6 @@
+*{
+  padding: 5px;
+}
+label,input{
+  display: block;
+}
