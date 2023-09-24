@@ -1,8 +1,7 @@
 <h1>welcome to angular {{ime}}</h1>
 <input [(ngModel)]="ime"><br>
 <button (click)="dugme1()">change name</button><br><br>
-<button (click)="PreuzmiPodatke()">Preuzmi</button><br><br>
-
+<button type="button" class="btn btn-primary" (click)="PreuzmiPodatke()">Preuzmi podatke</button><br>
 <table class = "table table-bordered">
   <thead>
   <tr>
@@ -18,7 +17,7 @@
     <td>{{p.skracenicaPredmeta}}</td>
     <td>{{p.ectsPredmeta}}</td>
     <td>{{p.prosjecnaOcjena}}</td>
-    <td><button (click)="odabraniPredmet = p">Edit</button></td>
+    <td><button type="button" class="btn btn-info" (click)="odabraniPredmet = p">Edit</button></td>
   </tr>
   </tbody>
 </table>
