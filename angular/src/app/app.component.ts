@@ -10,6 +10,7 @@ export class AppComponent {
 
   ime = "";
   Podaci:any[] = [];
+  odabraniPredmet: any;
 
 
   dugme1() {
