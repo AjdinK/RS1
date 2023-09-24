@@ -3,11 +3,22 @@
 <button (click)="dugme1()">change name</button><br>
 <button (click)="PreuzmiPodatke()">Preuzmi</button><br><br>
 
-<div *ngIf="Podaci.length > 0">
-  {{Podaci[0].nazivPredmeta}}<br>
-  {{Podaci[1].nazivPredmeta}}<br>
-  {{Podaci[2].nazivPredmeta}}<br>
-  {{Podaci[3].nazivPredmeta}}<br>
-  {{Podaci[4].nazivPredmeta}}<br>
-</div>
+<table class = "table table-bordered">
+  <thead>
+  <tr>
+    <th>Naziv</th>
+    <th>Sifra</th>
+    <th>Ects</th>
+    <th>Prosjecna Ocjena</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of Podaci">
+    <td>{{p.nazivPredmeta}}</td>
+    <td>{{p.skracenicaPredmeta}}</td>
+    <td>{{p.ectsPredmeta}}</td>
+    <td>{{p.prosjecnaOcjena}}</td>
+  </tr>
+  </tbody>
+</table>
 
