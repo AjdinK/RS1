@@ -2,10 +2,12 @@
 <input [(ngModel)]="ime"><br>
 <button (click)="dugme1()">change name</button><br>
 <button (click)="PreuzmiPodatke()">Preuzmi</button><br><br>
-<div>
-  {{Podaci[0].nazivPredmeta}}
-  {{Podaci[0].skracenicaPredmeta}}
-  {{Podaci[0].ectsPredmeta}}
-  {{Podaci[0].prosjecnaOcjena}}
+
+<div *ngIf="Podaci.length > 0">
+  {{Podaci[0].nazivPredmeta}}<br>
+  {{Podaci[1].nazivPredmeta}}<br>
+  {{Podaci[2].nazivPredmeta}}<br>
+  {{Podaci[3].nazivPredmeta}}<br>
+  {{Podaci[4].nazivPredmeta}}<br>
 </div>
 

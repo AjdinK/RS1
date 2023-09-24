@@ -50,7 +50,7 @@ namespace FIT_Api_Example.Modul2.Controllers
         {
             var upit = _dbContext.Predmet
 
-                .Where(p => (nazivFilter == null || p.Naziv.ToLower() == nazivFilter.ToLower()) ||
+                .Where(p => (nazivFilter == null || p.Naziv.ToLower().Contains(nazivFilter.ToLower())) ||
                 (_dbContext.Ocjena.Where(o => o.PredmetID == p.ID)
                 .Average(x => x.BrojacnaOcjena) <= minProsjecnaOcjena))
 

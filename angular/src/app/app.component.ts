@@ -9,7 +9,8 @@ export class AppComponent {
   title = 'angular';
 
   ime = "";
-  Podaci : any;
+  Podaci:any[] = [];
+
 
   dugme1() {
     this.ime = "ajdin V2";
@@ -26,7 +27,7 @@ export class AppComponent {
           alert("Server javlja gresku : " + r.status);
           return;
         }
-        r.text().then(
+        r.json().then(
           t => {
           this.Podaci = t;
         });
