@@ -18,18 +18,21 @@ namespace FIT_Api_Example.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-     
         [HttpPost]
-        public Drzava Add([FromBody] DrzavaAddVM x)
-        {
-            var newEmployee = new Drzava
+        public Drzava Snimi([FromBody] DrzavaSnimiVM x) {
+            Drzava? obj;
+            if (x.Id == 0)
             {
-                naziv = x.opis,
-            };
-
-            _dbContext.Add(newEmployee);
+                obj = new Drzava();
+                _dbContext.Drzava.Add(obj);
+            }
+            else {
+                obj = _dbContext.Drzava.Find(x.Id);
+            }
+            obj.naziv = x.nazivDrzave;
+            obj.skracenica = x.skracenicaDrzave;
             _dbContext.SaveChanges();
-            return newEmployee;
+            return obj;
         }
 
         [HttpGet]

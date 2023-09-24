@@ -38,14 +38,12 @@ namespace FIT_Api_Example.Modul2.Controllers
                 obj = _dbContext.Predmet.Find(x.ID);
             }
             obj.Naziv = x.nazivPredmeta;
-            obj.Skracenica = x.sifraPredmeta;
-            obj.ECTS = x.ectsBodov;
+            obj.Sifra = x.sifraPredmeta;
+            obj.ECTS = x.ectsBodovi;
 
         _dbContext.SaveChanges();//exceute sql -- insert into Predmet
             return obj;
         }
-
-
 
         [HttpGet]
         public List<PredmetGetAllVM> GetAll(string ? nazivFilter , float minProsjecnaOcjena)
@@ -57,7 +55,7 @@ namespace FIT_Api_Example.Modul2.Controllers
                 .Average(x => x.BrojacnaOcjena) <= minProsjecnaOcjena))
 
                 .OrderBy(p => p.Naziv)
-                .ThenBy(p => p.Skracenica)
+                .ThenBy(p => p.Sifra)
                 .Take(100)
                 .Select(p => new PredmetGetAllVM
                 {
@@ -65,7 +63,7 @@ namespace FIT_Api_Example.Modul2.Controllers
                     ectsPredmeta = p.ECTS,
                     nazivPredmeta = p.Naziv,
                     prosjecnaOcjena = 0,
-                    skracenicaPredmeta = p.Skracenica,
+                    skracenicaPredmeta = p.Sifra,
                 });
 
             return upit.ToList();
