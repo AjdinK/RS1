@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {mojConfig} from "./moj_config";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -13,10 +15,12 @@ export class AppComponent {
   odabraniPredmet: any;
   ime = "ajdin";
 
+  constructor(private httpKlijent :HttpClient) {
+  }
+
   PreuzmiPodatke() {
 
-    let url = "https://localhost:7174/Predmet/GetAll?nazivFilter=" + this.filterPredmet ;
-    fetch(url).
+    fetch(mojConfig.adresaServera + "/Predmet/GetAll?nazivFilter=" + this.filterPredmet ).
     then(
       r => {
 
@@ -36,4 +40,5 @@ export class AppComponent {
       }
     );
   }
+
 }
