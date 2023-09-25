@@ -6,11 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular';
 
+  title = 'angular';
   filterPredmet = "";
   Podaci:any[] = [];
   odabraniPredmet: any;
+  ime = "ajdin";
 
   PreuzmiPodatke() {
 
@@ -35,5 +36,4 @@ export class AppComponent {
       }
     );
   }
-
 }
