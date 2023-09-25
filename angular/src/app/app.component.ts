@@ -8,18 +8,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'angular';
 
-  ime = "";
+  filterPredmet = "";
   Podaci:any[] = [];
   odabraniPredmet: any;
 
-
-  dugme1() {
-    this.ime = "ajdin V2";
-  }
-
   PreuzmiPodatke() {
 
-    let url = "https://localhost:7174/Predmet/GetAll?nazivFilter=" + this.ime ;
+    let url = "https://localhost:7174/Predmet/GetAll?nazivFilter=" + this.filterPredmet ;
     fetch(url).
     then(
       r => {
