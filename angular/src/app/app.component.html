@@ -1,21 +1,28 @@
 <label>Search</label>
-<input [(ngModel)]="filterPredmet"><br>
-<button type="button" class="btn btn-primary" (click)="PreuzmiPodatke()">Preuzmi podatke</button><br>
+<input [(ngModel)]="filterStudent"><br>
 <table class = "table table-bordered">
   <thead>
   <tr>
-    <th>Naziv</th>
-    <th>Sifra</th>
-    <th>Ects</th>
-    <th>Prosjecna Ocjena</th>
+    <th>ID</th>
+    <th>Ime</th>
+    <th>Prezime</th>
+    <th>Broj Indeksa</th>
+    <th>Opstina</th>
+    <th>Datum Rodjenja</th>
+    <th>Datum Kreiranja</th>
+    <th>Slika</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let p of Podaci">
-    <td>{{p.nazivPredmeta}}</td>
-    <td>{{p.skracenicaPredmeta}}</td>
-    <td>{{p.ectsPredmeta}}</td>
-    <td>{{p.prosjecnaOcjena}}</td>
+  <tr *ngFor="let p of podaci">
+    <td>{{p.id}}</td>
+    <td>{{p.ime}}</td>
+    <td>{{p.prezime}}</td>
+    <td>{{p.broj_indeksa}}</td>
+    <td>{{p.opstina_rodjenja.description}}</td>
+    <td>{{p.datum_rodjenja}}</td>
+    <td>{{p.created_time}}</td>
+    <td><img src="{{p.slika_studenta}}" style="width: 40px;height: 40px"/></td>
     <td><button type="button" class="btn btn-info" (click)="odabraniPredmet = p">Edit</button></td>
   </tr>
   </tbody>
@@ -32,3 +39,12 @@
   <button type="button" class="btn btn-primary">Save</button>
   <button type="button" class="btn btn-danger">Delete</button>
 </div>
+
+
+
+
+
+
+
+
+"slika_studenta": "https://restapiexample.wrd.app.fit.ba/profile_images/empty.png"

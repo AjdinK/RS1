@@ -10,20 +10,18 @@ import {HttpClient} from "@angular/common/http";
 export class AppComponent implements OnInit{
 
   title = 'angular';
-  filterPredmet = "";
-  Podaci:any = [];
+  filterStudent = "";
+  podaci:any = [];
   odabraniPredmet: any;
 
   constructor(private httpKlijent : HttpClient) {
   }
-
   ngOnInit(): void {
        this.PreuzmiPodatke();
-    }
-
+  }
   PreuzmiPodatke() {
-    this.httpKlijent.get(mojConfig.adresaServera + "/Predmet/GetAll?nazivFilter=" + this.filterPredmet).subscribe(x => {
-      this.Podaci = x;
+    this.httpKlijent.get(mojConfig.adresaServera + "/Student/GetAll").subscribe(x => {
+      this.podaci = x;
     });
   }
 
