@@ -4,6 +4,7 @@ using FIT_Api_Example.Modul2.Models;
 using FIT_Api_Example.Modul2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FIT_Api_Example.Modul2.Controllers
 {
@@ -25,42 +26,31 @@ namespace FIT_Api_Example.Modul2.Controllers
             return Ok(_dbContext.Student.Include(s => s.opstina_rodjenja.drzava).FirstOrDefault(s => s.id == id)); ;
         }
 
-        [HttpPost]
-        public ActionResult Add([FromBody] StudentAddVM x)
-        {
-            var newStudent = new Student
-            {
-                ime = x.ime.RemoveTags(),
-                prezime = x.prezime.RemoveTags(),
-                broj_indeksa = x.broj_indeksa,
-                datum_rodjenja = x.datum_rodjenja,
-                opstina_rodjenja_id = x.opstina_rodjenja_id,
-                slika_studenta = Config.SlikeURL + "empty.png",
-                created_time = DateTime.Now
-            };
-
-            _dbContext.Add(newStudent);
-            _dbContext.SaveChanges();
-            return Get(newStudent.id);
-        }
-        
-
         [HttpPost("{id}")]
-        public ActionResult Update(int id, [FromBody] StudentUpdateVM x)
+        public ActionResult Snimi ([FromBody] StudentSnimiVM x)
         {
-            Student? student = _dbContext.Student.Include(s => s.opstina_rodjenja.drzava).FirstOrDefault(s => s.id == id);
+            Student? student;
 
-            if (student == null)
-                return BadRequest("pogresan ID");
-
+            if (x.Id == 0)
+            {
+                student = new Student();
+                _dbContext.Add(student);
+                student.slika_studenta = Config.SlikeURL + "empty.png";
+                student.created_time = DateTime.Now;
+            }
+            else {
+                student = _dbContext.Student.Include(s => s.opstina_rodjenja.drzava).FirstOrDefault(s => s.id == x.Id);
+                if (student == null)
+                    return BadRequest("pogresan ID");
+            }
+            
             student.ime = x.ime.RemoveTags();
             student.prezime = x.prezime.RemoveTags();
             student.broj_indeksa = x.broj_indeksa;
             student.datum_rodjenja = x.datum_rodjenja;
             student.opstina_rodjenja_id = x.opstina_rodjenja_id;
-
             _dbContext.SaveChanges();
-            return Get(id);
+            return Ok(student);
         }
 
         [HttpPost("{id}")]
