@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
        this.PreuzmiPodatke();
   }
   PreuzmiPodatke() {
-    this.httpKlijent.get(mojConfig.adresaServera + "/Student/GetAll").subscribe(x => {
+    this.httpKlijent.get(mojConfig.adresaServera + "/Student/GetAll?ime_prezime=" + this.filterStudent).subscribe(x => {
       this.podaci = x;
     });
   }
