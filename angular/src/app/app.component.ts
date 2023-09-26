@@ -27,4 +27,10 @@ export class AppComponent implements OnInit{
   getPodaci() {
     return this.studentPodaci.filter((x:any) => x.ime.toLowerCase().startsWith(this.filterStudent.toLowerCase()));
   }
+
+  Snimi() {
+    this.httpKlijent.post(mojConfig.adresaServera + "/Student/Snimi/",this.odabraniStudent).subscribe(x => {
+      this.studentPodaci = x;
+    });
+  }
 }

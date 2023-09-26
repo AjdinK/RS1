@@ -26,7 +26,7 @@ namespace FIT_Api_Example.Modul2.Controllers
             return Ok(_dbContext.Student.Include(s => s.opstina_rodjenja.drzava).FirstOrDefault(s => s.id == id)); ;
         }
 
-        [HttpPost("{id}")]
+        [HttpPost]
         public ActionResult Snimi ([FromBody] StudentSnimiVM x)
         {
             Student? student;
@@ -51,6 +51,7 @@ namespace FIT_Api_Example.Modul2.Controllers
             student.opstina_rodjenja_id = x.opstina_rodjenja_id;
             _dbContext.SaveChanges();
             return Ok(student);
+
         }
 
         [HttpPost("{id}")]
