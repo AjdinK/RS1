@@ -14,7 +14,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let p of podaci">
+  <tr *ngFor="let p of getPodaci()">
     <td>{{p.id}}</td>
     <td>{{p.ime}}</td>
     <td>{{p.prezime}}</td>
@@ -23,19 +23,19 @@
     <td>{{p.datum_rodjenja}}</td>
     <td>{{p.created_time}}</td>
     <td><img src="{{p.slika_studenta}}" style="width: 40px;height: 40px"/></td>
-    <td><button type="button" class="btn btn-info" (click)="odabraniPredmet = p">Edit</button></td>
+    <td><button type="button" class="btn btn-info" (click)="odabraniStudent = p">Edit</button></td>
   </tr>
   </tbody>
 </table>
-<div *ngIf="odabraniPredmet != null">
+<div *ngIf="odabraniStudent != null">
   <label>Naziv Predmeta</label>
-<input [(ngModel)]="odabraniPredmet.nazivPredmeta">
+<input [(ngModel)]="odabraniStudent.nazivPredmeta">
   <label>Sifra Predmeta</label>
-<input [(ngModel)]="odabraniPredmet.skracenicaPredmeta">
+<input [(ngModel)]="odabraniStudent.skracenicaPredmeta">
   <label>ECTS Predmeta</label>
-<input [(ngModel)]="odabraniPredmet.ectsPredmeta">
+<input [(ngModel)]="odabraniStudent.ectsPredmeta">
   <label>Prosjecna ocjena</label>
-<input [(ngModel)]="odabraniPredmet.prosjecnaOcjena">
+<input [(ngModel)]="odabraniStudent.prosjecnaOcjena">
   <button type="button" class="btn btn-primary">Save</button>
   <button type="button" class="btn btn-danger">Delete</button>
 </div>

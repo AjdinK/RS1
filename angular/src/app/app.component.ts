@@ -11,8 +11,8 @@ export class AppComponent implements OnInit{
 
   title = 'angular';
   filterStudent = "";
-  podaci:any = [];
-  odabraniPredmet: any;
+  studentPodaci:any = [];
+  odabraniStudent: any;
 
   constructor(private httpKlijent : HttpClient) {
   }
@@ -21,8 +21,10 @@ export class AppComponent implements OnInit{
   }
   PreuzmiPodatke() {
     this.httpKlijent.get(mojConfig.adresaServera + "/Student/GetAll?ime_prezime=" + this.filterStudent).subscribe(x => {
-      this.podaci = x;
+      this.studentPodaci = x;
     });
   }
-
+  getPodaci() {
+    return this.studentPodaci.filter((x:any) => x.ime.toLowerCase().startsWith(this.filterStudent.toLowerCase()));
+  }
 }
