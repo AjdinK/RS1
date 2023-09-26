@@ -2,7 +2,7 @@
 {
     public class StudentSnimiVM
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string ime { get; set; }
         public string prezime { get; set; }
         public string broj_indeksa { get; set; }

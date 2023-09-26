@@ -31,7 +31,7 @@ namespace FIT_Api_Example.Modul2.Controllers
         {
             Student? student;
 
-            if (x.Id == 0)
+            if (x.id == 0)
             {
                 student = new Student();
                 _dbContext.Add(student);
@@ -39,7 +39,7 @@ namespace FIT_Api_Example.Modul2.Controllers
                 student.created_time = DateTime.Now;
             }
             else {
-                student = _dbContext.Student.Include(s => s.opstina_rodjenja.drzava).FirstOrDefault(s => s.id == x.Id);
+                student = _dbContext.Student.Include(s => s.opstina_rodjenja.drzava).FirstOrDefault(s => s.id == x.id);
                 if (student == null)
                     return BadRequest("pogresan ID");
             }

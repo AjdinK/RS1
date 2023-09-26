@@ -30,7 +30,6 @@ export class AppComponent implements OnInit{
 
   Snimi() {
     this.httpKlijent.post(mojConfig.adresaServera + "/Student/Snimi/",this.odabraniStudent).subscribe(x => {
-      this.studentPodaci = x;
     });
   }
 }
