@@ -3,11 +3,11 @@ import {HttpClient} from "@angular/common/http";
 import {mojConfig} from "../moj_config";
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css']
+  selector: 'app-studenti',
+  templateUrl: './studenti.component.html',
+  styleUrls: ['./studenti.component.css']
 })
-export class StudentComponent implements OnInit{
+export class StudentiComponent implements OnInit{
   filterStudent = "";
   studentPodaci:any = [];
   odabraniStudent: any;
