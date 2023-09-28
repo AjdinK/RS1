@@ -24,7 +24,7 @@ namespace FIT_Api_Example.Modul2.Controllers
             if (x.Id == 0)
             {
                 obj = new Drzava();
-                _dbContext.Drzava.Add(obj);
+                _dbContext.Add(obj);
             }
             else {
                 obj = _dbContext.Drzava.Find(x.Id);
