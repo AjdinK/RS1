@@ -1,8 +1,15 @@
-<h1>OVO JE app.component</h1>
-<div style="broder: 5px dotted orange ; padding : 20px">
-  <app-proba1></app-proba1>
-</div>
-<div style="broder: 5px solid red ; padding : 20px">
-  <app-studenti></app-studenti>
+<H1>app.component.html</H1>
+
+<nav>
+  <a class="button" routerLink="proba1">Proba1</a> |
+  <a class="button" routerLink="studenti">Studenti</a> |
+  <a class="button" routerLink="predmeti">Predmeti</a> |
+  <a class="button" routerLink="opstine">Opstine</a> |
+  <a class="button" routerLink="drzave">Drzave</a> |
+  <br>
+</nav>
+
+<div style="border:5px solid red;">
+  <router-outlet></router-outlet>
 </div>
 
