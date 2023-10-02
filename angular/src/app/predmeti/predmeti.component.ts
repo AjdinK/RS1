@@ -23,4 +23,8 @@ export class PredmetiComponent implements OnInit{
       this.podaci = x;
     })
   }
+  getPodatke() {
+    return this.podaci.filter((x:any) => x.nazivPredmeta.toLowerCase().startsWith(this.filterPredmeti.toLowerCase()));
+  }
+
 }

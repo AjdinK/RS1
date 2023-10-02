@@ -1,7 +1,7 @@
 <p>predmet works!</p>
 <Label>Search</Label>
-<input [(ngModel)]="filterPredmeti"><br><br>
-<button (click)="PreuzmiPodatke()">Get podatke</button>
+<input [(ngModel)]="filterPredmeti">
+<button class="btn btn-primary" (click)="PreuzmiPodatke()">Get podatke</button>
 <table class="table table-bordered">
   <tr>
     <th>ID</th>
@@ -11,7 +11,7 @@
     <th>Prosjecna Ocjena</th>
   </tr>
   <tbody>
-  <tr *ngFor="let o of podaci">
+  <tr *ngFor="let o of getPodatke()">
     <th>{{o.id}}</th>
     <th>{{o.nazivPredmeta}}</th>
     <th>{{o.skracenicaPredmeta}}</th>
