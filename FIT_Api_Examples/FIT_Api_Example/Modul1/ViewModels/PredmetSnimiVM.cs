@@ -3,8 +3,8 @@
     public class PredmetSnimiVM
     {
         public int ID { get; set; }
-        public string sifraPredmeta { get; set; }
         public string nazivPredmeta { get; set; }
+        public string sifraPredmeta { get; set; }
         public int ectsBodovi { get; set; }
     }
 }

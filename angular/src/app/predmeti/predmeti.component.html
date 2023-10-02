@@ -9,16 +9,29 @@
     <th>Skracenica Predmeta</th>
     <th>ECTS Predmeta</th>
     <th>Prosjecna Ocjena</th>
+    <th>Akcija</th>
   </tr>
   <tbody>
-  <tr *ngFor="let o of getPodatke()">
-    <th>{{o.id}}</th>
-    <th>{{o.nazivPredmeta}}</th>
-    <th>{{o.skracenicaPredmeta}}</th>
-    <th>{{o.ectsPredmeta}}</th>
-    <th>{{o.prosjecnaOcjena}}</th>
+  <tr *ngFor="let p of getPodatke()">
+    <th>{{p.id}}</th>
+    <th>{{p.nazivPredmeta}}</th>
+    <th>{{p.skracenicaPredmeta}}</th>
+    <th>{{p.ectsPredmeta}}</th>
+    <th>{{p.prosjecnaOcjenaprosjecnaOcjena}}</th>
+    <th><button (click)="odabraniPredmet = p" class="btn btn-info">Edit</button></th>
   </tr>
   </tbody>
 </table>
+
+<div *ngIf="odabraniPredmet != null">
+  <Label>Naziv Predmeta</Label>
+  <input [(ngModel)]="odabraniPredmet.nazivPredmeta">
+  <Label>Skracenica Predmeta</Label>
+  <input [(ngModel)]="odabraniPredmet.sifraPredmeta">
+  <Label>ECTS Predmeta</Label>
+  <input [(ngModel)]="odabraniPredmet.ectsBodovi">
+  <button class="btn btn-success" (click)="Snimi()">Snimi</button>
+</div>
+
 
 

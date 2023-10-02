@@ -6,8 +6,8 @@ namespace FIT_Api_Example.Modul1.Models
     {
         [Key]
         public int ID { get; set; }
-        public string Naziv { get; set; }
-        public string Sifra { get; set; }
-        public int ECTS { get; set; }
+        public string nazivPredmeta { get; set; }
+        public string sifraPredmeta { get; set; }
+        public int ectsBodovi { get; set; }
     }
 }

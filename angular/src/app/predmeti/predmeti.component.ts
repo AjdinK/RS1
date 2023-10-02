@@ -10,6 +10,7 @@ import {mojConfig} from "../moj_config";
 export class PredmetiComponent implements OnInit{
   podaci:any = [];
   filterPredmeti: any = "";
+  odabraniPredmet: any;
 
   constructor(private httpKlijent : HttpClient) {
   }
@@ -18,7 +19,6 @@ export class PredmetiComponent implements OnInit{
     this.PreuzmiPodatke();
   }
   PreuzmiPodatke() {
-    //https://localhost:7174/Predmet/GetAll
     this.httpKlijent.get(mojConfig.adresaServera + "/Predmet/GetAll?nazivFilter=" + this.filterPredmeti).subscribe(x=>{
       this.podaci = x;
     })
@@ -27,4 +27,8 @@ export class PredmetiComponent implements OnInit{
     return this.podaci.filter((x:any) => x.nazivPredmeta.toLowerCase().startsWith(this.filterPredmeti.toLowerCase()));
   }
 
+  Snimi() {
+    this.httpKlijent.post(mojConfig.adresaServera + "/Predmet/Snimi",this.odabraniPredmet).subscribe(x => {
+    });
+  }
 }
