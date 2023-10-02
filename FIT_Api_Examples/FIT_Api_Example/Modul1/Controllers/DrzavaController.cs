@@ -36,9 +36,9 @@ namespace FIT_Api_Example.Modul2.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult GetAll(string ? nazivFilter)
         {
-            var data = _dbContext.Drzava
+            var data = _dbContext.Drzava.Where(d => nazivFilter == null ||d.nazivDrzave.ToLower().Contains(nazivFilter.ToLower()))
                 .OrderBy(s => s.Id)
                 .Select(s => new DrzavaGetAllVM ()
                 {

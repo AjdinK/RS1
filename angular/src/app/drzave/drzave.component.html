@@ -1,15 +1,18 @@
 <p>drzave works!</p>
+<label>Search</label>
+<input [(ngModel)]="filterDrzava"><br>
 <table class = "table table-bordered">
   <thead>
   <tr>
     <th>ID</th>
-    <th>Opis</th>
+    <th>Naziv Drzave</th>
+    <th>Skracenica</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let x of getPodatke()">
     <td>{{x.id}}</td>
-    <td>{{x.opis}}</td>
-  </tr>
+    <td>{{x.nazivDrzave}}</td>
+    <td>{{ x.skracenicaDrzave ?? "Not_Found" }}</td> </tr>
   </tbody>
 </table>

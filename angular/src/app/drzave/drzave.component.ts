@@ -9,11 +9,12 @@ import {mojConfig} from "../moj_config";
 })
 export class DrzaveComponent implements OnInit{
   private podaci: any;
+  filterDrzava: any = "";
   constructor(private httpKlijent : HttpClient) {
   }
 
   ngOnInit(): void {
-    this.httpKlijent.get(mojConfig.adresaServera + "/Drzava/GetAll").subscribe(x=>{
+    this.httpKlijent.get(mojConfig.adresaServera + "/Drzava/GetAll?nazivFilter=" + this.filterDrzava).subscribe(x=>{
       this.podaci = x;
     })
   }
@@ -22,6 +23,6 @@ export class DrzaveComponent implements OnInit{
     if (this.podaci == null)
       return [];
 
-    return this.podaci;
+    return this.podaci.filter((x:any) => x.nazivDrzave.toLowerCase().startsWith(this.filterDrzava.toLowerCase()));
   }
 }
