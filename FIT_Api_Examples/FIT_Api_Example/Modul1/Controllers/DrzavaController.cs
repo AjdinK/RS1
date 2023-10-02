@@ -45,7 +45,6 @@ namespace FIT_Api_Example.Modul2.Controllers
             _dbContext.Drzava.Remove(obj);
             _dbContext.SaveChanges();
             return Ok();
-           
         }
 
         [HttpGet]

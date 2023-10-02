@@ -10,6 +10,7 @@ import {mojConfig} from "../moj_config";
 export class DrzaveComponent implements OnInit{
   private podaci: any;
   filterDrzava: any = "";
+  odabranaDrzava: any;
   constructor(private httpKlijent : HttpClient) {
   }
 
@@ -19,10 +20,28 @@ export class DrzaveComponent implements OnInit{
     })
   }
 
-  getPodatke() {
+  PreuzmiPodatke() {
     if (this.podaci == null)
       return [];
-
     return this.podaci.filter((x:any) => x.nazivDrzave.toLowerCase().startsWith(this.filterDrzava.toLowerCase()));
   }
+
+  Snimi() {
+    this.httpKlijent.post(mojConfig.adresaServera + "/Drzava/Snimi", this.odabranaDrzava).subscribe(x=>{
+      window.alert('Drzava saved successfully');
+      this.NovaDrzava();
+      this.PreuzmiPodatke();
+    })
+  }
+
+
+  NovaDrzava() {
+    this.odabranaDrzava = {
+      id: 0,
+      nazivDrzave:'',
+      skracenicaDrzave:''
+    }
+  }
+
+
 }

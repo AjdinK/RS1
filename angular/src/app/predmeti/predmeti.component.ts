@@ -29,6 +29,7 @@ export class PredmetiComponent implements OnInit{
 
   Snimi() {
     this.httpKlijent.post(mojConfig.adresaServera + "/Predmet/Snimi",this.odabraniPredmet).subscribe(x => {
+      window.alert('Predmet saved successfully');
       this.PreuzmiPodatke();
       this.NoviPredmet();
     });
@@ -43,5 +44,4 @@ export class PredmetiComponent implements OnInit{
       prosjecnaOcjena : 0
     }
   }
-
 }
