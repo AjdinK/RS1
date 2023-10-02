@@ -1,1 +1,24 @@
 <p>predmet works!</p>
+<Label>Search</Label>
+<input [(ngModel)]="filterPredmeti"><br><br>
+<button (click)="PreuzmiPodatke()">Get podatke</button>
+<table class="table table-bordered">
+  <tr>
+    <th>ID</th>
+    <th>Naziv Predmeta</th>
+    <th>Skracenica Predmeta</th>
+    <th>ECTS Predmeta</th>
+    <th>Prosjecna Ocjena</th>
+  </tr>
+  <tbody>
+  <tr *ngFor="let o of podaci">
+    <th>{{o.id}}</th>
+    <th>{{o.nazivPredmeta}}</th>
+    <th>{{o.skracenicaPredmeta}}</th>
+    <th>{{o.ectsPredmeta}}</th>
+    <th>{{o.prosjecnaOcjena}}</th>
+  </tr>
+  </tbody>
+</table>
+
+
