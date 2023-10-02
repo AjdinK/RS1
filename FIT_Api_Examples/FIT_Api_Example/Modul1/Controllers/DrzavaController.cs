@@ -29,8 +29,8 @@ namespace FIT_Api_Example.Modul2.Controllers
             else {
                 obj = _dbContext.Drzava.Find(x.Id);
             }
-            obj.naziv = x.nazivDrzave;
-            obj.skracenica = x.skracenicaDrzave;
+            obj.nazivDrzave = x.nazivDrzave;
+            obj.skracenicaDrzave = x.skracenicaDrzave;
             _dbContext.SaveChanges();
             return obj;
         }
@@ -39,11 +39,11 @@ namespace FIT_Api_Example.Modul2.Controllers
         public List<CmbStavke> GetAll()
         {
             var data = _dbContext.Drzava
-                .OrderBy(s => s.naziv)
+                .OrderBy(s => s.nazivDrzave)
                 .Select(s => new CmbStavke()
                 {
-                    id = s.id,
-                    opis = s.naziv,
+                    id = s.Id,
+                    opis = s.nazivDrzave,
                 })
                 .AsQueryable();
             return data.Take(100).ToList();

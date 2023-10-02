@@ -3,10 +3,11 @@
 namespace FIT_Api_Example.Modul2.Models
 {
     public class Drzava
-    { 
+    {
         [Key]
-        public int id { get; set; }
-        public string naziv { get; set; }
-        public string? skracenica { get; set; }
+        public int Id { get; set; }
+        public string nazivDrzave { get; set; }
+        public string? skracenicaDrzave { get; set; }
+
     }
 }

@@ -40,7 +40,7 @@ namespace FIT_Api_Example.Modul2.Controllers
                 .Select(s => new CmbStavke()
                 {
                     id = s.id,
-                    opis = s.drzava.naziv + " - " + s.description,
+                    opis = s.drzava.nazivDrzave + " - " + s.description,
                 })
                 .AsQueryable();
             return data.Take(100).ToList();
@@ -54,7 +54,7 @@ namespace FIT_Api_Example.Modul2.Controllers
                 .Select(s => new CmbStavke()
                 {
                     id = s.id,
-                    opis = s.drzava.naziv + " - " + s.description,
+                    opis = s.drzava.nazivDrzave + " - " + s.description,
                 })
                 .AsQueryable();
             return data.Take(100).ToList();
