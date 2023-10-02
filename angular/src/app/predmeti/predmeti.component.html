@@ -1,8 +1,8 @@
-<p>predmet works!</p>
+
 <Label>Search</Label>
 <input [(ngModel)]="filterPredmeti">
-<button class="btn btn-primary" (click)="PreuzmiPodatke()">Get podatke</button>
 <table class="table table-bordered">
+  <thead>
   <tr>
     <th>ID</th>
     <th>Naziv Predmeta</th>
@@ -11,18 +11,19 @@
     <th>Prosjecna Ocjena</th>
     <th>Akcija</th>
   </tr>
+  </thead>
   <tbody>
   <tr *ngFor="let p of getPodatke()">
     <th>{{p.id}}</th>
     <th>{{p.nazivPredmeta}}</th>
-    <th>{{p.skracenicaPredmeta}}</th>
-    <th>{{p.ectsPredmeta}}</th>
-    <th>{{p.prosjecnaOcjenaprosjecnaOcjena}}</th>
+    <th>{{p.sifraPredmeta}}</th>
+    <th>{{p.ectsBodovi}}</th>
+    <th>{{p.prosjecnaOcjena ?? "Nema"}}</th>
     <th><button (click)="odabraniPredmet = p" class="btn btn-info">Edit</button></th>
   </tr>
   </tbody>
 </table>
-
+<button (click)="NoviPredmet()">Dodaj Novi</button>
 <div *ngIf="odabraniPredmet != null">
   <Label>Naziv Predmeta</Label>
   <input [(ngModel)]="odabraniPredmet.nazivPredmeta">

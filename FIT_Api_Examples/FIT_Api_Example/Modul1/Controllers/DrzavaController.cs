@@ -19,7 +19,7 @@ namespace FIT_Api_Example.Modul2.Controllers
         }
 
         [HttpPost]
-        public Drzava Snimi([FromBody] DrzavaSnimiVM x) {
+        public Drzava Snimi([FromBody] DrzavaVM x) {
             Drzava? obj;
             if (x.Id == 0)
             {
@@ -35,12 +35,25 @@ namespace FIT_Api_Example.Modul2.Controllers
             return obj;
         }
 
+        [HttpDelete]
+        public ActionResult Brisi (DrzavaBrisiVM x)
+        {
+            var obj = _dbContext.Drzava.Find(x.Id);
+            if (obj == null) {
+                return BadRequest("Obj not found");
+            }
+            _dbContext.Drzava.Remove(obj);
+            _dbContext.SaveChanges();
+            return Ok();
+           
+        }
+
         [HttpGet]
         public ActionResult GetAll(string ? nazivFilter)
         {
             var data = _dbContext.Drzava.Where(d => nazivFilter == null ||d.nazivDrzave.ToLower().Contains(nazivFilter.ToLower()))
                 .OrderBy(s => s.Id)
-                .Select(s => new DrzavaGetAllVM ()
+                .Select(s => new DrzavaVM()
                 {
                     Id = s.Id,
                     nazivDrzave = s.nazivDrzave,

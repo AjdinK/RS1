@@ -29,6 +29,19 @@ export class PredmetiComponent implements OnInit{
 
   Snimi() {
     this.httpKlijent.post(mojConfig.adresaServera + "/Predmet/Snimi",this.odabraniPredmet).subscribe(x => {
+      this.PreuzmiPodatke();
+      this.NoviPredmet();
     });
   }
+
+  NoviPredmet() {
+    this.odabraniPredmet = {
+      id:0,
+      nazivPredmeta: '',
+      sifraPredmeta : '',
+      ectsBodovi : 0,
+      prosjecnaOcjena : 0
+    }
+  }
+
 }
