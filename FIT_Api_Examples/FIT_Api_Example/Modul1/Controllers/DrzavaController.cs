@@ -39,7 +39,7 @@ namespace FIT_Api_Example.Modul2.Controllers
         public ActionResult GetAll()
         {
             var data = _dbContext.Drzava
-                .OrderBy(s => s.nazivDrzave)
+                .OrderBy(s => s.Id)
                 .Select(s => new DrzavaGetAllVM ()
                 {
                     Id = s.Id,
