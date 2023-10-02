@@ -36,17 +36,18 @@ namespace FIT_Api_Example.Modul2.Controllers
         }
 
         [HttpGet]
-        public List<CmbStavke> GetAll()
+        public ActionResult GetAll()
         {
             var data = _dbContext.Drzava
                 .OrderBy(s => s.nazivDrzave)
-                .Select(s => new CmbStavke()
+                .Select(s => new DrzavaGetAllVM ()
                 {
-                    id = s.Id,
-                    opis = s.nazivDrzave,
+                    Id = s.Id,
+                    nazivDrzave = s.nazivDrzave,
+                    skracenicaDrzave = s.skracenicaDrzave
                 })
                 .AsQueryable();
-            return data.Take(100).ToList();
+            return Ok (data.Take(100).ToList());
         }
     }
 }

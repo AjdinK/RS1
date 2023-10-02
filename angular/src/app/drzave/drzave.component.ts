@@ -21,7 +21,7 @@ export class DrzaveComponent implements OnInit{
   getPodatke() {
     if (this.podaci == null)
       return [];
-    
+
     return this.podaci;
   }
 }
