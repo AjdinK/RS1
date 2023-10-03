@@ -6,5 +6,4 @@
         public string nazivDrzave { get; set; }
         public string skracenicaDrzave { get; set; }
     }
-
 }
