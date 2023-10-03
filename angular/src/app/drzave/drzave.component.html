@@ -6,6 +6,7 @@
     <th>ID</th>
     <th>Naziv Drzave</th>
     <th>Skracenica</th>
+    <th>Akcija</th>
   </tr>
   </thead>
   <tbody>
@@ -13,8 +14,8 @@
     <td>{{x.id}}</td>
     <td>{{x.nazivDrzave}}</td>
     <td>{{ x.skracenicaDrzave ?? "Not_Found" }}</td>
-    <th><button (click)="odabranaDrzava = x" class="btn btn-info">Edit</button></th>
-    <!---<th><button (click)="Brisi()" class="btn btn-danger">Brisanje</button></th>-->
+    <td><button (click)="odabranaDrzava = x" class="btn btn-info">Edit</button>
+      <button (click)="Brisi(x.id)" class="btn btn-danger">Brisanje</button></td>
   </tr>
   </tbody>
 </table>

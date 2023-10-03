@@ -23,6 +23,7 @@ export class DrzaveComponent implements OnInit{
   PreuzmiPodatke() {
     if (this.podaci == null)
       return [];
+
     return this.podaci.filter((x:any) => x.nazivDrzave.toLowerCase().startsWith(this.filterDrzava.toLowerCase()));
   }
 
@@ -34,7 +35,6 @@ export class DrzaveComponent implements OnInit{
     })
   }
 
-
   NovaDrzava() {
     this.odabranaDrzava = {
       id: 0,
@@ -42,6 +42,11 @@ export class DrzaveComponent implements OnInit{
       skracenicaDrzave:''
     }
   }
-
-
+  //'https://localhost:7174/Drzava/Brisi/id?id=5'
+  Brisi(id : number ) {
+    this.httpKlijent.delete(mojConfig.adresaServera + '/Drzava/Brisi/id?id=' + id).subscribe(x=>{
+      this.PreuzmiPodatke();
+      this.NovaDrzava();
+    })
+  }
 }

@@ -35,10 +35,10 @@ namespace FIT_Api_Example.Modul2.Controllers
             return obj;
         }
 
-        [HttpDelete]
-        public ActionResult Brisi (DrzavaBrisiVM x)
+        [HttpDelete("id")]
+        public ActionResult Brisi (int id)
         {
-            var obj = _dbContext.Drzava.Find(x.Id);
+            var obj = _dbContext.Drzava.Find(id);
             if (obj == null) {
                 return BadRequest("Obj not found");
             }
