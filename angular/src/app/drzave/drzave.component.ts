@@ -8,23 +8,26 @@ import {mojConfig} from "../moj_config";
   styleUrls: ['./drzave.component.css']
 })
 export class DrzaveComponent implements OnInit{
-  private podaci: any;
+  podaci: any;
   filterDrzava: any = "";
   odabranaDrzava: any;
+
   constructor(private httpKlijent : HttpClient) {
   }
 
   ngOnInit(): void {
+    this.PreuzmiPodatke();
+  }
+  getPodaci() {
+    if (this.podaci == null)
+      return [];
+    return this.podaci.filter((x:any)=> x.nazivDrzave.toLowerCase().startsWith(this.filterDrzava.toLowerCase()));
+  }
+
+  PreuzmiPodatke () {
     this.httpKlijent.get(mojConfig.adresaServera + "/Drzava/GetAll?nazivFilter=" + this.filterDrzava).subscribe(x=>{
       this.podaci = x;
     })
-  }
-
-  PreuzmiPodatke() {
-    if (this.podaci == null)
-      return [];
-
-    return this.podaci.filter((x:any) => x.nazivDrzave.toLowerCase().startsWith(this.filterDrzava.toLowerCase()));
   }
 
   Snimi() {
@@ -45,8 +48,9 @@ export class DrzaveComponent implements OnInit{
   //'https://localhost:7174/Drzava/Brisi/id?id=5'
   Brisi(id : number ) {
     this.httpKlijent.delete(mojConfig.adresaServera + '/Drzava/Brisi/id?id=' + id).subscribe(x=>{
-      this.PreuzmiPodatke();
+      window.alert('Drzava deleted successfully');
       this.NovaDrzava();
+      this.PreuzmiPodatke();
     })
   }
 }
