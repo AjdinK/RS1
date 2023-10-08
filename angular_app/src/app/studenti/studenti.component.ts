@@ -36,9 +36,14 @@ export class StudentiComponent implements OnInit {
 
   getPodaci() {
 
-    return this.studentPodaci.filter((s:any)=>(s.ime.toLowerCase() + " " + s.prezime.toLowerCase()).
-      startsWith(this.ime_prezime.toLowerCase()) ||
-      (s.prezime.toLowerCase() + " " + s.ime.toLowerCase()).startsWith(this.ime_prezime.toLowerCase()));
+    return this.studentPodaci.filter((s:any)=>
+      (!this.filter_ime_prezime ||
+        (s.ime.toLowerCase() + " " + s.prezime.toLowerCase()).startsWith(this.ime_prezime.toLowerCase()) ||
+        (s.prezime.toLowerCase() + " " + s.ime.toLowerCase()).startsWith(this.ime_prezime.toLowerCase()))
+
+      &&
+      (!this.filter_opstina ||
+        (s.opstina_rodjenja.description.toLowerCase()).startsWith(this.opstina.toLowerCase())));
 
   }
 }
