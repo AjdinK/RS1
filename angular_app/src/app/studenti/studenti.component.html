@@ -2,11 +2,11 @@
 
 <div>
   <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
-  <input [(ngModel)]="ime_prezime"><br>
+  <input [(ngModel)]="ime_prezime" [disabled] = "!filter_ime_prezime"><br>
   <hr>
 
   <input [(ngModel)] = "filter_opstina" type="checkbox"> Filter by <span style="font-weight: bold">Opština rođenja</span> <br>
-  <input [(ngModel)]="opstina"><br>
+  <input [(ngModel)]="opstina" [disabled]="!filter_opstina"><br>
   <hr>
 </div>
 <table class="table table-warning">
@@ -22,7 +22,7 @@
     <th>Akcija</th>
   </tr>
   <tbody>
-  <tr *ngFor="let s of this.studentPodaci">
+  <tr *ngFor="let s of getPodaci()">
     <td>{{s.id}}</td>
     <td>{{s.ime}}</td>
     <td>{{s.prezime}}</td>

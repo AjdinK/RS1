@@ -34,4 +34,11 @@ export class StudentiComponent implements OnInit {
     this.testirajWebApi();
   }
 
+  getPodaci() {
+
+    return this.studentPodaci.filter((s:any)=>(s.ime.toLowerCase() + " " + s.prezime.toLowerCase()).
+      startsWith(this.ime_prezime.toLowerCase()) ||
+      (s.prezime.toLowerCase() + " " + s.ime.toLowerCase()).startsWith(this.ime_prezime.toLowerCase()));
+
+  }
 }
