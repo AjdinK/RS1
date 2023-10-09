@@ -26,7 +26,40 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-      
+        [HttpPost]
+        public ActionResult<Student> Snimi([FromBody] StudentSnimiVM x)
+        {
+            //if (!HttpContext.GetLoginInfo().isLogiran)
+            //    return BadRequest("nije logiran");
+
+            Student? obj;
+
+            if (x.id == 0)
+            {
+                obj = new Student();
+                obj.created_time = DateTime.Now;
+                obj.slika_korisnika = Config.SlikeURL + "empty.png";
+                _dbContext.Add(obj);   
+            }
+            else {
+                obj = _dbContext.Student.Include("opstina_rodjenja").FirstOrDefault
+                    (s => s.id == x.id);
+
+                if (obj == null) 
+                    return BadRequest("Pogresen ID");
+            }
+
+            obj.ime = x.ime;
+            obj.prezime = x.prezime;
+            obj.broj_indeksa = x.broj_indeksa;
+            obj.opstina_rodjenja_id = x.opstina_rodjenja_id;
+            
+
+            _dbContext.SaveChanges();
+            return Ok();
+        }
+
+
 
         [HttpGet]
         public ActionResult<List<Student>> GetAll(string ime_prezime)

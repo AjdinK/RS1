@@ -43,7 +43,7 @@ export class StudentiComponent implements OnInit {
   }
   fetchOpstine() {
     //https://localhost:5001/Opstina/GetByAll
-    this.httpKlijent.get(MojConfig.adresa_servera + "/Opstina/GetByAll").subscribe(x=>{
+    this.httpKlijent.get(MojConfig.adresa_servera + "/Opstina/GetByAll" , MojConfig.http_opcije()).subscribe(x=>{
       this.opstinePodaci = x;
     });
   }
@@ -59,6 +59,23 @@ export class StudentiComponent implements OnInit {
       &&
       (!this.filter_opstina ||
         (s.opstina_rodjenja.description.toLowerCase()).startsWith(this.opstina.toLowerCase())));
+
+  }
+
+  noviStudent() {
+    this.odabraniStudent = {
+      id:0,
+      ime:'',
+      prezime:'',
+      broj_indeks:0,
+    }
+  }
+
+  snimiDugme() {
+    this.httpKlijent.post(MojConfig.adresa_servera + "/Student/Snimi" , this.odabraniStudent ,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.fetchStudenti();
+      this.odabraniStudent = null;
+    })
 
   }
 }

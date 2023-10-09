@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace FIT_Api_Examples.Modul2.ViewModels
 {
-    public class StudentAddVM
+    public class StudentSnimiVM
     {
+        public int id { get; set; }
         public string ime { get; set; }
         public string prezime { get; set; }
         public string broj_indeksa { get; set; }
