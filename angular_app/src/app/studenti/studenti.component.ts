@@ -65,7 +65,7 @@ export class StudentiComponent implements OnInit {
   noviStudent() {
     this.odabraniStudent = {
       id:0,
-      ime:'',
+      ime:this.ime_prezime,
       prezime:'',
       broj_indeks:0,
     }
