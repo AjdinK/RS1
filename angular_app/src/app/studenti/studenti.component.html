@@ -33,7 +33,7 @@
     <td>{{s.created_time}}</td>
     <td><img class="profilna-slika" src="{{s.slika_korisnika}}"></td>
     <td>
-      <button>Obrisi</button>
+      <button (click)="Brisi(s.id)">Obrisi</button>
       <button (click)="odabraniStudent = s">Uredi</button>
       <button>Maticna knjiga</button>
     </td>

@@ -73,9 +73,18 @@ export class StudentiComponent implements OnInit {
 
   snimiDugme() {
     this.httpKlijent.post(MojConfig.adresa_servera + "/Student/Snimi" , this.odabraniStudent ,MojConfig.http_opcije()).subscribe((x:any)=>{
+      porukaSuccess("Uspjesano Snimljeno");
       this.fetchStudenti();
       this.odabraniStudent = null;
     })
+
+  }
+//https://localhost:5001/Student/Brisi?id=108
+  Brisi(id:number) {
+    this.httpKlijent.delete(MojConfig.adresa_servera + "/Student/Brisi?id=" + id , MojConfig.http_opcije()).subscribe((x:any)=>{
+      porukaSuccess("Uspjesano Izbriat");
+      this.fetchStudenti();
+    });
 
   }
 }

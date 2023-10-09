@@ -59,7 +59,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok();
         }
 
+        [HttpDelete]
+        public ActionResult<Student> Brisi(int id) {
+            var obj = _dbContext.Student.Find(id);
+            if (obj == null) return BadRequest("Pogresen ID");
 
+            _dbContext.Student.Remove(obj);
+            _dbContext.SaveChanges();
+            return Ok();
+        }
 
         [HttpGet]
         public ActionResult<List<Student>> GetAll(string ime_prezime)
