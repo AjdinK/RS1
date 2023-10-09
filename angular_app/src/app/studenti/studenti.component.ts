@@ -18,6 +18,7 @@ export class StudentiComponent implements OnInit {
   studentPodaci: any;
   filter_ime_prezime: boolean;
   filter_opstina: boolean;
+  odabraniStudent: any;
 
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
