@@ -14,14 +14,13 @@ export class StudentiComponent implements OnInit {
 
   title:string = 'angularFIT2';
   ime_prezime:string = '';
-  opstina: string = '';
-  studentPodaci: any;
   filter_ime_prezime: boolean;
-  filter_opstina: boolean;
+  studentPodaci: any;
   odabraniStudent: any;
+  opstina: string = '';
+  filter_opstina: boolean;
   opstinePodaci : any;
-
-
+  akademskaGodinaPodaci : any;
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
@@ -85,6 +84,15 @@ export class StudentiComponent implements OnInit {
       porukaSuccess("Uspjesano Izbriat");
       this.fetchStudenti();
     });
+
+  }
+
+  MaticnaKnjigaDugme(s: any) {
+
+  }
+
+  UrediDugme(s:any) {
+    this.odabraniStudent = s;
 
   }
 }

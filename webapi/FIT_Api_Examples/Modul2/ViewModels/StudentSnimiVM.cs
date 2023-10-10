@@ -13,5 +13,6 @@ namespace FIT_Api_Examples.Modul2.ViewModels
         public string broj_indeksa { get; set; }
         public int? opstina_rodjenja_id { get; set; }
         public DateTime? datum_rodjenja { get; set; }
+
     }
 }
