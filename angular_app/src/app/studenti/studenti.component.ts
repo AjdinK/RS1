@@ -21,7 +21,6 @@ export class StudentiComponent implements OnInit {
   filter_opstina: boolean;
   opstinePodaci : any;
   akademskaGodinaPodaci : any;
-
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
@@ -102,6 +101,5 @@ export class StudentiComponent implements OnInit {
 
   UrediDugme(s:any) {
     this.odabraniStudent = s;
-
   }
 }

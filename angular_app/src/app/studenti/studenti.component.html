@@ -45,7 +45,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Edit student</h5>
+        <h5 class="modal-title" id="exampleModalLiveLabel">{{(odabraniStudent.id == 0)? "Dodaj student" : "Uredi student"}}</h5>
         <button type="button" class="btn-close" (click)="odabraniStudent = null" aria-label="Close"></button>
       </div>
       <div class="modal-body">
