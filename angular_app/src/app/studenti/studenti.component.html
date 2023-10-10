@@ -33,7 +33,8 @@
     <td>{{s.created_time}}</td>
     <td><img class="profilna-slika" src="{{s.slika_korisnika}}"></td>
     <td>
-      <!--<button (click)="Brisi()">Obrisi</button>-->
+      <button (click)="ObrisiDugmeByID(s.id)">Obrisi</button>
+      <!--<button (click)="ObrisiDugmeV2(s)">Obrisi V2</button>-->
       <button (click)="UrediDugme(s)">Uredi</button>
       <button (click)="MaticnaKnjigaDugme(s)">Maticna knjiga</button>
     </td>

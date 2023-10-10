@@ -46,7 +46,6 @@ export class StudentiComponent implements OnInit {
       this.opstinePodaci = x;
     });
   }
-
   fetchAkademskeGodine () {
     //https://localhost:5001/AkademskeGodine/GetAll_ForCmb
     this.httpKlijent.get(MojConfig.adresa_servera + "/AkademskeGodine/GetAll_ForCmb").subscribe((x:any)=>{
@@ -68,13 +67,13 @@ export class StudentiComponent implements OnInit {
         (s.opstina_rodjenja.description.toLowerCase()).startsWith(this.opstina.toLowerCase())));
 
   }
-
   noviStudent() {
     this.odabraniStudent = {
       id:0,
       ime:this.ime_prezime,
       prezime:'',
       broj_indeks:0,
+      opstina_rodjenja_id : 2,
     }
   }
 
@@ -84,22 +83,19 @@ export class StudentiComponent implements OnInit {
       this.fetchStudenti();
       this.odabraniStudent = null;
     })
-
-  }
-//https://localhost:5001/Student/Brisi?id=108
-  Brisi(id:number) {
-    this.httpKlijent.delete(MojConfig.adresa_servera + "/Student/Brisi?id=" + id , MojConfig.http_opcije()).subscribe((x:any)=>{
-      porukaSuccess("Uspjesano Izbriat");
-      this.fetchStudenti();
-    });
-
   }
 
   MaticnaKnjigaDugme(s: any) {
-
   }
 
   UrediDugme(s:any) {
     this.odabraniStudent = s;
+  }
+
+  ObrisiDugmeByID(id:number) {
+    'https://localhost:5001/Student/BrisiByID?id=82'
+    this.httpKlijent.delete(MojConfig.adresa_servera + "/Student/BrisiByID?id=" + id , MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.fetchStudenti();
+    })
   }
 }
