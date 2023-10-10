@@ -29,6 +29,7 @@ export class StudentiComponent implements OnInit {
   {
   this.fetchStudenti();
   this.fetchOpstine();
+  this.fetchAkademskeGodine()
   }
 
   ngOnInit(): void {
@@ -45,6 +46,14 @@ export class StudentiComponent implements OnInit {
     this.httpKlijent.get(MojConfig.adresa_servera + "/Opstina/GetByAll" , MojConfig.http_opcije()).subscribe(x=>{
       this.opstinePodaci = x;
     });
+  }
+
+  fetchAkademskeGodine () {
+    //https://localhost:5001/AkademskeGodine/GetAll_ForCmb
+    this.httpKlijent.get(MojConfig.adresa_servera + "/AkademskeGodine/GetAll_ForCmb").subscribe((x:any)=>{
+      this.akademskaGodinaPodaci = x;
+    });
+
   }
   getPodaci() {
     if (this.studentPodaci == null)

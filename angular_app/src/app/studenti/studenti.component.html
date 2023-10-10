@@ -33,7 +33,7 @@
     <td>{{s.created_time}}</td>
     <td><img class="profilna-slika" src="{{s.slika_korisnika}}"></td>
     <td>
-      <button (click)="Brisi()">Obrisi</button>
+      <!--<button (click)="Brisi()">Obrisi</button>-->
       <button (click)="UrediDugme(s)">Uredi</button>
       <button (click)="MaticnaKnjigaDugme(s)">Maticna knjiga</button>
     </td>
@@ -69,14 +69,14 @@
         <div class="mb-3">
           <label class="form-label">Opstine</label>
           <select class="form-control" [(ngModel)]="odabraniStudent.opstina_rodjenja_id">
-            <option *ngFor="let a of opstinePodaci" [value]="o.id">{{o.opis}}</option>
+            <option *ngFor="let o of opstinePodaci" [value]="o.id">{{o.opis}}</option>
           </select>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Akademska Godina</label>
-          <select class="form-control" [(ngModel)]="odabraniStudent.opstina_rodjenja_id">
-            <option *ngFor="let o of opstinePodaci" [value]="o.id">{{o.opis}}</option>
+          <select class="form-control" [(ngModel)]="odabraniStudent.opstina_rodjenja_id"> // add akademkse godine for students
+            <option *ngFor="let a of akademskaGodinaPodaci" [value]="a.id">{{a.opis}}</option>
           </select>
         </div>
 
