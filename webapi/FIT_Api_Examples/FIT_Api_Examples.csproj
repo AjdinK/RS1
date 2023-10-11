@@ -18,7 +18,6 @@
 		</PackageReference>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
-
 	<ItemGroup>
 	  <Folder Include="Modul3_MaticnaKnjiga\Models\" />
 	  <Folder Include="Modul3_MaticnaKnjiga\ViewModels\" />
