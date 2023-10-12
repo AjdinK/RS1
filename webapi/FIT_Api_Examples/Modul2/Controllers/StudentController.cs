@@ -80,7 +80,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Student>> GetAll(string ime_prezime)
+        public ActionResult<List<Student>> GetAll(string? ime_prezime)
         {
             var data = _dbContext.Student
                 .Include(s => s.opstina_rodjenja.drzava)

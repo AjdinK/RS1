@@ -86,6 +86,7 @@ export class StudentiComponent implements OnInit {
   }
 
   MaticnaKnjigaDugme(s: any) {
+    this.router.navigate(["/student-maticnaknjiga",s.id]);
   }
 
   UrediDugme(s:any) {
@@ -101,7 +102,7 @@ export class StudentiComponent implements OnInit {
 
   ObrisiDugmeByObj(s:any) {
     //https://localhost:5001/Student/BrisiByObj
-    this.httpKlijent.post(MojConfig.adresa_servera + "/Student/BrisiByObj" , s).subscribe((x:any)=>{
+    this.httpKlijent.post(MojConfig.adresa_servera + "/Student/BrisiByObj" , s , MojConfig.http_opcije()).subscribe((x:any)=>{
       this.fetchStudenti();
     })
   }

@@ -14,6 +14,8 @@ declare function porukaError(a: string):any;
 export class StudentMaticnaknjigaComponent implements OnInit {
 
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute) {}
+  odabraniStudentID:number ;
+  maticnaKnjigaPodaci : any;
 
   ovjeriLjetni(s:any) {
 
@@ -28,5 +30,16 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.odabraniStudentID = + params ['id'];
+    })
+    this.fetchMaticnaKnjigaDetalji();
   }
+
+  fetchMaticnaKnjigaDetalji() {
+    this.httpKlijent.get(MojConfig.adresa_servera + "" , MojConfig.http_opcije()).subscribe((x:any) =>{
+    this.maticnaKnjigaPodaci = x;
+    });
+  }
+
 }
