@@ -20,6 +20,5 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Modul3_MaticnaKnjiga\Models\" />
-	  <Folder Include="Modul3_MaticnaKnjiga\ViewModels\" />
 	</ItemGroup>
 </Project>
