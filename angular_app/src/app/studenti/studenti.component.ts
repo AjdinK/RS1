@@ -98,4 +98,12 @@ export class StudentiComponent implements OnInit {
       this.fetchStudenti();
     })
   }
+
+  ObrisiDugmeByObj(s:any) {
+    //https://localhost:5001/Student/BrisiByObj
+    this.httpKlijent.post(MojConfig.adresa_servera + "/Student/BrisiByObj" , s).subscribe((x:any)=>{
+      this.fetchStudenti();
+    })
+  }
+
 }

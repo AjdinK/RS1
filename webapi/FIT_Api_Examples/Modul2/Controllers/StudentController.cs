@@ -69,13 +69,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok();
         }
 
-        //[HttpDelete]
-        //public ActionResult<Student> BrisiByObj([FromBody] Student x)
-        //{
-        //    _dbContext.Student.Remove(x);
-        //    _dbContext.SaveChanges();
-        //    return Ok();
-        //}
+        [HttpPost]
+        public ActionResult<Student> BrisiByObj([FromBody] Student x)
+        {
+            var obj = _dbContext.Student.Find(x.id);
+            if (obj == null) return BadRequest("Pogresen ID");
+            _dbContext.Student.Remove(obj);
+            _dbContext.SaveChanges();
+            return Ok();
+        }
 
         [HttpGet]
         public ActionResult<List<Student>> GetAll(string ime_prezime)
