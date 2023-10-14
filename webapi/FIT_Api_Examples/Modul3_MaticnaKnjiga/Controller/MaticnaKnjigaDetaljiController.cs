@@ -44,18 +44,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     akademskaGodinaOpis = u.AkademskaGodina.opis,
                     godinaStudija = u.GodinaStudija,
                     obnova = u.JelObnova,
-                   // zimskiSemsterUpis = u.datumUpisZimski,
-                   // zimskiSemsterOvjera = u.datumOvjeraZimski,
-                  //  evidentiraoKorisnik = u.evidentiraoKorisnik.korisnickoIme,
+                    zimskiSemsterUpis = u.DatumUpisZimski,
+                    zimskiSemsterOvjera = u.DatumOvjeraZimski,
+                    evidentiraoKorisnik = u.EvidentiraoKorisnik.korisnickoIme,
                     // npr brojPolozenihPredmeta ili ListaPolozeniPredmeti
                     // ili uplate ... itd 
                     // ili prosjecna ocjena ... itd
 
                 }).ToList(),
-
-
             };
-
             return rez;
         }
     }
