@@ -31,6 +31,5 @@ namespace FIT_Api_Examples.Modul2.Models
         public KorisnickiNalog EvidentiraoKorisnik { get; set; }
         public int EvidentiraoKorisnikID { get; set; }
 
-      
     }
 }
