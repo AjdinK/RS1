@@ -37,7 +37,8 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   fetchMaticnaKnjigaDetalji() {
-    this.httpKlijent.get(MojConfig.adresa_servera + "" , MojConfig.http_opcije()).subscribe((x:any) =>{
+    //https://localhost:5001/MaticnaKnjigaDetalji/GetByID?studentID=13
+    this.httpKlijent.get(MojConfig.adresa_servera + "/MaticnaKnjigaDetalji/GetByID?studentID=" + this.odabraniStudentID , MojConfig.http_opcije()).subscribe((x:any) =>{
     this.maticnaKnjigaPodaci = x;
     });
   }
