@@ -91,11 +91,11 @@ export class StudentiComponent implements OnInit {
     })
   }
 
-  MaticnaKnjigaDugme(s: any) {
+  MaticnaKnjigaDugme(s: StudentGetAllVM) {
     this.router.navigate(["/student-maticnaknjiga",s.id]);
   }
 
-  UrediDugme(s:any) {
+  UrediDugme(s:StudentGetAllVM) {
     this.odabraniStudent = s;
   }
 
@@ -106,7 +106,7 @@ export class StudentiComponent implements OnInit {
     })
   }
 
-  ObrisiDugmeByObj(s:any) {
+  ObrisiDugmeByObj(s:StudentGetAllVM) {
     //https://localhost:5001/Student/BrisiByObj
     this.httpKlijent.post(MojConfig.adresa_servera + "/Student/BrisiByObj" , s , MojConfig.http_opcije()).subscribe((x:any)=>{
       this.fetchStudenti();

@@ -27,34 +27,46 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-        [HttpGet]
-        public ActionResult<MaticnaKnjigaDetaljiVM> GetByID(int studentID)
-        {
-            var objStudent = _dbContext.Student.Find(studentID);
+        // [HttpGet]
+        // public ActionResult<MaticnaKnjigaDetaljiVM> GetByID(int studentID)
+        // {
+        //     var objStudent = _dbContext.Student.Find(studentID);
 
-            var rez = new MaticnaKnjigaDetaljiVM
-            {
-                studentID = studentID,
-                ime = objStudent.ime,
-                prezime = objStudent.prezime,
-                AkGodine = _dbContext.UpisAkGodine.Where(s => s.StudentID == studentID).ToList()
-                .Select(u => new MaticnaKnjigaDetaljiUpisiVM
-                {
-                    upisAkademskeGodineId = u.Id,
-                    akademskaGodinaOpis = u.AkademskaGodina.opis,
-                    godinaStudija = u.GodinaStudija,
-                    obnova = u.JelObnova,
-                    zimskiSemsterUpis = u.DatumUpisZimski,
-                    zimskiSemsterOvjera = u.DatumOvjeraZimski,
-                    evidentiraoKorisnik = u.EvidentiraoKorisnik.korisnickoIme,
-                    // npr brojPolozenihPredmeta ili ListaPolozeniPredmeti
-                    // ili uplate ... itd 
-                    // ili prosjecna ocjena ... itd
+        //     var rez = new MaticnaKnjigaDetaljiVM
+        //     {
+        //         studentID = studentID,
+        //         ime = objStudent.ime,
+        //         prezime = objStudent.prezime,
+        //         AkGodine = _dbContext.UpisAkGodine.Where(s => s.StudentID == studentID).ToList()
+        //         .Select(u => new MaticnaKnjigaDetaljiUpisiVM
+        //         {
+        //             upisAkademskeGodineId = u.Id,
+        //             akademskaGodinaOpis = u.AkademskaGodina.opis,
+        //             godinaStudija = u.GodinaStudija,
+        //             obnova = u.JelObnova,
+        //             zimskiSemsterUpis = u.DatumUpisZimski,
+        //             zimskiSemsterOvjera = u.DatumOvjeraZimski,
+        //             evidentiraoKorisnik = u.EvidentiraoKorisnik.korisnickoIme,
+        //             // npr brojPolozenihPredmeta ili ListaPolozeniPredmeti
+        //             // ili uplate ... itd 
+        //             // ili prosjecna ocjena ... itd
 
-                }).ToList(),
-            };
-            return rez;
-        }
+        //         }).ToList(),
+        //     };
+        //     return rez;
+        // }
+
+    [HttpGet]
+    public ActionResult GetByID(int studentId) {
+        var student = _dbContext.Student.Find(studentId);
+        var UpisAkGodine = _dbContext.UpisAkGodine.Where(s => s.Id == studentId).ToList();
+        var cijenaSkolarine = UpisAkGodine.Sum(s=> s.CijenaSkolarine);
+        return Ok( new {
+            student, 
+            UpisAkGodine,
+            cijenaSkolarine,
+        });
+    }
     }
 }
 

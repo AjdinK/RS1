@@ -79,7 +79,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Student> BrisiByObj([FromBody] Student x)
+        public ActionResult<Student> BrisiByObj([FromBody] StudentGetAllVM x)
         {
             var obj = _dbContext.Student.Find(x.id);
 

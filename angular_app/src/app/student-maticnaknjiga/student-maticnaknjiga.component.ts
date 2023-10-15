@@ -30,6 +30,7 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.route.params.subscribe(params => {
       this.odabraniStudentID = + params ['id'];
     })
