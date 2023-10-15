@@ -27,7 +27,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Student> Snimi([FromBody] StudentSnimiVM x)
+        public ActionResult<Student> Snimi([FromBody] StudentGetAllVM x)
         {
             //if (!HttpContext.GetLoginInfo().isLogiran)
             //    return BadRequest("nije logiran");
@@ -36,9 +36,11 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             if (x.id == 0)
             {
-                obj = new Student();
-                obj.created_time = DateTime.Now;
-                obj.slika_korisnika = Config.SlikeURL + "empty.png";
+                obj = new Student() {
+                    created_time = DateTime.Now,
+                    slika_korisnika = Config.SlikeURL + "empty.png",
+                };
+
                 _dbContext.Add(obj);   
             }
             else {
@@ -49,12 +51,17 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     return BadRequest("Pogresen ID");
             }
 
-            obj.ime = x.ime;
-            obj.prezime = x.prezime;
-            obj.broj_indeksa = x.broj_indeksa;
+            if (obj.broj_indeksa == null){
+                obj.broj_indeksa = "IB" + x.id;
+                obj.korisnickoIme = obj.ime + "_" + obj.prezime;
+                obj.lozinka = TokenGenerator.Generate(8);
+                _dbContext.SaveChanges();
+            }
+
+            obj.ime = x.ime.RemoveTags();
+            obj.prezime = x.prezime.RemoveTags();
             obj.opstina_rodjenja_id = x.opstina_rodjenja_id;
             
-
             _dbContext.SaveChanges();
             return Ok();
         }
@@ -62,7 +69,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpDelete]
         public ActionResult<Student> BrisiByID (int id) {
             var obj = _dbContext.Student.Find(id);
-            if (obj == null) return BadRequest("Pogresen ID");
+
+            if (obj == null || id == 1) 
+            return BadRequest("Pogresen ID");
 
             _dbContext.Student.Remove(obj);
             _dbContext.SaveChanges();
@@ -73,7 +82,10 @@ namespace FIT_Api_Examples.Modul2.Controllers
         public ActionResult<Student> BrisiByObj([FromBody] Student x)
         {
             var obj = _dbContext.Student.Find(x.id);
-            if (obj == null) return BadRequest("Pogresen ID");
+
+            if (obj == null || x.id == 1) 
+            return BadRequest("Pogresen ID");
+
             _dbContext.Student.Remove(obj);
             _dbContext.SaveChanges();
             return Ok();
