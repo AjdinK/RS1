@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
+import { StudentGetAllVM } from './student-getall-vm';
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
@@ -15,8 +16,8 @@ export class StudentiComponent implements OnInit {
   title:string = 'angularFIT2';
   ime_prezime:string = '';
   filter_ime_prezime: boolean;
-  studentPodaci: any;
-  odabraniStudent: any;
+  studentPodaci: StudentGetAllVM [] = [];
+  odabraniStudent: StudentGetAllVM ;
   opstina: string = '';
   filter_opstina: boolean;
   opstinePodaci : any;
@@ -36,7 +37,7 @@ export class StudentiComponent implements OnInit {
   }
 
   fetchStudenti() {
-    this.httpKlijent.get(MojConfig.adresa_servera+ "/Student/GetAll", MojConfig.http_opcije()).subscribe(x=>{
+    this.httpKlijent.get<StudentGetAllVM>(MojConfig.adresa_servera+ "/Student/GetAll", MojConfig.http_opcije()).subscribe((x:any)=>{
       this.studentPodaci = x;
     });
   }
@@ -72,8 +73,13 @@ export class StudentiComponent implements OnInit {
       id:0,
       ime:this.ime_prezime,
       prezime:'',
-      broj_indeks:0,
+      broj_indeksa:"",
       opstina_rodjenja_id : 2,
+      created_time: "",
+      opstina_rodjenja_opis : "",
+      drzava_rodjeja_opis : "",
+      vrijeme_dodavanje : "",
+      slika_korisnika : "",
     }
   }
 

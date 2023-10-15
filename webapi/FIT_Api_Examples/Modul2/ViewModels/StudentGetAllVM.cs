@@ -17,5 +17,6 @@ namespace FIT_Api_Examples.Modul2.ViewModels
         public string drzava_rodjeja_opis { get;  set; }
         public string vrijeme_dodavanje { get;  set; }
         public int? opstina_rodjenja_id { get; set; }
+        public string slika_korisnika { get; set; }
     }
 }

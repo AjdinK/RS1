@@ -96,6 +96,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     opstina_rodjenja_id = s.opstina_rodjenja_id,
                     drzava_rodjeja_opis = s.opstina_rodjenja.drzava.naziv,
                     vrijeme_dodavanje = s.created_time.ToString("dd.MM.yyyy"),
+                    slika_korisnika = s.slika_korisnika,
+
                 }) 
                 .ToList();
             return Ok(data);
