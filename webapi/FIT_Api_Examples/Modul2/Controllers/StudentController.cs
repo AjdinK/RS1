@@ -86,9 +86,19 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .Include(s => s.opstina_rodjenja.drzava)
                 .Where(x => ime_prezime == null || (x.ime + " " + x.prezime).StartsWith(ime_prezime) || (x.prezime + " " + x.ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.id)
-                .AsQueryable();
-            return data.Take(100).ToList();
+                .Take(100)
+                .Select(s=> new StudentGetAllVM {
+                    id = s.id,
+                    ime = s.ime,
+                    prezime = s.prezime,
+                    broj_indeksa = s.broj_indeksa,
+                    opstina_rodjenja_opis = s.opstina_rodjenja.description,
+                    opstina_rodjenja_id = s.opstina_rodjenja_id,
+                    drzava_rodjeja_opis = s.opstina_rodjenja.drzava.naziv,
+                    vrijeme_dodavanje = s.created_time.ToString("dd.MM.yyyy"),
+                }) 
+                .ToList();
+            return Ok(data);
         }
-
-    }
+    }  
 }
