@@ -41,15 +41,15 @@
 
         <tbody>
             <tr *ngFor="let x of maticnaKnjigaPodaci.upisAkGodine">
-                <td>{{x.upisAkademskeGodineId}}</td>
-                <td>{{x.akademskaGodinaOpis}}</td>
+                <td>{{x.akademskaGodinaID}}</td>
+                <td>{{x.akademskaGodina}}</td>
                 <td>{{x.godinaStudija}}</td>
-                <td>{{(x.jelObnova == true )?"Da":"Ne"}}</td>
+                <td>{{x.jelObnova?"Da":"Ne"}}</td>
                 <td>
                     <input [value]="x.zimskiSemsterUpis" disabled> |
                     <input [value]="x.zimskiSemsterOvjera" disabled> |
                 </td>
-                <td>{{x.godinaStudija}}</td>
+                <td>{{x.evidentiraoKorisnikID}}</td>
                 <td>
                     <a class="btn btn-link">Ovjeri zimski semestar </a> <br>
 

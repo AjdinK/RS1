@@ -59,7 +59,11 @@ namespace FIT_Api_Examples.Modul2.Controllers
     [HttpGet]
     public ActionResult GetByID(int studentId) {
         var student = _dbContext.Student.Find(studentId);
-        List<UpisAkGodine> UpisAkGodine = _dbContext.UpisAkGodine.Where(u => u.StudentID == studentId).ToList();
+        List<UpisAkGodine> UpisAkGodine = _dbContext.UpisAkGodine
+                .Include("AkademskaGodinaID")
+                .Include("EvidentiraoKorisnikID")
+                .Where(u => u.StudentID == studentId)
+                .ToList();
         var cijenaSkolarine = UpisAkGodine.Sum(s=> s.CijenaSkolarine);
         return Ok( new {
             student, 
