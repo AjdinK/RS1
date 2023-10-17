@@ -62,24 +62,29 @@ namespace FIT_Api_Examples.Modul2.Controllers
             var upisAkGodine = _dbContext.UpisAkGodine
                 .Where(s => s.Student.id == studentId)
                 .Select(u => new { 
-                    Id = u.Id,
+                    u.Id,
+                    u.GodinaStudija,
+                    u.JelObnova,
+                    u.DatumUpisZimski,
+                    u.CijenaSkolarine,
+                    u.DatumOvjeraZimski,
+                    evidentirao_korisnik = u.EvidentiraoKorisnik.korisnickoIme,
                     akademska_godina_opis = u.AkademskaGodina.opis,
-                    godinaStudia = u.GodinaStudija,
-                    jelObnova = u.JelObnova,
-                    datumUpisZimski = u.DatumUpisZimski,
-                    cijenaSkolarina = u.CijenaSkolarine,
-                    evidentirao_korisnik = u.EvidentiraoKorisnik.korisnickoIme
+                    akademska_godina_id = u.AkademskaGodinaID,
                 });
+
             var povretna = _dbContext.Student
                     .Where(s => s.id == studentId)
                     .Select(s => new {
-                        studentId = s.id,
-                        ime = s.ime,
-                        prezime = s.prezime,
+                        s.id,
+                        s.ime,
+                        s.prezime,
                         listaUpisi = upisAkGodine.ToList(),
                         cijenaSkolarina = upisAkGodine
-                        .Sum(s => s.cijenaSkolarina)
+                        .Sum(s => s.CijenaSkolarine
+                        )
                     }).FirstOrDefault();
+
             return Ok(povretna);
 
         }
