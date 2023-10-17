@@ -38,8 +38,8 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   fetchMaticnaKnjigaDetalji() {
-    //https://localhost:5001/MaticnaKnjigaDetalji/GetByID?studentID=13
-    this.httpKlijent.get(MojConfig.adresa_servera + "/MaticnaKnjigaDetalji/GetByID?studentID=" + this.odabraniStudentID , MojConfig.http_opcije()).subscribe((x:any) =>{
+    //'https://localhost:5001/MaticnaKnjigaDetalji/GetByID?studentId=74'
+    this.httpKlijent.get(MojConfig.adresa_servera + "/MaticnaKnjigaDetalji/GetByID?studentId=" + this.odabraniStudentID , MojConfig.http_opcije()).subscribe((x:any) =>{
     this.maticnaKnjigaPodaci = x;
     });
   }

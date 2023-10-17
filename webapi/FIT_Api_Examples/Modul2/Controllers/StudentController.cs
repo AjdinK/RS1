@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using FIT_Api_Examples.Data;
+﻿using FIT_Api_Examples.Data;
 using FIT_Api_Examples.Helper;
-using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
-using FIT_Api_Examples.Modul0_Autentifikacija.Models;
-using FIT_Api_Examples.Modul2.Models;
 using FIT_Api_Examples.Modul2.ViewModels;
 using FIT_Api_Examples.Modul3_MaticnaKnjiga.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FIT_Api_Examples.Modul2.Controllers
 {
@@ -92,7 +88,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Student>> GetAll(string? ime_prezime)
+        public ActionResult<List<Student>> GetAll(string ? ime_prezime)
         {
             var data = _dbContext.Student
                 .Include(s => s.opstina_rodjenja.drzava)
@@ -110,9 +106,10 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     vrijeme_dodavanje = s.created_time.ToString("dd.MM.yyyy"),
                     slika_korisnika = s.slika_korisnika,
 
-                }) 
+               }) 
                 .ToList();
-            return Ok(data);
+           return Ok(data);
         }
+
     }  
 }

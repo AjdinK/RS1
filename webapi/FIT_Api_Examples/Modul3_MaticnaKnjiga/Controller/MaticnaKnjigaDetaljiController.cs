@@ -59,7 +59,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
     [HttpGet]
     public ActionResult GetByID(int studentId) {
         var student = _dbContext.Student.Find(studentId);
-        var UpisAkGodine = _dbContext.UpisAkGodine.Where(s => s.Id == studentId).ToList();
+        List<UpisAkGodine> UpisAkGodine = _dbContext.UpisAkGodine.Where(u => u.StudentID == studentId).ToList();
         var cijenaSkolarine = UpisAkGodine.Sum(s=> s.CijenaSkolarine);
         return Ok( new {
             student, 
@@ -67,6 +67,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             cijenaSkolarine,
         });
     }
+
     }
 }
 
