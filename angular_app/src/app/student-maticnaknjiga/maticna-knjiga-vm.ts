@@ -1,19 +1,19 @@
-export class MaticnaKnjigaVM {
-  id: number
-  ime: string
-  prezime: string
-  listaUpisi: ListaUpisi[]
-  cijenaSkolarina: number
+
+export interface ListaUpisi {
+  id: number;
+  akademska_godina_opis: string;
+  godinastudina: number;
+  jelObnova: boolean;
+  datumUpisZimski: Date;
+  datumOvjeraZimski?: any;
+  cijenaSkolarine: number;
+  evidentirao_korisnik: string;
 }
 
-export class ListaUpisi {
-  id: number
-  godinaStudija: number
-  jelObnova: boolean
-  datumUpisZimski: string
-  cijenaSkolarine: number
-  datumOvjeraZimski: string
-  evidentirao_korisnik: string
-  akademska_godina_opis: string
-  akademska_godina_id: number
+export interface MaticnaKnjigaVM {
+  student_id: number;
+  ime: string;
+  prezime: string;
+  listaUpisi: ListaUpisi[];
+  cijenaSkolarine: number;
 }

@@ -45,16 +45,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpGet]
         public ActionResult GetAll()
         {
-            var podaci = _dbContext.Drzava
+            var data = _dbContext.Drzava
                 .OrderBy(s => s.naziv)
-                .Select(s => new
+                .Select(s => new 
                 {
                     id = s.id,
                     opis = s.naziv,
                 })
                 .ToList();
-
-            return Ok(podaci);
+            return Ok(data);
         }
     }
 }

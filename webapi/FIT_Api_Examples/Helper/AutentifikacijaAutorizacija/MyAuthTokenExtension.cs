@@ -13,7 +13,7 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
     {
         public class LoginInformacije
         {
-            public LoginInformacije (AutentifikacijaToken? autentifikacijaToken)
+            public LoginInformacije(AutentifikacijaToken? autentifikacijaToken)
             {
                 this.autentifikacijaToken = autentifikacijaToken;
             }
@@ -41,7 +41,7 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 
             AutentifikacijaToken? korisnickiNalog = db?.AutentifikacijaToken
                 .Include(s=>s.korisnickiNalog)
-                .SingleOrDefault(x => x.vrijednost == token);
+                .SingleOrDefault(x =>  x.vrijednost == token);
             
             return korisnickiNalog;
         }

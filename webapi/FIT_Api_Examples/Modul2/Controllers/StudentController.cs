@@ -1,12 +1,17 @@
-﻿using FIT_Api_Examples.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using FIT_Api_Examples.Data;
 using FIT_Api_Examples.Helper;
+using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
+using FIT_Api_Examples.Modul0_Autentifikacija.Models;
+using FIT_Api_Examples.Modul2.Models;
 using FIT_Api_Examples.Modul2.ViewModels;
 using FIT_Api_Examples.Modul3_MaticnaKnjiga.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FIT_Api_Examples.Modul2.Controllers
 {
@@ -22,93 +27,131 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-        [HttpPost]
-        public ActionResult<Student> Snimi([FromBody] StudentGetAllVM x)
+        [HttpPost("{id}")]
+        public ActionResult Obrisi2(int id)
         {
-            //if (!HttpContext.GetLoginInfo().isLogiran)
-            //    return BadRequest("nije logiran");
+            Student student = _dbContext.Student.Find(id);
 
-            Student? obj;
+            if (student == null || id == 1)
+                return BadRequest("pogresan ID");
 
+            _dbContext.Remove(student);
+
+            _dbContext.SaveChanges();
+            return Ok(student);
+        }
+
+
+        [HttpPost]
+        public ActionResult Snimi([FromBody] StudentGetAllVM x)
+        {
+            Student student;
             if (x.id == 0)
             {
-                obj = new Student() {
+                student = new Student
+                {
                     created_time = DateTime.Now,
-                    slika_korisnika = Config.SlikeURL + "empty.png"
+
                 };
-
-                _dbContext.Add(obj);   
+                _dbContext.Add(student);
             }
-            else {
-                obj = _dbContext.Student.Include("opstina_rodjenja").FirstOrDefault
-                    (s => s.id == x.id);
+            else
+            {
+                student = _dbContext.Student.FirstOrDefault(s => s.id == x.id);
 
-                if (obj == null) 
-                    return BadRequest("Pogresen ID");
             }
+       
 
-            if (obj.broj_indeksa == null){
-                obj.broj_indeksa = "IB" + x.id;
-                obj.korisnickoIme = obj.ime + "_" + obj.prezime;
-                obj.lozinka = TokenGenerator.Generate(8);
+            if (student == null)
+                return BadRequest("pogresan ID");
+
+            student.ime = x.ime.RemoveTags();
+            student.prezime = x.prezime.RemoveTags();
+            student.opstina_rodjenja_id = x.opstina_rodjenja_id;
+
+            if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))
+            {
+                //slika se snima u db
+                byte[]? slika_bajtovi = x.slika_korisnika_nova_base64?.ParsirajBase64();
+                student.slika_korisnika_bajtovi = slika_bajtovi;
+
+                if (slika_bajtovi == null)
+                    return BadRequest("format slike nije base64");
+
+                //slika se snima na File System
+                Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + student.id + ".png");
+            }
+           
+            _dbContext.SaveChanges();
+
+         
+            
+            if (student.broj_indeksa != "" )
+            {
+                student.broj_indeksa = "IB" + x.id;
+                student.korisnickoIme = x.broj_indeksa;
+                student.lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
             }
 
-            obj.ime = x.ime.RemoveTags();
-            obj.prezime = x.prezime.RemoveTags();
-            obj.opstina_rodjenja_id = x.opstina_rodjenja_id;
-            
-            _dbContext.SaveChanges();
-            return Ok();
-        }
-
-        [HttpDelete]
-        public ActionResult<Student> BrisiByID (int id) {
-            var obj = _dbContext.Student.Find(id);
-
-            if (obj == null || id == 1) 
-            return BadRequest("Pogresen ID");
-
-            _dbContext.Student.Remove(obj);
-            _dbContext.SaveChanges();
-            return Ok();
-        }
-
-        [HttpPost]
-        public ActionResult<Student> BrisiByObj([FromBody] StudentGetAllVM x)
-        {
-            var obj = _dbContext.Student.Find(x.id);
-
-            if (obj == null || x.id == 1) 
-            return BadRequest("Pogresen ID");
-
-            _dbContext.Student.Remove(obj);
-            _dbContext.SaveChanges();
             return Ok();
         }
 
         [HttpGet]
-        public ActionResult<List<Student>> GetAll(string ? ime_prezime)
+        public ActionResult GetAll(string? ime_prezime)
         {
             var data = _dbContext.Student
-                .Include(s => s.opstina_rodjenja.drzava)
+                .Include(s=>s.opstina_rodjenja.drzava)
                 .Where(x => ime_prezime == null || (x.ime + " " + x.prezime).StartsWith(ime_prezime) || (x.prezime + " " + x.ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.id)
-                .Take(100)
-                .Select(s => new StudentGetAllVM {
+                .Select(s => new StudentGetAllVM()
+                {
                     id = s.id,
                     ime = s.ime,
                     prezime = s.prezime,
                     broj_indeksa = s.broj_indeksa,
                     opstina_rodjenja_opis = s.opstina_rodjenja.description,
+                    drzava_rodjenja_opis = s.opstina_rodjenja.drzava.naziv,
                     opstina_rodjenja_id = s.opstina_rodjenja_id,
-                    drzava_rodjeja_opis = s.opstina_rodjenja.drzava.naziv,
-                    vrijeme_dodavanje = s.created_time.ToString("dd.MM.yyyy"),
-                    slika_korisnika = s.slika_korisnika,
-                }) 
+                    vrijeme_dodavanja = s.created_time.ToString("dd.MM.yyyy"),
+                    slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
+                })
                 .ToList();
-           return Ok(data);
+            
+            data.ForEach(s=>
+            {
+                //varijanta 2: slika sa File systema
+                s.slika_korisnika_postojeca_base64_FS = Fajlovi.Ucitaj("slike_korisnika/" + s.id + ".png")
+                                                        ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
+
+                s.slika_korisnika_postojeca_base64_DB ??= Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
+            });
+
+            return Ok(data);
         }
 
-    }  
+        [HttpGet("{id}")]
+        public ActionResult GetSlikaDB(int id)
+        {
+            byte[]? bajtovi_slike = _dbContext.Student.Find(id).slika_korisnika_bajtovi 
+                                   ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
+            if (bajtovi_slike == null)
+                throw new Exception();//bug
+
+            return File(bajtovi_slike, "image/png");
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetSlikaFS(int id)
+        {
+            byte[]? bajtovi_slike = Fajlovi.Ucitaj("slike_korisnika/" + id + ".png") 
+                                   ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
+
+            if (bajtovi_slike == null)
+                throw new Exception();//bug
+
+            return File(bajtovi_slike, "image/png");
+        }
+
+    }
 }

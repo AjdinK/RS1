@@ -29,4 +29,3 @@ namespace FIT_Api_Examples.Helper
         }
     }
 }
-

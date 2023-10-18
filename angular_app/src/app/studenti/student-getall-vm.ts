@@ -1,12 +1,13 @@
-export interface StudentGetAllVM {
-  id: number
-  ime: string
-  prezime: string
-  broj_indeksa: string
-  created_time: string
-  opstina_rodjenja_opis: string
-  drzava_rodjeja_opis: string
-  vrijeme_dodavanje: string
-  opstina_rodjenja_id: number
-  slika_korisnika : string;
+export interface StudentGetallVM {
+  id: number;
+  ime: string;
+  prezime: string;
+  opstina_rodjenja_id: number | null;
+  opstina_rodjenja_opis: string;
+  broj_indeksa: string;
+  drzava_rodjenja_opis: string;
+  vrijeme_dodavanja: string;
+  slika_korisnika_nova_base64?: string | null;
+  slika_korisnika_postojeca_base64_DB: string;
+  slika_korisnika_postojeca_base64_FS: string;
 }

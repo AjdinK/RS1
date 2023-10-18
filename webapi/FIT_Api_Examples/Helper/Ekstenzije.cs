@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FIT_Api_Examples.Helper
 {
     public static class Ekstenzije
     {
+
+
         public static string RemoveTags(this string input)
         {
             return Regex.Replace(input, "<.*?>", String.Empty);

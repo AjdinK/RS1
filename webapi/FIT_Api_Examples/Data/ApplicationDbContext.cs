@@ -30,11 +30,15 @@ namespace FIT_Api_Examples.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+
+          
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            //ovdje pise FluentAPI konfiguraciju
+
             //modelBuilder.Entity<Student>().ToTable("Student");
             //modelBuilder.Entity<Nastavnik>().ToTable("Nastavnik");
         }

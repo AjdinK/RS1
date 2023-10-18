@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
-import { StudentGetAllVM } from './student-getall-vm';
+import {StudentGetallVM} from "./student-getall-vm";
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
@@ -15,102 +15,132 @@ export class StudentiComponent implements OnInit {
 
   title:string = 'angularFIT2';
   ime_prezime:string = '';
-  filter_ime_prezime: boolean;
-  studentPodaci: StudentGetAllVM [] = [];
-  odabraniStudent: StudentGetAllVM ;
   opstina: string = '';
-  filter_opstina: boolean;
-  opstinePodaci : any;
-  akademskaGodinaPodaci : any;
+  studentPodaci: StudentGetallVM[] = [];
+  filter_ime_prezime: boolean=false;
+  filter_opstina: boolean=false;
+  odabranistudent?: StudentGetallVM | null;
+  opstinePodaci: any;
+
+
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
 
-  testirajWebApi() :void
+  fetchStudenti() :void
   {
-  this.fetchStudenti();
-  this.fetchOpstine();
-  this.fetchAkademskeGodine()
-  }
-
-  ngOnInit(): void {
-    this.testirajWebApi();
-  }
-
-  fetchStudenti() {
-    this.httpKlijent.get<StudentGetAllVM>(MojConfig.adresa_servera+ "/Student/GetAll", MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.httpKlijent.get<StudentGetallVM>(MojConfig.adresa_servera+ "/Student/GetAll", MojConfig.http_opcije()).subscribe((x:any)=>{
       this.studentPodaci = x;
     });
   }
-  fetchOpstine() {
-    //https://localhost:5001/Opstina/GetByAll
-    this.httpKlijent.get(MojConfig.adresa_servera + "/Opstina/GetByAll" , MojConfig.http_opcije()).subscribe(x=>{
+
+  fetchOpstine() :void
+  {
+    this.httpKlijent.get(MojConfig.adresa_servera+ "/Opstina/GetByAll", MojConfig.http_opcije()).subscribe(x=>{
       this.opstinePodaci = x;
     });
   }
-  fetchAkademskeGodine () {
-    //https://localhost:5001/AkademskeGodine/GetAll_ForCmb
-    this.httpKlijent.get(MojConfig.adresa_servera + "/AkademskeGodine/GetAll").subscribe((x:any)=>{
-      this.akademskaGodinaPodaci = x;
-    });
 
+  ngOnInit(): void {
+    this.fetchStudenti();
+    this.fetchOpstine();
   }
-  getPodaci() {
-    if (this.studentPodaci == null)
-      return [];
 
-    return this.studentPodaci.filter((s:any)=>
+  get_podaci_filtrirano() {
+      if (this.studentPodaci == null)
+        return [];
+
+    return this.studentPodaci.filter((a:any)=>
       (!this.filter_ime_prezime ||
-        (s.ime.toLowerCase() + " " + s.prezime.toLowerCase()).startsWith(this.ime_prezime.toLowerCase()) ||
-        (s.prezime.toLowerCase() + " " + s.ime.toLowerCase()).startsWith(this.ime_prezime.toLowerCase()))
+
+      (a.ime + " " +a.prezime).startsWith(this.ime_prezime)
+
+      ||
+
+      (a.prezime + " " +a.ime).startsWith(this.ime_prezime))
 
       &&
-      (!this.filter_opstina ||
-        (s.opstina_rodjenja.description.toLowerCase()).startsWith(this.opstina.toLowerCase())));
-
+      (
+        !this.filter_opstina ||
+        (a.opstina_rodjenja != null && a.opstina_rodjenja.description).startsWith(this.opstina)
+      )
+    );
   }
-  noviStudent() {
-    this.odabraniStudent = {
+
+  obrisibutton1(s: any) {
+    //kompletan objekat "s" se salje kroz body... post ima 3 parametra
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Obrisi1`, s, MojConfig.http_opcije()).subscribe(x=>{
+      this.fetchStudenti();
+    });
+  }
+
+  obrisibutton2(s: any) {
+    //int student id se salje kroz url
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Obrisi2/${s.id}`, MojConfig.http_opcije()).subscribe(x=>{
+      this.fetchStudenti();
+    });
+  }
+
+  novi_student_dugme() {
+    this.odabranistudent =   {
       id:0,
-      ime:this.ime_prezime,
-      prezime:'',
+      prezime:"",
+      ime: this.ime_prezime,
+      opstina_rodjenja_opis:"",
       broj_indeksa:"",
-      opstina_rodjenja_id : 2,
-      created_time: "",
-      opstina_rodjenja_opis : "",
-      drzava_rodjeja_opis : "",
-      vrijeme_dodavanje : "",
-      slika_korisnika : "",
+      vrijeme_dodavanja:"",
+      drzava_rodjenja_opis:"",
+      opstina_rodjenja_id:5,
+      slika_korisnika_nova_base64:"",
+      slika_korisnika_postojeca_base64_FS:"",
+      slika_korisnika_postojeca_base64_DB:""
+    };
+  }
+
+  otvori_maticnuknjigu(s: StudentGetallVM) {
+    //
+    this.router.navigate(['/student-maticnaknjiga', s.id]);
+  }
+
+  snimi_dugme() {
+
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Snimi`, this.odabranistudent, MojConfig.http_opcije()).subscribe(x=>{
+      this.fetchStudenti();
+      this.odabranistudent=null;
+    });
+  }
+
+  randomIntFromInterval(min:number, max:number) { // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  get_slika_novi_request_FS(s: StudentGetallVM) {
+     return `${MojConfig.adresa_servera}/Student/GetSlikaFS/${s.id}`;
+  }
+
+  get_slika_novi_request_DB(s: StudentGetallVM) {
+    return `${MojConfig.adresa_servera}/Student/GetSlikaDB/${s.id}`;
+  }
+
+  get_slika_base64_FS(s: StudentGetallVM) {
+    return "data:image/png;base64,"+ s.slika_korisnika_postojeca_base64_FS;
+  }
+
+  get_slika_base64_DB(s: StudentGetallVM) {
+    return "data:image/png;base64,"+ s.slika_korisnika_postojeca_base64_DB;
+  }
+
+  generisi_preview() {
+    // @ts-ignore
+    var file = document.getElementById("slika-input").files[0];
+    if (file) {
+      var reader = new FileReader();
+      let this2=this;
+      reader.onload = function () {
+        this2.odabranistudent!.slika_korisnika_nova_base64 = reader.result?.toString();
+      }
+
+      reader.readAsDataURL(file);
     }
-  }
-
-  snimiDugme() {
-    this.httpKlijent.post(MojConfig.adresa_servera + "/Student/Snimi" , this.odabraniStudent ,MojConfig.http_opcije()).subscribe((x:any)=>{
-      porukaSuccess("Uspjesano Snimljeno");
-      this.fetchStudenti();
-      this.odabraniStudent = null;
-    })
-  }
-
-  MaticnaKnjigaDugme(s: StudentGetAllVM) {
-    this.router.navigate(["/student-maticnaknjiga",s.id]);
-  }
-
-  UrediDugme(s:StudentGetAllVM) {
-    this.odabraniStudent = s;
-  }
-
-  ObrisiDugmeByID(id:number) {
-    'https://localhost:5001/Student/BrisiByID?id=82'
-    this.httpKlijent.delete(MojConfig.adresa_servera + "/Student/BrisiByID?id=" + id , MojConfig.http_opcije()).subscribe((x:any)=>{
-      this.fetchStudenti();
-    })
-  }
-
-  ObrisiDugmeByObj(s:StudentGetAllVM) {
-    //https://localhost:5001/Student/BrisiByObj
-    this.httpKlijent.post(MojConfig.adresa_servera + "/Student/BrisiByObj" , s , MojConfig.http_opcije()).subscribe((x:any)=>{
-      this.fetchStudenti();
-    })
   }
 
 }
