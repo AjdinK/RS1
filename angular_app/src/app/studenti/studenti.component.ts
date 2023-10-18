@@ -49,7 +49,7 @@ export class StudentiComponent implements OnInit {
   }
   fetchAkademskeGodine () {
     //https://localhost:5001/AkademskeGodine/GetAll_ForCmb
-    this.httpKlijent.get(MojConfig.adresa_servera + "/AkademskeGodine/GetAll_ForCmb").subscribe((x:any)=>{
+    this.httpKlijent.get(MojConfig.adresa_servera + "/AkademskeGodine/GetAll").subscribe((x:any)=>{
       this.akademskaGodinaPodaci = x;
     });
 
