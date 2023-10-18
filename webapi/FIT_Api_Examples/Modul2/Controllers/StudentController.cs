@@ -34,7 +34,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 obj = new Student() {
                     created_time = DateTime.Now,
-                    slika_korisnika = Config.SlikeURL + "empty.png",
+                    slika_korisnika = Config.SlikeURL + "empty.png"
                 };
 
                 _dbContext.Add(obj);   
