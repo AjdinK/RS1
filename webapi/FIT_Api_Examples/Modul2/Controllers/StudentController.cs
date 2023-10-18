@@ -95,7 +95,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .Where(x => ime_prezime == null || (x.ime + " " + x.prezime).StartsWith(ime_prezime) || (x.prezime + " " + x.ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.id)
                 .Take(100)
-                .Select(s=> new StudentGetAllVM {
+                .Select(s => new StudentGetAllVM {
                     id = s.id,
                     ime = s.ime,
                     prezime = s.prezime,
@@ -105,8 +105,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     drzava_rodjeja_opis = s.opstina_rodjenja.drzava.naziv,
                     vrijeme_dodavanje = s.created_time.ToString("dd.MM.yyyy"),
                     slika_korisnika = s.slika_korisnika,
-
-               }) 
+                }) 
                 .ToList();
            return Ok(data);
         }
