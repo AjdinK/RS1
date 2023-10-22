@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using FIT_Api_Examples.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using FIT_Api_Examples.Modul4_SignalRDemo;
 
 namespace FIT_Api_Examples
 {
@@ -34,6 +35,7 @@ namespace FIT_Api_Examples
 
             services.AddSignalR();
             services.AddControllers();
+
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
@@ -85,7 +87,9 @@ namespace FIT_Api_Examples
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
 
+                endpoints.MapHub<PorukeHub>("/poruke-hub-putanja");
             });
+
         }
     }
 }
