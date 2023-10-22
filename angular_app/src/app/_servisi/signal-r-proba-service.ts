@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import * as SignalR from "@microsoft/signalr";
+import {MojConfig} from "../moj-config";
 
 @Injectable({
   providedIn:"root"
@@ -9,9 +10,9 @@ export  class SignalRProbaService {
 
   otvoriKanalWebSocket () {
     var connection = new SignalR.HubConnectionBuilder().
-      withUrl("/poruke-hub-putanja")
+      withUrl(MojConfig.adresa_servera + "/poruke-hub-putanja")
       .build();
-    connection.on('slanje_poruke1',(p:string)=>{
+    connection.on('slanje_poruke',(p:string)=>{
       this.poruka1 = p;
     });
     connection.start().then( ()=> {
