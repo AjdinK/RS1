@@ -33,29 +33,50 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             _studenti = studenti;
             _nastavnici = nastavnici;
         }
-        public void OnActionExecuted(ActionExecutedContext context)
+        public void OnActionExecuted(ActionExecutedContext filterContext)
         {
+            KretanjePoSistemu.Save(filterContext.HttpContext);
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            MyAuthTokenExtension.LoginInformacije loginInfo = filterContext.HttpContext.GetLoginInfo();
 
-            if (filterContext.HttpContext.GetLoginInfo().isLogiran)
+            if (!loginInfo.isLogiran || loginInfo.korisnickiNalog == null)
             {
                 filterContext.Result = new UnauthorizedResult();
                 return;
             }
-
-            KretanjePoSistemu.Save(filterContext.HttpContext);
-            
-            if (filterContext.HttpContext.GetLoginInfo().isLogiran)
+            if (loginInfo.korisnickiNalog.isAdmin)
             {
                 return;//ok - ima pravo pristupa
             }
-           
-
+            if (loginInfo.korisnickiNalog.isNastavnik && _nastavnici)
+            {
+                return;//ok - ima pravo pristupa
+            }
+            if (loginInfo.korisnickiNalog.isStudent && _studenti)
+            {
+                return;//ok - ima pravo pristupa
+            }
+            if (loginInfo.korisnickiNalog.isDekan && _dekan)
+            {
+                return;//ok - ima pravo pristupa
+            }
+            if ((loginInfo.korisnickiNalog.isProdekan || 
+                loginInfo.korisnickiNalog.isDekan) && _prodekan)
+            {
+                return;//ok - ima pravo pristupa
+            }
+            if ((loginInfo.korisnickiNalog.isStudentskaSluzba ||
+                loginInfo.korisnickiNalog.isProdekan ||
+                loginInfo.korisnickiNalog.isDekan) && _studentskaSluzba)
+            {
+                return;//ok - ima pravo pristupa
+            }
             //else nema pravo pristupa
             filterContext.Result = new UnauthorizedResult();
         }
+
     }
 }

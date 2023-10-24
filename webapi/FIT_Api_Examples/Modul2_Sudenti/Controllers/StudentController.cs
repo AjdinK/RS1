@@ -27,7 +27,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-        [Autorizacija (true,true,true,true,false,false)]
+        [Autorizacija (true,true,true,false,false)]
         [HttpPost("{id}")]
         public ActionResult Obrisi2(int id)
         {
@@ -37,12 +37,11 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 return BadRequest("pogresan ID");
 
             _dbContext.Remove(student);
-
             _dbContext.SaveChanges();
             return Ok(student);
         }
 
-
+        [Autorizacija(true, true, true, false, false)]
         [HttpPost]
         public ActionResult Snimi([FromBody] StudentGetAllVM x)
         {
@@ -59,7 +58,6 @@ namespace FIT_Api_Examples.Modul2.Controllers
             else
             {
                 student = _dbContext.Student.FirstOrDefault(s => s.id == x.id);
-
             }
        
 

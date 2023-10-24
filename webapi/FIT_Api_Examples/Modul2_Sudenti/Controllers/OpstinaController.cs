@@ -51,7 +51,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .ToList();
             return Ok(data);
         }
-
+        [Autorizacija(true, true, true, true, true)]
         [HttpGet]
         public ActionResult GetByAll()
         {

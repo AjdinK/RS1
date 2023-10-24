@@ -21,24 +21,19 @@ namespace FIT_Api_Examples.Data
         public DbSet<Obavijest> Obavijest{ get; set; }
         public DbSet<AkademskaGodina> AkademskaGodina { get; set; }
         public DbSet<UpisAkGodine> UpisAkGodine { get; set; }
+        public DbSet<LogKretanjePoSistemu> LogKretanjePoSistemu { get; set; }
 
-        public ApplicationDbContext(
-            DbContextOptions options) : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions options) : base(options) {}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
-          
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             //ovdje pise FluentAPI konfiguraciju
-
             //modelBuilder.Entity<Student>().ToTable("Student");
             //modelBuilder.Entity<Nastavnik>().ToTable("Nastavnik");
         }
