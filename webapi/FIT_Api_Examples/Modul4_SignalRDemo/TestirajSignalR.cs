@@ -31,7 +31,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> PosaljiPoruku(string poruka)
+        public async Task<ActionResult> PosaljiPoruku (string poruka)
         {
             await _porukeHub.Clients.All.SendAsync("slanje_poruke2", poruka);
             return Ok();

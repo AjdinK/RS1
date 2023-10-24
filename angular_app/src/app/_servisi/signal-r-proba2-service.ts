@@ -7,17 +7,22 @@ import {MojConfig} from "../moj-config";
 })
 export  class SignalRProba2Service {
   public imePrezime : string = "";
+  connection?:signalR.HubConnection | null;
 
   otvoriKanalWebSocket () {
-    var connection = new SignalR.HubConnectionBuilder().
+    this.connection = new SignalR.HubConnectionBuilder().
       withUrl(MojConfig.adresa_servera + "/poruke-hub-putanja")
       .build();
-    connection.on('ime_prezime',(p:string)=>{
+    this.connection.on('PosaljiPoruku',(p:string)=>{
       this.imePrezime = p;
     });
-    connection.start().then( ()=> {
+   this.connection.start().then( ()=> {
         console.log("Otvoren kanal WS");
     });
 
   }
+  PosaljiImePrezime () {
+    this.connection?.invoke("ProsljediPoruku",this.imePrezime)
+  }
 }
+
