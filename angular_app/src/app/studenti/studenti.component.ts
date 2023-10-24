@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
 import {StudentGetallVM} from "./student-getall-vm";
+import {SignalRProba2Service} from "../_servisi/signal-r-proba2-service";
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
@@ -14,7 +15,6 @@ declare function porukaError(a: string):any;
 export class StudentiComponent implements OnInit {
 
   title:string = 'angularFIT2';
-  ime_prezime:string = '';
   opstina: string = '';
   studentPodaci: StudentGetallVM[] = [];
   filter_ime_prezime: boolean=false;
@@ -23,7 +23,9 @@ export class StudentiComponent implements OnInit {
   opstinePodaci: any;
 
 
-  constructor(private httpKlijent: HttpClient, private router: Router) {
+  constructor(private httpKlijent: HttpClient, private router: Router ,
+              public probaSignalR2 : SignalRProba2Service) {
+    probaSignalR2.otvoriKanalWebSocket();
   }
 
   fetchStudenti() :void
@@ -52,11 +54,11 @@ export class StudentiComponent implements OnInit {
     return this.studentPodaci.filter((a:any)=>
       (!this.filter_ime_prezime ||
 
-      (a.ime + " " +a.prezime).startsWith(this.ime_prezime)
+      (a.ime + " " +a.prezime).startsWith(this.probaSignalR2.imePrezime)
 
       ||
 
-      (a.prezime + " " +a.ime).startsWith(this.ime_prezime))
+      (a.prezime + " " +a.ime).startsWith(this.probaSignalR2.imePrezime))
 
       &&
       (
@@ -84,7 +86,7 @@ export class StudentiComponent implements OnInit {
     this.odabranistudent =   {
       id:0,
       prezime:"",
-      ime: this.ime_prezime,
+      ime: this.probaSignalR2.imePrezime,
       opstina_rodjenja_opis:"",
       broj_indeksa:"",
       vrijeme_dodavanja:"",
