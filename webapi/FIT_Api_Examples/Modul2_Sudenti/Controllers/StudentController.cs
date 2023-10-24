@@ -27,6 +27,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
+        [Autorizacija (true,true,true,true,false,false)]
         [HttpPost("{id}")]
         public ActionResult Obrisi2(int id)
         {

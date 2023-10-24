@@ -6,8 +6,8 @@ import {MojConfig} from "../moj-config";
   providedIn:"root"
 })
 export  class SignalRProba1Service {
-  public poruka1 : string = "testSignalR v1";
-  public poruka2:  string = "testSignalR v2";
+  public poruka1 : string = "";
+  public poruka2:  string = "";
 
   otvoriKanalWebSocket () {
     var connection = new SignalR.HubConnectionBuilder().
