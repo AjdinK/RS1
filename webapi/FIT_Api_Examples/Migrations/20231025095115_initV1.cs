@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FIT_Api_Examples.Migrations
 {
-    public partial class addLogKretanjePoSistemu : Migration
+    public partial class initV1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
