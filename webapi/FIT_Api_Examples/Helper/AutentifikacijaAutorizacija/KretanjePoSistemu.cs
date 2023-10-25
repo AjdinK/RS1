@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 {
-    public class KretanjePoSistemu
+     public class KretanjePoSistemu
     {
         public static int Save(HttpContext httpContext, IExceptionHandlerPathFeature? exceptionMessage = null)
         {
@@ -21,8 +21,8 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 
             var queryString = request.Query;
 
-            if (queryString.Count == 0 && !request.HasFormContentType)
-                return 0;
+            //if (queryString.Count == 0 && !request.HasFormContentType)
+            //    return 0;
 
             //IHttpRequestFeature feature = request.HttpContext.Features.Get<IHttpRequestFeature>();
             string detalji = "";
@@ -56,9 +56,5 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 
             return x.id;
         }
-
-
-
-
     }
 }

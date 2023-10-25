@@ -17,6 +17,8 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             Arguments = new object[] { studentskaSluzba, prodekan, dekan, studenti, nastavnici };
         }
     }
+
+
     public class MyAuthorizeImpl : IActionFilter
     {
         private readonly bool _studentskaSluzba;
@@ -41,16 +43,24 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
             MyAuthTokenExtension.LoginInformacije loginInfo = filterContext.HttpContext.GetLoginInfo();
-
             if (!loginInfo.isLogiran || loginInfo.korisnickiNalog == null)
             {
                 filterContext.Result = new UnauthorizedResult();
                 return;
             }
+
+            // if (!loginInfo.korisnickiNalog.isAktiviran)
+            // {
+            //     filterContext.Result = new UnauthorizedObjectResult("korisnik nije aktiviran - provjerite email poruke " + loginInfo.korisnickiNalog.email);
+            //     return;
+            // }
+
+
             if (loginInfo.korisnickiNalog.isAdmin)
             {
                 return;//ok - ima pravo pristupa
             }
+
             if (loginInfo.korisnickiNalog.isNastavnik && _nastavnici)
             {
                 return;//ok - ima pravo pristupa
@@ -59,24 +69,24 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             {
                 return;//ok - ima pravo pristupa
             }
+
             if (loginInfo.korisnickiNalog.isDekan && _dekan)
             {
                 return;//ok - ima pravo pristupa
             }
-            if ((loginInfo.korisnickiNalog.isProdekan || 
-                loginInfo.korisnickiNalog.isDekan) && _prodekan)
+
+            if ((loginInfo.korisnickiNalog.isProdekan || loginInfo.korisnickiNalog.isDekan) && _prodekan)
             {
                 return;//ok - ima pravo pristupa
             }
-            if ((loginInfo.korisnickiNalog.isStudentskaSluzba ||
-                loginInfo.korisnickiNalog.isProdekan ||
-                loginInfo.korisnickiNalog.isDekan) && _studentskaSluzba)
+            if ((loginInfo.korisnickiNalog.isStudentskaSluzba || loginInfo.korisnickiNalog.isDekan || loginInfo.korisnickiNalog.isProdekan) && _studentskaSluzba)
             {
                 return;//ok - ima pravo pristupa
             }
+
+
             //else nema pravo pristupa
             filterContext.Result = new UnauthorizedResult();
         }
-
     }
 }

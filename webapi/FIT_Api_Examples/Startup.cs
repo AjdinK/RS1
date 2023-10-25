@@ -86,7 +86,6 @@ namespace FIT_Api_Examples
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-
                 endpoints.MapHub<PorukeHub>("/poruke-hub-putanja");
             });
 
