@@ -28,6 +28,7 @@ namespace FIT_Api_Examples.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     korisnickoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false),
                     isProdekan = table.Column<bool>(type: "bit", nullable: false),
                     isDekan = table.Column<bool>(type: "bit", nullable: false),
