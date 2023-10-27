@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FIT_Api_Examples.Migrations
 {
-    public partial class initV1 : Migration
+    public partial class initV3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,7 +33,9 @@ namespace FIT_Api_Examples.Migrations
                     isProdekan = table.Column<bool>(type: "bit", nullable: false),
                     isDekan = table.Column<bool>(type: "bit", nullable: false),
                     isStudentskaSluzba = table.Column<bool>(type: "bit", nullable: false),
-                    slika_korisnika_bajtovi = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                    slika_korisnika_bajtovi = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    isAktiviran = table.Column<bool>(type: "bit", nullable: false),
+                    AktivacijaGUID = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

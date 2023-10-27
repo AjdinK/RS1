@@ -4,6 +4,9 @@ using System.Net.Mail;
 public class EmailSender {
 
 public static void Posalji (string to , string messageSubject , string messageBody) {
+    if (to == "")
+    return ;
+    
     string sendMailFrom = "ajdin.kuduzovic@gmail.com";
     SmtpClient smtpServer = new SmtpClient("smtp.gmail.com",587);
     smtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;

@@ -29,7 +29,8 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public bool isProdekan { get; set; }
         public bool isDekan { get; set; }
         public bool isStudentskaSluzba { get; set; }
-
         public byte[]? slika_korisnika_bajtovi { get; set; }
+        public bool isAktiviran { get ; set ;}
+        public string? AktivacijaGUID { get; set; }
     }
 }
