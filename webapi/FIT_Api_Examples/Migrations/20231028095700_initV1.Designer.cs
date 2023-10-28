@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Examples.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231027142347_initV3")]
-    partial class initV3
+    [Migration("20231028095700_initV1")]
+    partial class initV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

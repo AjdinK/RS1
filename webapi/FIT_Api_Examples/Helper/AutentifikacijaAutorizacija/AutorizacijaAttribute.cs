@@ -49,11 +49,11 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
                 return;
             }
 
-            // if (!loginInfo.korisnickiNalog.isAktiviran)
-            // {
-            //     filterContext.Result = new UnauthorizedObjectResult("korisnik nije aktiviran - provjerite email poruke " + loginInfo.korisnickiNalog.email);
-            //     return;
-            // }
+             if (!loginInfo.korisnickiNalog.isAktiviran)
+             {
+                 filterContext.Result = new UnauthorizedObjectResult("korisnik nije aktiviran - provjerite email poruke " + loginInfo.korisnickiNalog.Email);
+                 return;
+            }
 
 
             if (loginInfo.korisnickiNalog.isAdmin)
