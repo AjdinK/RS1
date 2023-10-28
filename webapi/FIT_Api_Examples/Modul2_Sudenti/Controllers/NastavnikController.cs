@@ -39,7 +39,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        [Autorizacija (true,true,true,false,false)]
+        [Autorizacija (true,true,true,false,true)]
         public ActionResult Snimi([FromBody] NastavnikGetAllVM x)
         {
             Nastavnik? nastavnik;
@@ -66,18 +66,18 @@ namespace FIT_Api_Examples.Modul2.Controllers
             nastavnik.korisnickoIme = x.korisnickoIme;
             nastavnik.Email = x.Email;
 
-            if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))
-            {
-                //slika se snima u db
-                byte[]? slika_bajtovi = x.slika_korisnika_nova_base64?.ParsirajBase64();
-                nastavnik.slika_korisnika_bajtovi = slika_bajtovi;
+            // if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))
+            // {
+            //     //slika se snima u db
+            //     byte[]? slika_bajtovi = x.slika_korisnika_nova_base64?.ParsirajBase64();
+            //     nastavnik.slika_korisnika_bajtovi = slika_bajtovi;
 
-                if (slika_bajtovi == null)
-                    return BadRequest("format slike nije base64");
+            //     if (slika_bajtovi == null)
+            //         return BadRequest("format slike nije base64");
 
-                //slika se snima na File System
-                Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + nastavnik.id + ".png");
-            }
+            //     //slika se snima na File System
+            //     Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + nastavnik.id + ".png");
+            // }
             EmailLog.noviNastavnik (nastavnik);
             _dbContext.SaveChanges();
             return Ok();
