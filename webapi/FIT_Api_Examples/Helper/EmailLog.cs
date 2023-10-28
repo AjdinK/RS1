@@ -6,16 +6,18 @@ public class EmailLog
     public static void UspjesnoLogiranKorisnik(KorisnickiNalog logiraniKorisnik, HttpContext httpContext)
     {
         if (logiraniKorisnik != null && logiraniKorisnik.isNastavnik){
-        EmailSender.Posalji(logiraniKorisnik.Email ,"New login",$" Login info : {DateTime.Now}");
+        EmailSender.Posalji(logiraniKorisnik.Email ,"New login",$" Login info : {DateTime.Now}" , false);
         }
     }
 
-    public static void noviNastavnik(Nastavnik nastavnik)
+    public static void noviNastavnik(Nastavnik nastavnik , HttpContext httpContext)
     {
         if (!nastavnik.isAktiviran){
-            var url = "https://localhost:5001/Nastavnik/Aktivacija/" + nastavnik.AktivacijaGUID;
+            var request = httpContext.Request;
+            var location = $"{request.Scheme}://{request.Host}";
+            var url = location + "/Nastavnik/Aktivacija/" + nastavnik.AktivacijaGUID;
             var poruka = $"Postovani/a {nastavnik.ime}, <br> Link za aktivaciju <a href = '{url}'>{url}</a> ";
-        EmailSender.Posalji(nastavnik.Email ,"Aktivacija korisnika",poruka);
+        EmailSender.Posalji(nastavnik.Email ,"Aktivacija korisnika",poruka , true);
         }
     }
 }

@@ -2,8 +2,7 @@ using System.Net;
 using System.Net.Mail;
 
 public class EmailSender {
-
-public static void Posalji (string to , string messageSubject , string messageBody) {
+public static void Posalji (string to , string messageSubject , string messageBody ,bool isBodyHTML) {
     if (to == "")
     return ;
     
@@ -17,6 +16,7 @@ public static void Posalji (string to , string messageSubject , string messageBo
     email.CC.Add(sendMailFrom);
     email.Subject = messageSubject;
     email.Body = messageBody;
+    email.IsBodyHtml = isBodyHTML;
     //end
     smtpServer.Timeout = 5000;
     smtpServer.EnableSsl = true;

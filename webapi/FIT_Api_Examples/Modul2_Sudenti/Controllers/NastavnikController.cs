@@ -33,7 +33,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             if (nastavnik != null){
                 nastavnik.isAktiviran = true;
                 _dbContext.SaveChanges();
-                return Ok("Nastavnik uspjesno ativiran");
+                return Redirect("http://localhost:4200/");
             }   
             return BadRequest("Error -> Pogresen URL");     
         }
