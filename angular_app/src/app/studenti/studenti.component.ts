@@ -15,17 +15,27 @@ declare function porukaError(a: string):any;
 export class StudentiComponent implements OnInit {
 
   title:string = 'angularFIT2';
+
   opstina: string = '';
   studentPodaci: StudentGetallVM[] = [];
   filter_ime_prezime: boolean=false;
   filter_opstina: boolean=false;
   odabranistudent?: StudentGetallVM | null;
   opstinePodaci: any;
+  predmetiPodaci:any;
+
 
 
   constructor(private httpKlijent: HttpClient, private router: Router ,
               public probaSignalR2 : SignalRProba2Service) {
     probaSignalR2.otvoriKanalWebSocket();
+  }
+
+  fetchPredmeti():void {
+  //https://localhost:5001/Predmet/GetAll
+    this.httpKlijent.get(MojConfig.adresa_servera + "/Predmet/GetAll").subscribe((x:any)=>{
+      this.predmetiPodaci = x;
+    })
   }
 
   fetchStudenti() :void
@@ -45,6 +55,7 @@ export class StudentiComponent implements OnInit {
   ngOnInit(): void {
     this.fetchStudenti();
     this.fetchOpstine();
+    this.fetchPredmeti();
   }
 
   get_podaci_filtrirano() {
@@ -111,17 +122,17 @@ export class StudentiComponent implements OnInit {
     });
   }
 
-  randomIntFromInterval(min:number, max:number) { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
+//  randomIntFromInterval(min:number, max:number) { // min and max included
+ //   return Math.floor(Math.random() * (max - min + 1) + min)
+//  }
 
-  get_slika_novi_request_FS(s: StudentGetallVM) {
-     return `${MojConfig.adresa_servera}/Student/GetSlikaFS/${s.id}`;
-  }
+ // get_slika_novi_request_FS(s: StudentGetallVM) {
+ //    return `${MojConfig.adresa_servera}/Student/GetSlikaFS/${s.id}`;
+ // }
 
-  get_slika_novi_request_DB(s: StudentGetallVM) {
-    return `${MojConfig.adresa_servera}/Student/GetSlikaDB/${s.id}`;
-  }
+ // get_slika_novi_request_DB(s: StudentGetallVM) {
+ //   return `${MojConfig.adresa_servera}/Student/GetSlikaDB/${s.id}`;
+ // }
 
   get_slika_base64_FS(s: StudentGetallVM) {
     return "data:image/png;base64,"+ s.slika_korisnika_postojeca_base64_FS;

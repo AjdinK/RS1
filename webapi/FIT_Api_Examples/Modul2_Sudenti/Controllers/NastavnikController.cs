@@ -10,6 +10,7 @@ using FIT_Api_Examples.Modul0_Autentifikacija.Models;
 using FIT_Api_Examples.Modul2.Models;
 using FIT_Api_Examples.Modul2.ViewModels;
 using FIT_Api_Examples.Modul3_MaticnaKnjiga.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -78,7 +79,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             //     //slika se snima na File System
             //     Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + nastavnik.id + ".png");
             // }
-            EmailLog.noviNastavnik (nastavnik);
+            EmailLog.noviNastavnik (nastavnik , HttpContext);
             _dbContext.SaveChanges();
             return Ok();
         }
