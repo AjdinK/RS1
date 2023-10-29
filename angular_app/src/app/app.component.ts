@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MojConfig} from "./moj-config";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -14,7 +14,7 @@ declare function porukaError(a: string):any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   constructor(private httpKlijent: HttpClient, private router: Router , public signalR : SignalRProba1Service) {
     signalR.otvoriKanalWebSocket();
@@ -34,7 +34,16 @@ export class AppComponent {
     this.router.navigateByUrl("/login");
   }
 
+  ngOnInit(): void {
+    let isAktiviran = AutentifikacijaHelper.getLoginInfo()
+      .autentifikacijaToken?.korisnickiNalog.isAktiviran;
+    if (!isAktiviran){
+      this.router.navigate(['/user-not-active']);
+    }
+  }
+
   loginInfo():LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
   }
+
 }

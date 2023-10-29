@@ -24,4 +24,6 @@ export interface KorisnickiNalog {
   isProdekan:         boolean;
   isDekan:            boolean;
   isStudentskaSluzba: boolean;
+  isAktiviran:        boolean;
+  Email:              string;
 }
