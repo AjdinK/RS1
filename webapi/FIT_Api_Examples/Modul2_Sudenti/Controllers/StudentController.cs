@@ -62,7 +62,6 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 student = _dbContext.Student.FirstOrDefault(s => s.id == x.id);
             }
        
-
             if (student == null)
                 return BadRequest("pogresan ID");
 
@@ -82,11 +81,19 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 //slika se snima na File System
                 Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + student.id + ".png");
             }
+
+            if (x.omiljeni_predmeti?.Length > 0){
+                foreach (int pID in x.omiljeni_predmeti){
+                    var op = new OmiljeniPredmeti {
+                        PredmetId = pID,
+                        Student = student
+                    };
+                    _dbContext.Add(op);
+                }
+            }
            
             _dbContext.SaveChanges();
-
-         
-            
+        
             if (student.broj_indeksa != "" )
             {
                 student.broj_indeksa = "IB" + x.id;
@@ -94,7 +101,6 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 student.lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
             }
-
             return Ok();
         }
 
@@ -153,6 +159,5 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             return File(bajtovi_slike, "image/png");
         }
-
     }
 }

@@ -14,5 +14,6 @@
 
         public byte[]? slika_korisnika_postojeca_base64_DB { get; set; }
         public byte[]? slika_korisnika_postojeca_base64_FS { get; set; }
+        public int []? omiljeni_predmeti { get; set; }
     }
 }

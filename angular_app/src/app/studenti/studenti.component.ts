@@ -106,7 +106,7 @@ export class StudentiComponent implements OnInit {
       slika_korisnika_nova_base64:"",
       slika_korisnika_postojeca_base64_FS:"",
       slika_korisnika_postojeca_base64_DB:"",
-      omiljeni_predmeti:"",
+      omiljeni_predmeti: [],
     };
   }
 
@@ -116,7 +116,7 @@ export class StudentiComponent implements OnInit {
   }
 
   snimi_dugme() {
-    this.odabranistudent!.omiljeni_predmeti = this.predmetiPodaci;
+    this.odabranistudent!.omiljeni_predmeti = this.predmetiPodaci.filter((x:any)=> x.jel_selektovan).map((p:any)=>p.id);
     this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Snimi`, this.odabranistudent, MojConfig.http_opcije()).subscribe(x=>{
       this.fetchStudenti();
       this.odabranistudent=null;
