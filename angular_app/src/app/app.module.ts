@@ -13,6 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { StudentMaticnaknjigaComponent } from './student-maticnaknjiga/student-maticnaknjiga.component';
 import { StudentEditComponent } from './studenti/student-edit/student-edit.component';
 import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.component';
+import { UserNotActiveComponent } from './user-not-active/user-not-active.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.co
     StudentMaticnaknjigaComponent,
     StudentEditComponent,
     PostavkeProfilaComponent,
+    UserNotActiveComponent,
   ],
   imports: [
     BrowserModule,

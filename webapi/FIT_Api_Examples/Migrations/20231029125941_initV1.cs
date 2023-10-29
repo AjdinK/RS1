@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FIT_Api_Examples.Migrations
 {
-    public partial class omiljeniPredmeti : Migration
+    public partial class initV1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,7 @@ namespace FIT_Api_Examples.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     korisnickoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false),
                     isProdekan = table.Column<bool>(type: "bit", nullable: false),
                     isDekan = table.Column<bool>(type: "bit", nullable: false),

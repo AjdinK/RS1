@@ -88,10 +88,10 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera II", Sifra = "RS-RS2" });
 
             nastavnici.Add(new Nastavnik { ime = "Denis", prezime = "Music", korisnickoIme = "denis", lozinka = "test", Email = "aaa@gmail.com" , isAktiviran = true});
-            nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", korisnickoIme = "emina", lozinka = "test",  });
-            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", korisnickoIme = "iris", lozinka = "test",  isProdekan=true });
-            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", korisnickoIme = "nina", lozinka = "test",  isDekan = true });
-            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test",  isAdmin=true });
+            nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", korisnickoIme = "emina", lozinka = "test", Email = "aaa@gmail.com" });
+            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", korisnickoIme = "iris", lozinka = "test",  isProdekan=true , Email = "aaa@gmail.com"});
+            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", korisnickoIme = "nina", lozinka = "test",  isDekan = true , Email = "aaa@gmail.com" });
+            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test",  isAdmin=true , Email = "aaa@gmail.com" });
 
 
             Random rnd = new Random();
@@ -107,6 +107,7 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
                    korisnickoIme = TokenGenerator.GenerisiIme(5),
                    lozinka="test",
                    opstina_rodjenja=opstine.GetRandomElements(1)[0],
+                   Email = "test@gmail.com"
                 });
             }
 
