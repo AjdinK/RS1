@@ -30,10 +30,10 @@ import { UserNotActiveComponent } from './user-not-active/user-not-active.compon
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+      {path: 'user-not-active', component: UserNotActiveComponent},
       {path: 'studenti', component: StudentiComponent, canActivate: [AutorizacijaLoginProvjera]},
-      {path: 'user-no-atctive', component: UserNotActiveComponent, canActivate: [AutorizacijaLoginProvjera]},
-      {path: 'login', component: LoginComponent, canActivate: [AutorizacijaLoginProvjera]},
-      {path: 'registracija', component: RegistracijaComponent, canActivate: [AutorizacijaLoginProvjera]},
+      {path: 'login', component: LoginComponent},
+      {path: 'registracija', component: RegistracijaComponent},
       {path: 'student-maticnaknjiga/:studentidbroj', component: StudentMaticnaknjigaComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'home', component: HomeComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'postavke-profila', component: PostavkeProfilaComponent, canActivate: [AutorizacijaLoginProvjera]},

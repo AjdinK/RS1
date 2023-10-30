@@ -30,20 +30,10 @@ export class AppComponent implements OnInit{
 
         porukaSuccess("Logout uspješan");
       });
-
     this.router.navigateByUrl("/login");
   }
-
-  ngOnInit(): void {
-    let isAktiviran = AutentifikacijaHelper.getLoginInfo()
-      .autentifikacijaToken?.korisnickiNalog.isAktiviran;
-    if (!isAktiviran){
-      this.router.navigate(['/user-not-active']);
-    }
-  }
-
+  ngOnInit(): void {}
   loginInfo():LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
   }
-
 }

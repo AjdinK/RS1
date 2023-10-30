@@ -16,7 +16,7 @@ export class UserNotActiveComponent implements OnInit {
     let isAktiviran = AutentifikacijaHelper.getLoginInfo()
       .autentifikacijaToken?.korisnickiNalog.isAktiviran;
     if (isAktiviran){
-      this.router.navigate(['/']);
+      this.router.navigate(['/studenti']);
     }
   }
 
