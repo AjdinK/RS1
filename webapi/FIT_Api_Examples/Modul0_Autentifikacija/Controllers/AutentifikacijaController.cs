@@ -42,6 +42,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
 
             //2- generisati random string
             string randomString = TokenGenerator.Generate(10);
+            string twoFactorCode = TokenGenerator.Generate(4);
 
             //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
             var noviToken = new AutentifikacijaToken()
@@ -49,12 +50,13 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
                 ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString()??"",
                 vrijednost = randomString,
                 korisnickiNalog = logiraniKorisnik,
-                vrijemeEvidentiranja = DateTime.Now
+                vrijemeEvidentiranja = DateTime.Now,
+                twoFactorCode = twoFactorCode,
             };
 
             _dbContext.Add(noviToken);
             _dbContext.SaveChanges();
-            EmailLog.UspjesnoLogiranKorisnik(logiraniKorisnik , Request.HttpContext);
+            EmailLog.UspjesnoLogiranKorisnik(noviToken , Request.HttpContext);
 
             //4- vratiti token string
             return new LoginInformacije(noviToken);

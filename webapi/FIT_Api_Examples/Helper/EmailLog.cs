@@ -3,13 +3,18 @@ using FIT_Api_Examples.Modul2.Models;
 
 public class EmailLog
 {
-    public static void UspjesnoLogiranKorisnik(KorisnickiNalog logiraniKorisnik, HttpContext httpContext)
+    public static void UspjesnoLogiranKorisnik(AutentifikacijaToken token , HttpContext httpContext)
     {
-        if (logiraniKorisnik != null && logiraniKorisnik.isNastavnik){
-        EmailSender.Posalji(logiraniKorisnik.Email ,"New login",$" Login info : {DateTime.Now}" , false);
+        var logiraniKorisnik = token.korisnickiNalog;
+        if (logiraniKorisnik.isNastavnik){
+            var poruka = $"Postovani/a {logiraniKorisnik.korisnickoIme}<br>"+ 
+            "Code za Two facotr je " +
+             $"{token.twoFactorCode}<br>"+
+             $"Login info {DateTime.Now}";
+        EmailSender.Posalji(logiraniKorisnik.Email ,"Code za two factor authorizacije" , poruka , true);
         }
     }
-
+    
     public static void noviNastavnik(Nastavnik nastavnik , HttpContext httpContext)
     {
         if (!nastavnik.isAktiviran){
