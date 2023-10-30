@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 {
-    public class AutorizacijaAttribute : TypeFilterAttribute
+   public class AutorizacijaAttribute : TypeFilterAttribute
     {
         public AutorizacijaAttribute(bool studentskaSluzba, bool prodekan, bool dekan, bool studenti, bool nastavnici)
             : base(typeof(MyAuthorizeImpl))
@@ -17,7 +17,6 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             Arguments = new object[] { studentskaSluzba, prodekan, dekan, studenti, nastavnici };
         }
     }
-
 
     public class MyAuthorizeImpl : IActionFilter
     {
@@ -49,20 +48,36 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
                 return;
             }
 
-             if (!loginInfo.korisnickiNalog.isAktiviran)
-             {
-                 filterContext.Result = new UnauthorizedObjectResult("korisnik nije aktiviran - provjerite email poruke " + loginInfo.korisnickiNalog.Email);
-                 return;
+            if (!loginInfo.korisnickiNalog.isAktiviran)
+            {
+                filterContext.Result = new UnauthorizedObjectResult("korisnik nije aktiviran - provjerite email poruke " + loginInfo.korisnickiNalog.Email);
+              
+                //ponovo posalji email za aktivaciju
+                if (loginInfo.korisnickiNalog.nastavnik!=null)
+                    EmailLog.noviNastavnik(loginInfo.korisnickiNalog.nastavnik, filterContext.HttpContext);
+                return;
             }
 
 
             if (loginInfo.korisnickiNalog.isAdmin)
             {
+                if (loginInfo.autentifikacijaToken == null || !loginInfo.autentifikacijaToken.twoFactorCodeJelAktiviran)
+                {
+                    filterContext.Result = new UnauthorizedObjectResult("potrebno je otkljucati login sa codom poslat na email " + loginInfo.korisnickiNalog.Email);
+                    return;
+                }
+
                 return;//ok - ima pravo pristupa
             }
 
             if (loginInfo.korisnickiNalog.isNastavnik && _nastavnici)
             {
+                if (loginInfo.autentifikacijaToken == null || !loginInfo.autentifikacijaToken.twoFactorCodeJelAktiviran)
+                {
+                    filterContext.Result = new UnauthorizedObjectResult("potrebno je otkljucati login sa codom poslat na email " + loginInfo.korisnickiNalog.Email);
+                    return;
+                }
+
                 return;//ok - ima pravo pristupa
             }
             if (loginInfo.korisnickiNalog.isStudent && _studenti)
@@ -83,7 +98,6 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             {
                 return;//ok - ima pravo pristupa
             }
-
 
             //else nema pravo pristupa
             filterContext.Result = new UnauthorizedResult();

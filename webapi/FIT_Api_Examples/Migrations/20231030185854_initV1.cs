@@ -115,7 +115,9 @@ namespace FIT_Api_Examples.Migrations
                     vrijednost = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     KorisnickiNalogId = table.Column<int>(type: "int", nullable: false),
                     vrijemeEvidentiranja = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ipAdresa = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ipAdresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    twoFactorCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    twoFactorCodeJelAktiviran = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

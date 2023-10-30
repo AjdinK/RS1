@@ -27,9 +27,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-      
+        [Autorizacija (true,true,true,false,true)]
         [HttpPost("{id}")]
-        [Autorizacija(studentskaSluzba: true, prodekan: true, dekan: true, studenti: false, nastavnici: true)]
+        [Autorizacija (true,true,true,false,true)]
         public ActionResult Obrisi2(int id)
         {
             Student student = _dbContext.Student.Find(id);
@@ -42,9 +42,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok(student);
         }
 
-        
+        [Autorizacija (true,true,true,false,true)]
         [HttpPost]
-        [Autorizacija (true,true,true,true,true)]
         public ActionResult Snimi([FromBody] StudentGetAllVM x)
         {
             Student student;
@@ -104,6 +103,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok();
         }
 
+        [Autorizacija (true,true,true,false,true)]
         [HttpGet]
         public ActionResult GetAll(string? ime_prezime)
         {

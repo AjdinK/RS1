@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper.QueryableExtensions.Impl;
 using FIT_Api_Examples.Data;
 using FIT_Api_Examples.Helper;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
@@ -60,6 +61,23 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
 
             //4- vratiti token string
             return new LoginInformacije(noviToken);
+        }
+
+         [HttpGet("{code}")]
+        public ActionResult Otkljucaj (string code) {
+
+            var korisnickiNalog = HttpContext.GetLoginInfo().korisnickiNalog;
+            if (korisnickiNalog == null){
+            return BadRequest("Korisnik nije logiran"); 
+            }
+
+            var token = _dbContext.AutentifikacijaToken.FirstOrDefault(t => t.twoFactorCode == code && t.korisnickiNalog.id == korisnickiNalog.id);
+            if (token != null){
+                token.twoFactorCodeJelAktiviran = true;
+                _dbContext.SaveChanges();
+                return Redirect("http://localhost:4200/");
+            }   
+            return BadRequest("Error -> Pogresen URL");     
         }
 
         [HttpPost]

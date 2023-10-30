@@ -6,7 +6,7 @@ public class EmailLog
     public static void UspjesnoLogiranKorisnik(AutentifikacijaToken token , HttpContext httpContext)
     {
         var logiraniKorisnik = token.korisnickiNalog;
-        if (logiraniKorisnik.isNastavnik){
+        if (logiraniKorisnik.isNastavnik || logiraniKorisnik.isAdmin){
             var poruka = $"Postovani/a {logiraniKorisnik.korisnickoIme}<br>"+ 
             "Code za Two facotr je " +
              $"{token.twoFactorCode}<br>"+
