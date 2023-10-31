@@ -75,7 +75,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             if (token != null){
                 token.twoFactorCodeJelAktiviran = true;
                 _dbContext.SaveChanges();
-                return Redirect("http://localhost:4200/");
+                return Ok();
             }   
             return BadRequest("Error -> Pogresen URL");     
         }

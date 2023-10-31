@@ -14,6 +14,7 @@ import { StudentMaticnaknjigaComponent } from './student-maticnaknjiga/student-m
 import { StudentEditComponent } from './studenti/student-edit/student-edit.component';
 import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.component';
 import { UserNotActiveComponent } from './user-not-active/user-not-active.component';
+import { TwoFactorOtkljucajComponent } from './two-factor-otkljucaj/two-factor-otkljucaj.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +27,13 @@ import { UserNotActiveComponent } from './user-not-active/user-not-active.compon
     StudentEditComponent,
     PostavkeProfilaComponent,
     UserNotActiveComponent,
+    TwoFactorOtkljucajComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path: 'user-not-active', component: UserNotActiveComponent},
+      {path: 'two-factor-otkljucaj', component: TwoFactorOtkljucajComponent},
       {path: 'studenti', component: StudentiComponent, canActivate: [AutorizacijaLoginProvjera]},
       {path: 'login', component: LoginComponent},
       {path: 'registracija', component: RegistracijaComponent},
