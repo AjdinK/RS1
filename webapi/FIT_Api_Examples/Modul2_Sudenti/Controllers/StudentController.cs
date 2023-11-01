@@ -76,11 +76,16 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 if (slika_bajtovi == null)
                     return BadRequest("format slike nije base64");
 
-                byte[]? slika_bajtovi_resized = SlikeHelper.ResizeSlike(slika_bajtovi,200,75);
-                student.slika_korisnika_bajtovi = slika_bajtovi_resized;
+                byte[]? slika_bajtovi_resized_velika = SlikeHelper.ResizeSlike(slika_bajtovi,200,75);
+                byte[]? slika_bajtovi_resized_mala = SlikeHelper.ResizeSlike(slika_bajtovi,50,75);
+                student.slika_korisnika_bajtovi = slika_bajtovi_resized_velika;
 
                 //slika se snima na File System
-                Fajlovi.Snimi(slika_bajtovi_resized, "slike_korisnika/" + student.id + ".png");
+                if (slika_bajtovi_resized_velika != null)
+                Fajlovi.Snimi(slika_bajtovi_resized_velika, "slike_korisnika/velika-" + student.id + ".png");
+
+                 if (slika_bajtovi_resized_mala != null)
+                Fajlovi.Snimi(slika_bajtovi_resized_mala, "slike_korisnika/mala-" + student.id + ".png");
             }
 
             if (x.omiljeni_predmeti?.Length > 0){
@@ -126,16 +131,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
                 })
                 .ToList();
-            
-            data.ForEach(s=>
-            {
-                //varijanta 2: slika sa File systema
-                s.slika_korisnika_postojeca_base64_FS = Fajlovi.Ucitaj("slike_korisnika/" + s.id + ".png")
-                                                        ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
+                
+            // data.ForEach(s=>
+            // {
+            //     //varijanta 2: slika sa File systema
+            //     s.slika_korisnika_postojeca_base64_FS = Fajlovi.Ucitaj("slike_korisnika/" + s.id + ".png")
+            //                                             ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
 
-                s.slika_korisnika_postojeca_base64_DB ??= Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
-            });
-
+            //     s.slika_korisnika_postojeca_base64_DB ??= Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
+            // });
             return Ok(data);
         }
 
@@ -153,7 +157,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpGet("{id}")]
         public ActionResult GetSlikaFS(int id)
         {
-            byte[]? bajtovi_slike = Fajlovi.Ucitaj("slike_korisnika/" + id + ".png") 
+            byte[]? bajtovi_slike = Fajlovi.Ucitaj("slike_korisnika/mala-" + id + ".png") 
                                    ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
 
             if (bajtovi_slike == null)
