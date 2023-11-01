@@ -27,9 +27,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-        [Autorizacija (true,true,true,false,true)]
+        [Autorizacija(true, true, true, false, true)]
         [HttpPost("{id}")]
-        [Autorizacija (true,true,true,false,true)]
+
         public ActionResult Obrisi2(int id)
         {
             Student student = _dbContext.Student.Find(id);
@@ -42,7 +42,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok(student);
         }
 
-        [Autorizacija (true,true,true,false,true)]
+        [Autorizacija(true, true, true, false, true)]
         [HttpPost]
         public ActionResult Snimi([FromBody] StudentGetAllVM x)
         {
@@ -60,7 +60,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 student = _dbContext.Student.FirstOrDefault(s => s.id == x.id);
             }
-       
+
             if (student == null)
                 return BadRequest("pogresan ID");
 
@@ -72,35 +72,38 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 //slika se snima u db
                 byte[]? slika_bajtovi = x.slika_korisnika_nova_base64?.ParsirajBase64();
-               
+
                 if (slika_bajtovi == null)
                     return BadRequest("format slike nije base64");
 
-                byte[]? slika_bajtovi_resized_velika = SlikeHelper.ResizeSlike(slika_bajtovi,200,75);
-                byte[]? slika_bajtovi_resized_mala = SlikeHelper.ResizeSlike(slika_bajtovi,50,75);
+                byte[]? slika_bajtovi_resized_velika = SlikeHelper.ResizeSlike(slika_bajtovi, 200, 75);
+                byte[]? slika_bajtovi_resized_mala = SlikeHelper.ResizeSlike(slika_bajtovi, 50, 75);
                 student.slika_korisnika_bajtovi = slika_bajtovi_resized_velika;
 
                 //slika se snima na File System
                 if (slika_bajtovi_resized_velika != null)
-                Fajlovi.Snimi(slika_bajtovi_resized_velika, "slike_korisnika/velika-" + student.id + ".png");
+                    Fajlovi.Snimi(slika_bajtovi_resized_velika, "slike_korisnika/velika-" + student.id + ".png");
 
-                 if (slika_bajtovi_resized_mala != null)
-                Fajlovi.Snimi(slika_bajtovi_resized_mala, "slike_korisnika/mala-" + student.id + ".png");
+                if (slika_bajtovi_resized_mala != null)
+                    Fajlovi.Snimi(slika_bajtovi_resized_mala, "slike_korisnika/mala-" + student.id + ".png");
             }
 
-            if (x.omiljeni_predmeti?.Length > 0){
-                foreach (int pID in x.omiljeni_predmeti){
-                    var op = new OmiljeniPredmeti {
+            if (x.omiljeni_predmeti?.Length > 0)
+            {
+                foreach (int pID in x.omiljeni_predmeti)
+                {
+                    var op = new OmiljeniPredmeti
+                    {
                         PredmetId = pID,
                         Student = student
                     };
                     _dbContext.Add(op);
                 }
             }
-           
+
             _dbContext.SaveChanges();
-        
-            if (student.broj_indeksa != "" )
+
+            if (student.broj_indeksa != "")
             {
                 student.broj_indeksa = "IB" + x.id;
                 student.korisnickoIme = x.broj_indeksa;
@@ -110,12 +113,12 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok();
         }
 
-        [Autorizacija (true,true,true,false,true)]
+        [Autorizacija(true, true, true, false, true)]
         [HttpGet]
         public ActionResult GetAll(string? ime_prezime)
         {
             var data = _dbContext.Student
-                .Include(s=>s.opstina_rodjenja.drzava)
+                .Include(s => s.opstina_rodjenja.drzava)
                 .Where(x => ime_prezime == null || (x.ime + " " + x.prezime).StartsWith(ime_prezime) || (x.prezime + " " + x.ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.id)
                 .Select(s => new StudentGetAllVM()
@@ -131,7 +134,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
                 })
                 .ToList();
-                
+
             // data.ForEach(s=>
             // {
             //     //varijanta 2: slika sa File systema
@@ -146,7 +149,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpGet("{id}")]
         public ActionResult GetSlikaDB(int id)
         {
-            byte[]? bajtovi_slike = _dbContext.Student.Find(id).slika_korisnika_bajtovi 
+            byte[]? bajtovi_slike = _dbContext.Student.Find(id).slika_korisnika_bajtovi
                                    ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
             if (bajtovi_slike == null)
                 throw new Exception();//bug
@@ -157,7 +160,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpGet("{id}")]
         public ActionResult GetSlikaFS(int id)
         {
-            byte[]? bajtovi_slike = Fajlovi.Ucitaj("slike_korisnika/mala-" + id + ".png") 
+            byte[]? bajtovi_slike = Fajlovi.Ucitaj("slike_korisnika/mala-" + id + ".png")
                                    ?? Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
 
             if (bajtovi_slike == null)

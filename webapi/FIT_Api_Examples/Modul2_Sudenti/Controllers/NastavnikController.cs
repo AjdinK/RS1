@@ -29,18 +29,20 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpGet("{guid}")]
-        public ActionResult Aktivacija (string guid) {
+        public ActionResult Aktivacija(string guid)
+        {
             var nastavnik = _dbContext.Nastavnik.FirstOrDefault(n => n.AktivacijaGUID == guid);
-            if (nastavnik != null){
+            if (nastavnik != null)
+            {
                 nastavnik.isAktiviran = true;
                 _dbContext.SaveChanges();
                 return Redirect("http://localhost:4200/");
-            }   
-            return BadRequest("Error -> Pogresen URL");     
+            }
+            return BadRequest("Error -> Pogresen URL");
         }
 
         [HttpPost]
-        [Autorizacija (true,true,true,false,true)]
+        [Autorizacija(true, true, true, false, true)]
         public ActionResult Snimi([FromBody] NastavnikGetAllVM x)
         {
             Nastavnik? nastavnik;
@@ -49,7 +51,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 nastavnik = new Nastavnik
                 {
                     lozinka = "test",
-                    
+
                 };
                 _dbContext.Add(nastavnik);
                 nastavnik.AktivacijaGUID = Guid.NewGuid().ToString();
@@ -79,7 +81,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             //     //slika se snima na File System
             //     Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + nastavnik.id + ".png");
             // }
-            EmailLog.noviNastavnik (nastavnik , HttpContext);
+            EmailLog.noviNastavnik(nastavnik, HttpContext);
             _dbContext.SaveChanges();
             return Ok();
         }

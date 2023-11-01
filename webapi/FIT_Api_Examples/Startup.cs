@@ -36,7 +36,8 @@ namespace FIT_Api_Examples
             services.AddSignalR();
             services.AddControllers();
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(s => {
+            services.AddSwaggerGen(s =>
+            {
                 s.OperationFilter<AutorizacijaSwaggerHeader>();
             });
         }

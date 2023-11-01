@@ -16,14 +16,14 @@ namespace FIT_Api_Examples.Modul2.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly IHubContext<PorukeHub> _porukeHub;
 
-        public TestirajSignalR(ApplicationDbContext dbContext, IHubContext <PorukeHub> porukeHub)
+        public TestirajSignalR(ApplicationDbContext dbContext, IHubContext<PorukeHub> porukeHub)
         {
             this._dbContext = dbContext;
             this._porukeHub = porukeHub;
         }
 
         [HttpGet]
-        public async Task <ActionResult> PosaljiTrenutnoVrijeme()
+        public async Task<ActionResult> PosaljiTrenutnoVrijeme()
         {
             var poruka = "Trenutno vrijeme : " + DateTime.Now.ToString("g");
             await _porukeHub.Clients.All.SendAsync("slanje_poruke1", poruka);
@@ -31,7 +31,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> PosaljiPoruku (string poruka)
+        public async Task<ActionResult> PosaljiPoruku(string poruka)
         {
             await _porukeHub.Clients.All.SendAsync("slanje_poruke2", poruka);
             return Ok();

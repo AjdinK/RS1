@@ -18,8 +18,8 @@ namespace FIT_Api_Examples.Modul2.Models
         public DateTime datumUpisZimski { get; set; }
 
         public int godinastudina { get; set; }
-        public float cijenaSkolarine{ get; set; }
-        public bool jelObnova{ get; set; }
+        public float cijenaSkolarine { get; set; }
+        public bool jelObnova { get; set; }
 
 
         [ForeignKey(nameof(akademskaGodina))]
@@ -29,7 +29,7 @@ namespace FIT_Api_Examples.Modul2.Models
 
         [ForeignKey(nameof(student))]
         public int student_id { get; set; }
-        public Student student{ get; set; }
+        public Student student { get; set; }
         public DateTime? datumOvjeraZimski { get; set; }
     }
 }

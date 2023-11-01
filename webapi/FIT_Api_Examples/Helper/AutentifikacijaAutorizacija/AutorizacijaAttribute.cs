@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 {
-   public class AutorizacijaAttribute : TypeFilterAttribute
+    public class AutorizacijaAttribute : TypeFilterAttribute
     {
         public AutorizacijaAttribute(bool studentskaSluzba, bool prodekan, bool dekan, bool studenti, bool nastavnici)
             : base(typeof(MyAuthorizeImpl))
@@ -51,9 +51,9 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             if (!loginInfo.korisnickiNalog.isAktiviran)
             {
                 filterContext.Result = new UnauthorizedObjectResult("korisnik nije aktiviran - provjerite email poruke " + loginInfo.korisnickiNalog.Email);
-              
+
                 //ponovo posalji email za aktivaciju
-                if (loginInfo.korisnickiNalog.nastavnik!=null)
+                if (loginInfo.korisnickiNalog.nastavnik != null)
                     EmailLog.noviNastavnik(loginInfo.korisnickiNalog.nastavnik, filterContext.HttpContext);
                 return;
             }

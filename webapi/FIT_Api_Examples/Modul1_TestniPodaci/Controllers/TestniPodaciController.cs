@@ -59,7 +59,7 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
 
             drzave.Add(new Drzava { naziv = "BiH" });
             drzave.Add(new Drzava { naziv = "HR" });
-            drzave.Add(new Drzava { naziv = "Njemacka" });                   
+            drzave.Add(new Drzava { naziv = "Njemacka" });
             drzave.Add(new Drzava { naziv = "Austrija" });
             drzave.Add(new Drzava { naziv = "SAD" });
             drzave.Add(new Drzava { naziv = "Malezija" });
@@ -87,27 +87,27 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera I", Sifra = "RS-RS1" });
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera II", Sifra = "RS-RS2" });
 
-            nastavnici.Add(new Nastavnik { ime = "Denis", prezime = "Music", korisnickoIme = "denis", lozinka = "test", Email = "aaa@gmail.com" , isAktiviran = true});
+            nastavnici.Add(new Nastavnik { ime = "Denis", prezime = "Music", korisnickoIme = "denis", lozinka = "test", Email = "aaa@gmail.com", isAktiviran = true });
             nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", korisnickoIme = "emina", lozinka = "test", Email = "aaa@gmail.com" });
-            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", korisnickoIme = "iris", lozinka = "test",  isProdekan=true , Email = "aaa@gmail.com"});
-            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", korisnickoIme = "nina", lozinka = "test",  isDekan = true , Email = "aaa@gmail.com" });
-            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test",  isAdmin=true , Email = "aaa@gmail.com", isAktiviran = true});
+            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", korisnickoIme = "iris", lozinka = "test", isProdekan = true, Email = "aaa@gmail.com" });
+            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", korisnickoIme = "nina", lozinka = "test", isDekan = true, Email = "aaa@gmail.com" });
+            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", isAktiviran = true });
 
 
             Random rnd = new Random();
 
-            for (int i = 0; i <100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 studenti.Add(new Student
                 {
-                   broj_indeksa = $"IB200{i:d}",
-                   created_time=DateTime.Now,
-                   ime = TokenGenerator.GenerisiIme(5),
-                   prezime = TokenGenerator.GenerisiIme(5),
-                   korisnickoIme = TokenGenerator.GenerisiIme(5),
-                   lozinka="test",
-                   opstina_rodjenja=opstine.GetRandomElements(1)[0],
-                   Email = "test@gmail.com"
+                    broj_indeksa = $"IB200{i:d}",
+                    created_time = DateTime.Now,
+                    ime = TokenGenerator.GenerisiIme(5),
+                    prezime = TokenGenerator.GenerisiIme(5),
+                    korisnickoIme = TokenGenerator.GenerisiIme(5),
+                    lozinka = "test",
+                    opstina_rodjenja = opstine.GetRandomElements(1)[0],
+                    Email = "test@gmail.com"
                 });
             }
 

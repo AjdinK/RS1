@@ -21,9 +21,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpGet]
         public ActionResult GetAll_ForCmb()
         {
-            var p= _dbContext.AkademskaGodina
+            var p = _dbContext.AkademskaGodina
                 .OrderByDescending(x => x.id)
-                .Select(s=>new
+                .Select(s => new
                 {
                     opis = s.opis,
                     id = s.id
@@ -32,6 +32,6 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             return Ok(p);
         }
- 
+
     }
 }

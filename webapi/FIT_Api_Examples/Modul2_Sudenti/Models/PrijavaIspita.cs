@@ -6,17 +6,17 @@ namespace FIT_Api_Examples.Modul2.Models
 {
     public class PrijavaIspita
     {
-        public int	ID             {get;set;}
-        public DateTime	DatumPrijave   {get;set;}
-        
-        
+        public int ID { get; set; }
+        public DateTime DatumPrijave { get; set; }
+
+
         [ForeignKey(nameof(StudentID))]
         public Student Student { get; set; }
-        public int	StudentID      {get;set;}
+        public int StudentID { get; set; }
 
 
         [ForeignKey(nameof(IspitID))]
-        public Ispit Ispit{ get; set; }
+        public Ispit Ispit { get; set; }
         public int IspitID { get; set; }
 
 

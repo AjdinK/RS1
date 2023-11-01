@@ -48,7 +48,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
             var noviToken = new AutentifikacijaToken()
             {
-                ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString()??"",
+                ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "",
                 vrijednost = randomString,
                 korisnickiNalog = logiraniKorisnik,
                 vrijemeEvidentiranja = DateTime.Now,
@@ -57,27 +57,30 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
 
             _dbContext.Add(noviToken);
             _dbContext.SaveChanges();
-            EmailLog.UspjesnoLogiranKorisnik(noviToken , Request.HttpContext);
+            EmailLog.UspjesnoLogiranKorisnik(noviToken, Request.HttpContext);
 
             //4- vratiti token string
             return new LoginInformacije(noviToken);
         }
 
-         [HttpGet("{code}")]
-        public ActionResult Otkljucaj (string code) {
+        [HttpGet("{code}")]
+        public ActionResult Otkljucaj(string code)
+        {
 
             var korisnickiNalog = HttpContext.GetLoginInfo().korisnickiNalog;
-            if (korisnickiNalog == null){
-            return BadRequest("Korisnik nije logiran"); 
+            if (korisnickiNalog == null)
+            {
+                return BadRequest("Korisnik nije logiran");
             }
 
             var token = _dbContext.AutentifikacijaToken.FirstOrDefault(t => t.twoFactorCode == code && t.korisnickiNalog.id == korisnickiNalog.id);
-            if (token != null){
+            if (token != null)
+            {
                 token.twoFactorCodeJelAktiviran = true;
                 _dbContext.SaveChanges();
                 return Ok();
-            }   
-            return BadRequest("Error -> Pogresen URL");     
+            }
+            return BadRequest("Error -> Pogresen URL");
         }
 
         [HttpPost]

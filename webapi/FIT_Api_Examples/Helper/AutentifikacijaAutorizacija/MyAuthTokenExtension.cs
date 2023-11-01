@@ -21,9 +21,9 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
             [JsonIgnore]
             public KorisnickiNalog? korisnickiNalog => autentifikacijaToken?.korisnickiNalog;
             public AutentifikacijaToken? autentifikacijaToken { get; set; }
-            
+
             public bool isLogiran => korisnickiNalog != null;
-         
+
         }
 
 
@@ -33,16 +33,16 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 
             return new LoginInformacije(token);
         }
-    
+
         public static AutentifikacijaToken? GetAuthToken(this HttpContext httpContext)
         {
             string token = httpContext.GetMyAuthToken();
             ApplicationDbContext? db = httpContext.RequestServices.GetService<ApplicationDbContext>();
 
             AutentifikacijaToken? korisnickiNalog = db?.AutentifikacijaToken
-                .Include(s=>s.korisnickiNalog)
-                .SingleOrDefault(x =>  x.vrijednost == token);
-            
+                .Include(s => s.korisnickiNalog)
+                .SingleOrDefault(x => x.vrijednost == token);
+
             return korisnickiNalog;
         }
 

@@ -44,7 +44,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
         {
             var data = _dbContext.Opstina.Where(x => x.drzava_id == drzava_id)
                 .OrderBy(s => s.description)
-                .Select(s => new {
+                .Select(s => new
+                {
                     id = s.id,
                     opis = s.drzava.naziv + " - " + s.description,
                 })
@@ -57,7 +58,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         {
             var data = _dbContext.Opstina
                 .OrderBy(s => s.description)
-                .Select(s => new 
+                .Select(s => new
                 {
                     id = s.id,
                     opis = s.drzava.naziv + " - " + s.description,

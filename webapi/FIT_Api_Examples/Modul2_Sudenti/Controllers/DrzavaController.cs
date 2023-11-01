@@ -47,7 +47,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         {
             var data = _dbContext.Drzava
                 .OrderBy(s => s.naziv)
-                .Select(s => new 
+                .Select(s => new
                 {
                     id = s.id,
                     opis = s.naziv,

@@ -34,7 +34,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             var upisAkGodine = _dbContext.UpisAkGodine
                 .Where(s => s.student_id == studentid)
-                .Select(a=>new {
+                .Select(a => new
+                {
                     a.id,
                     akademska_godina_opis = a.akademskaGodina.opis,
                     a.godinastudina,
@@ -46,13 +47,13 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 })
                 ;
 
-            var povratnavr = _dbContext.Student.Where(s=>s.id==studentid)
-                
-                .Select(s=>new 
+            var povratnavr = _dbContext.Student.Where(s => s.id == studentid)
+
+                .Select(s => new
                 {
-                    student_id=s.id,
-                    ime=s.ime,
-                    prezime=s.prezime,
+                    student_id = s.id,
+                    ime = s.ime,
+                    prezime = s.prezime,
                     listaUpisi = upisAkGodine.ToList(),
                     cijenaSkolarine = upisAkGodine.Sum(s => s.cijenaSkolarine)
 

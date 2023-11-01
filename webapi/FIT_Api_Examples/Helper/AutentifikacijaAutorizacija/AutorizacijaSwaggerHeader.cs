@@ -5,7 +5,8 @@ public class AutorizacijaSwaggerHeader : IOperationFilter
 {
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
-        operation.Parameters.Add(new OpenApiParameter{
+        operation.Parameters.Add(new OpenApiParameter
+        {
             Name = "autentifikacija-token",
             In = ParameterLocation.Header,
             Description = "Upisati preuzeti token iz headersa"

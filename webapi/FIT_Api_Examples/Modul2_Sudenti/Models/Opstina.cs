@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FIT_Api_Examples.Modul2.Models
 {
     public class Opstina
-    { 
+    {
         [Key]
         public int id { get; set; }
         public string description { get; set; }

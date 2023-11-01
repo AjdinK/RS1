@@ -7,7 +7,7 @@ namespace FIT_Api_Examples.Modul2.Models
     public class AkademskaGodina
     {
         [Key]
-        public int id{ get; set; }
+        public int id { get; set; }
         public string opis { get; set; }
         public KorisnickiNalog evidentiraoKorisnik { get; internal set; }
         public DateTime? datum_update { get; set; }
