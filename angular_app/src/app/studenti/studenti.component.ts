@@ -23,7 +23,7 @@ export class StudentiComponent implements OnInit {
   odabranistudent?: StudentGetallVM | null;
   opstinePodaci: any;
   predmetiPodaci:any;
-
+  ime_u_student: string = "";
 
 
   constructor(private httpKlijent: HttpClient, private router: Router ,
@@ -135,6 +135,7 @@ export class StudentiComponent implements OnInit {
  //   return `${MojConfig.adresa_servera}/Student/GetSlikaDB/${s.id}`;
  // }
 
+
   get_slika_base64_FS(s: StudentGetallVM) {
     return "data:image/png;base64,"+ s.slika_korisnika_postojeca_base64_FS;
   }
@@ -157,4 +158,8 @@ export class StudentiComponent implements OnInit {
     }
   }
 
+  dugmePressMe() {
+    let broj = Math.floor(Math.random()*10);
+    this.ime_u_student = "Random broj je " + broj ;
+  }
 }

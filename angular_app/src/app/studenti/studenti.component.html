@@ -9,6 +9,12 @@
   <input [(ngModel)]="opstina" [disabled]="!filter_opstina"><br>
   <hr>
 </div>
+
+<div style="border:5px solid red">
+  <app-test-srijeda [ime] = "ime_u_student" [nesto] = "this"></app-test-srijeda>
+</div>
+<button (click)="dugmePressMe()">Press me</button>
+
 <table class="table table-warning">
   <tr>
     <th>ID</th>

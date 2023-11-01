@@ -15,6 +15,7 @@ import { StudentEditComponent } from './studenti/student-edit/student-edit.compo
 import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.component';
 import { UserNotActiveComponent } from './user-not-active/user-not-active.component';
 import { TwoFactorOtkljucajComponent } from './two-factor-otkljucaj/two-factor-otkljucaj.component';
+import { TestSrijedaComponent } from './test-srijeda/test-srijeda.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { TwoFactorOtkljucajComponent } from './two-factor-otkljucaj/two-factor-o
     PostavkeProfilaComponent,
     UserNotActiveComponent,
     TwoFactorOtkljucajComponent,
+    TestSrijedaComponent,
   ],
   imports: [
     BrowserModule,
