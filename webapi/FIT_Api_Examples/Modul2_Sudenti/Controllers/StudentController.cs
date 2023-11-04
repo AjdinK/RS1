@@ -132,8 +132,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     opstina_rodjenja_id = s.opstina_rodjenja_id,
                     vrijeme_dodavanja = s.created_time.ToString("dd.MM.yyyy"),
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
-                })
-                .ToList();
+                });
+
+                return Ok(PagedList<StudentGetAllVM>.Create(data,1,20));
 
             // data.ForEach(s=>
             // {
@@ -143,7 +144,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             //     s.slika_korisnika_postojeca_base64_DB ??= Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
             // });
-            return Ok(data);
+            
         }
 
         [HttpGet("{id}")]
