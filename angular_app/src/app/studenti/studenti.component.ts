@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-config";
 import {Router} from "@angular/router";
-import {StudentGetallVM} from "./student-getall-vm";
 import {SignalRProba2Service} from "../_servisi/signal-r-proba2-service";
+import {StudentGetallVM, StudentGetallVMPagedList} from "./student-getall-vm";
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
 
@@ -13,11 +13,10 @@ declare function porukaError(a: string):any;
   styleUrls: ['./studenti.component.css']
 })
 export class StudentiComponent implements OnInit {
-
   title:string = 'angularFIT2';
 
   opstina: string = '';
-  studentPodaci: StudentGetallVM[] = [];
+  studentPodaci?: StudentGetallVMPagedList | null;
   filter_ime_prezime: boolean=false;
   filter_opstina: boolean=false;
   odabranistudent?: StudentGetallVM | null;
@@ -25,6 +24,8 @@ export class StudentiComponent implements OnInit {
   predmetiPodaci:any;
   ime_u_student: string = "";
 
+  pageSize : number = 10;
+  pageNumber : number = 1;
 
   constructor(private httpKlijent: HttpClient, private router: Router ,
               public probaSignalR2 : SignalRProba2Service) {
@@ -40,7 +41,8 @@ export class StudentiComponent implements OnInit {
 
   fetchStudenti() :void
   {
-    this.httpKlijent.get<StudentGetallVM>(MojConfig.adresa_servera+ "/Student/GetAll", MojConfig.http_opcije()).subscribe((x:any)=>{
+    //https://localhost:5001/Student/GetAll?pageNumber=2&pageSize=20
+    this.httpKlijent.get<StudentGetallVMPagedList>(MojConfig.adresa_servera+ "/Student/GetAll?pageNumber=" + this.pageNumber, MojConfig.http_opcije()).subscribe((x:any)=>{
       this.studentPodaci = x;
     });
   }
@@ -62,7 +64,7 @@ export class StudentiComponent implements OnInit {
       if (this.studentPodaci == null)
         return [];
 
-    return this.studentPodaci.filter((a:any)=>
+    return this.studentPodaci.dataItems.filter((a:any)=>
       (!this.filter_ime_prezime ||
 
       (a.ime + " " +a.prezime).startsWith(this.probaSignalR2.imePrezime)
@@ -161,5 +163,31 @@ export class StudentiComponent implements OnInit {
   dugmePressMe() {
     let broj = Math.floor(Math.random()*10);
     this.ime_u_student = "Random broj je " + broj ;
+  }
+
+  public pageNumbersArray():number[] {
+  let rez = [];
+  for (let i = 0; i < this.totalPages(); i++){
+    rez.push (i + 1);
+    }
+    return rez;
+  }
+
+  private totalPages() {
+    // @ts-ignore
+    return this.studentPodaci?.totalPages / this.studentPodaci?.pageSize;
+  }
+
+  goToPage(p: number) {
+    this.pageNumber = p;
+    this.fetchStudenti();
+  }
+
+  goToNext() {
+
+  }
+
+  goToPrev() {
+
   }
 }

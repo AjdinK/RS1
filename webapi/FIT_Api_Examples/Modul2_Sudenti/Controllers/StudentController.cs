@@ -115,7 +115,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
         [Autorizacija(true, true, true, false, true)]
         [HttpGet]
-        public ActionResult GetAll(string? ime_prezime)
+        public ActionResult GetAll(string? ime_prezime , int pageNumber = 1 , int pageSize = 20)
         {
             var data = _dbContext.Student
                 .Include(s => s.opstina_rodjenja.drzava)
@@ -134,7 +134,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
                 });
 
-                return Ok(PagedList<StudentGetAllVM>.Create(data,1,20));
+                return Ok(PagedList<StudentGetAllVM>.Create(data,pageNumber,pageSize));
 
             // data.ForEach(s=>
             // {
