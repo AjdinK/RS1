@@ -91,7 +91,8 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", korisnickoIme = "emina", lozinka = "test", Email = "aaa@gmail.com" });
             nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", korisnickoIme = "iris", lozinka = "test", isProdekan = true, Email = "aaa@gmail.com" });
             nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", korisnickoIme = "nina", lozinka = "test", isDekan = true, Email = "aaa@gmail.com" });
-            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", isAktiviran = true });
+            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", isAktiviran = true },
+            nastavnici.Add(new Nastavnik { ime = "Adil2", prezime = "Joldic2", korisnickoIme = "test", lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", isAktiviran = true });
 
 
             Random rnd = new Random();
