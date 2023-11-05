@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper.QueryableExtensions.Impl;
 using FIT_Api_Examples.Data;
 using FIT_Api_Examples.Helper;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
@@ -43,7 +42,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
 
             //2- generisati random string
             string randomString = TokenGenerator.Generate(10);
-            string twoFactorCode = TokenGenerator.Generate(4);
+            string twoFactorCode = TokenGenerator.Generate(6);
 
             //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
             var noviToken = new AutentifikacijaToken()
