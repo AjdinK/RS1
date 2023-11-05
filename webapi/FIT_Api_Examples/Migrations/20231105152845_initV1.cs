@@ -90,7 +90,7 @@ namespace FIT_Api_Examples.Migrations
                     opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     evidentiraoKorisnikid = table.Column<int>(type: "int", nullable: true),
                     datum_update = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    izmijenioKorisnikid = table.Column<int>(type: "int", nullable: false),
+                    izmijenioKorisnikid = table.Column<int>(type: "int", nullable: true),
                     datum_added = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -105,8 +105,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_AkademskaGodina_KorisnickiNalog_izmijenioKorisnikid",
                         column: x => x.izmijenioKorisnikid,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(

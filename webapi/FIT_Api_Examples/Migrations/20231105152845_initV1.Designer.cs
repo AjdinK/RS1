@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Examples.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231105141149_initV1")]
+    [Migration("20231105152845_initV1")]
     partial class initV1
     {
         /// <inheritdoc />
@@ -162,7 +162,7 @@ namespace FIT_Api_Examples.Migrations
                     b.Property<int?>("evidentiraoKorisnikid")
                         .HasColumnType("int");
 
-                    b.Property<int>("izmijenioKorisnikid")
+                    b.Property<int?>("izmijenioKorisnikid")
                         .HasColumnType("int");
 
                     b.Property<string>("opis")
@@ -466,9 +466,7 @@ namespace FIT_Api_Examples.Migrations
 
                     b.HasOne("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog", "izmijenioKorisnik")
                         .WithMany()
-                        .HasForeignKey("izmijenioKorisnikid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("izmijenioKorisnikid");
 
                     b.Navigation("evidentiraoKorisnik");
 
