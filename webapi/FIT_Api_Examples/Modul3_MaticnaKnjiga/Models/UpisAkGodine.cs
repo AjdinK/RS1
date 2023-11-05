@@ -28,7 +28,7 @@ namespace FIT_Api_Examples.Modul2.Models
         public Student student { get; set; }
 
 
-        [ForeignKey(nameof(evidentiraoKorisnik))]
+        [ForeignKey(nameof(evidentiraoKorisnikID))]
         public int evidentiraoKorisnikID { get; set; }
         public KorisnickiNalog evidentiraoKorisnik { get; set; }
 
