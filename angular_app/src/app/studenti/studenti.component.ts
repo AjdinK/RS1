@@ -24,8 +24,7 @@ export class StudentiComponent implements OnInit {
   predmetiPodaci:any;
   ime_u_student: string = "";
 
-  pageSize : number = 10;
-  pageNumber : number = 1;
+  currentPage : number = 1;
 
   constructor(private httpKlijent: HttpClient, private router: Router ,
               public probaSignalR2 : SignalRProba2Service) {
@@ -42,7 +41,7 @@ export class StudentiComponent implements OnInit {
   fetchStudenti() :void
   {
     //https://localhost:5001/Student/GetAll?pageNumber=2&pageSize=20
-    this.httpKlijent.get<StudentGetallVMPagedList>(MojConfig.adresa_servera+ "/Student/GetAll?pageNumber=" + this.pageNumber, MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.httpKlijent.get<StudentGetallVMPagedList>(MojConfig.adresa_servera+ "/Student/GetAll?pageNumber=" + this.currentPage, MojConfig.http_opcije()).subscribe((x:any)=>{
       this.studentPodaci = x;
     });
   }
@@ -174,20 +173,32 @@ export class StudentiComponent implements OnInit {
   }
 
   private totalPages() {
-    // @ts-ignore
-    return this.studentPodaci?.totalPages / this.studentPodaci?.pageSize;
+    if (this.studentPodaci != null)
+    return this.studentPodaci?.totalPages;
+
+    return 1;
   }
 
   goToPage(p: number) {
-    this.pageNumber = p;
+    this.currentPage = p;
     this.fetchStudenti();
   }
 
-  goToNext() {
-
+  goToPrev(p:number) {
+    if (this.currentPage > 1){
+      this.currentPage--;
+      this.fetchStudenti();
+    }
+    if (p == this.currentPage)
+      return;
+  }
+  goToNext(p:number) {
+    if (this.currentPage < this.totalPages()){
+      this.currentPage++
+      this.fetchStudenti();
+    }
+    if (p == this.currentPage)
+      return;
   }
 
-  goToPrev() {
-
-  }
 }
