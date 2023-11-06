@@ -14,7 +14,7 @@ namespace FIT_Api_Examples.Modul5_OnlineTestovi.Models
         public string TekstPitanja { get; set; } = string.Empty;
         public int BodoviPozitivni { get; set; }
         public int BodoviNegativni { get; set; }
-        public bool ParciijalnoBodovanja { get; set; }
+        public bool ParcijalnoBodovanje { get; set; }
         public TipPitanja TipPitanja { get; set; }
         public virtual List<PitanjaPonudjeneOpcije> PitanjaPonudjeneOpcijes { get; set; } = null!;
 
