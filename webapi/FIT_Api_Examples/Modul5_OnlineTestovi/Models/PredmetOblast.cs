@@ -6,7 +6,6 @@ namespace FIT_Api_Examples.Modul5_OnlineTestovi.Models
 {
     public class PredmetOblast
     {
-        [Key]
         public int Id { get; set; }
         public string Naziv { get; set; } = string.Empty;
 
