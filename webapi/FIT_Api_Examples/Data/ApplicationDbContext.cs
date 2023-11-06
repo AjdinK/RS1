@@ -44,6 +44,11 @@ namespace FIT_Api_Examples.Data
             //ovdje pise FluentAPI konfiguraciju
             //modelBuilder.Entity<Student>().ToTable("Student");
             //modelBuilder.Entity<Nastavnik>().ToTable("Nastavnik");
+
+            foreach (var realtionship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                realtionship.DeleteBehavior = DeleteBehavior.NoAction;
+            }
         }
     }
 }

@@ -77,8 +77,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_Opstina_Drzava_drzava_id",
                         column: x => x.drzava_id,
                         principalTable: "Drzava",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -128,8 +127,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_AutentifikacijaToken_KorisnickiNalog_KorisnickiNalogId",
                         column: x => x.KorisnickiNalogId,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -172,7 +170,7 @@ namespace FIT_Api_Examples.Migrations
                         column: x => x.id,
                         principalTable: "KorisnickiNalog",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,14 +193,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_Obavijest_KorisnickiNalog_evidentiraoKorisnikID",
                         column: x => x.evidentiraoKorisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_Obavijest_KorisnickiNalog_izmijenioKorisnikID",
                         column: x => x.izmijenioKorisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -224,8 +220,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_AktivacijaTesta_Predmet_PredmetId",
                         column: x => x.PredmetId,
                         principalTable: "Predmet",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -245,8 +240,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_Ispit_Predmet_PredmetID",
                         column: x => x.PredmetID,
                         principalTable: "Predmet",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -265,8 +259,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_PredmetOblast_Predmet_PredmetId",
                         column: x => x.PredmetId,
                         principalTable: "Predmet",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -288,7 +281,7 @@ namespace FIT_Api_Examples.Migrations
                         column: x => x.id,
                         principalTable: "KorisnickiNalog",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Student_Opstina_opstina_rodjenja_id",
                         column: x => x.opstina_rodjenja_id,
@@ -316,8 +309,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_Pitanje_PredmetOblast_PredmetOblastId",
                         column: x => x.PredmetOblastId,
                         principalTable: "PredmetOblast",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -336,14 +328,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_OmiljeniPredmeti_Predmet_PredmetId",
                         column: x => x.PredmetId,
                         principalTable: "Predmet",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_OmiljeniPredmeti_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -363,14 +353,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_PrijavaIspita_Ispit_IspitID",
                         column: x => x.IspitID,
                         principalTable: "Ispit",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_PrijavaIspita_Student_StudentID",
                         column: x => x.StudentID,
                         principalTable: "Student",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -392,14 +380,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_StudentTest_AktivacijaTesta_AktivacijaTestaId",
                         column: x => x.AktivacijaTestaId,
                         principalTable: "AktivacijaTesta",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StudentTest_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -424,20 +410,17 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_UpisAkGodine_AkademskaGodina_akademskaGodina_id",
                         column: x => x.akademskaGodina_id,
                         principalTable: "AkademskaGodina",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_UpisAkGodine_KorisnickiNalog_evidentiraoKorisnikID",
                         column: x => x.evidentiraoKorisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_UpisAkGodine_Student_student_id",
                         column: x => x.student_id,
                         principalTable: "Student",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -458,8 +441,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_PitanjaPonudjeneOpcije_Pitanje_PitanjeId",
                         column: x => x.PitanjeId,
                         principalTable: "Pitanje",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -481,14 +463,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_StudentTestPitanja_Pitanje_PitanjeId",
                         column: x => x.PitanjeId,
                         principalTable: "Pitanje",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_StudentTestPitanja_StudentTest_StudentTestId",
                         column: x => x.StudentTestId,
                         principalTable: "StudentTest",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
