@@ -10,8 +10,8 @@ namespace FIT_Api_Examples.Modul2.Models
         public int id { get; set; }
         public string opis { get; set; } = string.Empty;
         public KorisnickiNalog? evidentiraoKorisnik { get; set; }
-        public DateTime? datum_update { get; set; }
         public KorisnickiNalog? izmijenioKorisnik { get; set; }
+        public DateTime? datum_update { get; set; }
         public DateTime datum_added { get; set; }
     }
 }
