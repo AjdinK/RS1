@@ -431,15 +431,14 @@ namespace FIT_Api_Examples.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     JelTacno = table.Column<bool>(type: "bit", nullable: false),
-                    PitanjaId = table.Column<int>(type: "int", nullable: false),
-                    PitanjeId = table.Column<int>(type: "int", nullable: false)
+                    PitanjaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PitanjaPonudjeneOpcije", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PitanjaPonudjeneOpcije_Pitanje_PitanjeId",
-                        column: x => x.PitanjeId,
+                        name: "FK_PitanjaPonudjeneOpcije_Pitanje_PitanjaId",
+                        column: x => x.PitanjaId,
                         principalTable: "Pitanje",
                         principalColumn: "Id");
                 });
@@ -527,9 +526,9 @@ namespace FIT_Api_Examples.Migrations
                 column: "drzava_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PitanjaPonudjeneOpcije_PitanjeId",
+                name: "IX_PitanjaPonudjeneOpcije_PitanjaId",
                 table: "PitanjaPonudjeneOpcije",
-                column: "PitanjeId");
+                column: "PitanjaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pitanje_PredmetOblastId",

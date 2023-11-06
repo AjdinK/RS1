@@ -419,12 +419,9 @@ namespace FIT_Api_Examples.Migrations
                     b.Property<int>("PitanjaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PitanjeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("PitanjeId");
+                    b.HasIndex("PitanjaId");
 
                     b.ToTable("PitanjaPonudjeneOpcije");
                 });
@@ -754,7 +751,7 @@ namespace FIT_Api_Examples.Migrations
                 {
                     b.HasOne("FIT_Api_Examples.Modul5_OnlineTestovi.Models.Pitanje", "Pitanje")
                         .WithMany("PitanjaPonudjeneOpcijes")
-                        .HasForeignKey("PitanjeId")
+                        .HasForeignKey("PitanjaId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

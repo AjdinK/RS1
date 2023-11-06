@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Examples.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231106123458_initV1")]
+    [Migration("20231106131533_initV1")]
     partial class initV1
     {
         /// <inheritdoc />
@@ -422,12 +422,9 @@ namespace FIT_Api_Examples.Migrations
                     b.Property<int>("PitanjaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PitanjeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("PitanjeId");
+                    b.HasIndex("PitanjaId");
 
                     b.ToTable("PitanjaPonudjeneOpcije");
                 });
@@ -757,7 +754,7 @@ namespace FIT_Api_Examples.Migrations
                 {
                     b.HasOne("FIT_Api_Examples.Modul5_OnlineTestovi.Models.Pitanje", "Pitanje")
                         .WithMany("PitanjaPonudjeneOpcijes")
-                        .HasForeignKey("PitanjeId")
+                        .HasForeignKey("PitanjaId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
