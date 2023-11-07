@@ -8,13 +8,15 @@ namespace FIT_Api_Examples.Modul3_MaticnaKnjiga.Models
     [Table("Student")]
     public class Student : KorisnickiNalog
     {
-        public string ime { get; set; }
-        public string prezime { get; set; }
-        public string broj_indeksa { get; set; }
-        [ForeignKey(nameof(opstina_rodjenja))]
-        public int? opstina_rodjenja_id { get; set; }
-        public Opstina opstina_rodjenja { get; set; }
-        public DateTime created_time { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string Broj_Indeksa { get; set; }
+        public DateTime Created_Time { get; set; }
+
+
+        [ForeignKey(nameof(Opstina_Rodjenja))]
+        public int? Opstina_Rodjenja_Id { get; set; }
+        public Opstina Opstina_Rodjenja { get; set; }
 
     }
 }

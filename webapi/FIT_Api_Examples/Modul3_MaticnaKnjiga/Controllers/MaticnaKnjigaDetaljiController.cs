@@ -52,8 +52,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .Select(s => new
                 {
                     student_id = s.id,
-                    ime = s.ime,
-                    prezime = s.prezime,
+                    ime = s.Ime,
+                    prezime = s.Prezime,
                     listaUpisi = upisAkGodine.ToList(),
                     cijenaSkolarine = upisAkGodine.Sum(s => s.cijenaSkolarine)
 

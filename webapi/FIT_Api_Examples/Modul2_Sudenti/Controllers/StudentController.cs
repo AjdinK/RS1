@@ -51,7 +51,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 student = new Student
                 {
-                    created_time = DateTime.Now,
+                    Created_Time = DateTime.Now,
 
                 };
                 _dbContext.Add(student);
@@ -64,9 +64,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
             if (student == null)
                 return BadRequest("pogresan ID");
 
-            student.ime = x.ime.RemoveTags();
-            student.prezime = x.prezime.RemoveTags();
-            student.opstina_rodjenja_id = x.opstina_rodjenja_id;
+            student.Ime = x.ime.RemoveTags();
+            student.Prezime = x.prezime.RemoveTags();
+            student.Opstina_Rodjenja_Id = x.opstina_rodjenja_id;
 
             if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))
             {
@@ -103,9 +103,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             _dbContext.SaveChanges();
 
-            if (student.broj_indeksa != "")
+            if (student.Broj_Indeksa != "")
             {
-                student.broj_indeksa = "IB" + x.id;
+                student.Broj_Indeksa = "IB" + x.id;
                 student.korisnickoIme = x.broj_indeksa;
                 student.lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
@@ -118,19 +118,19 @@ namespace FIT_Api_Examples.Modul2.Controllers
         public ActionResult GetAll(string? ime_prezime , int pageNumber = 1 , int pageSize = 20)
         {
             var data = _dbContext.Student
-                .Include(s => s.opstina_rodjenja.drzava)
-                .Where(x => ime_prezime == null || (x.ime + " " + x.prezime).StartsWith(ime_prezime) || (x.prezime + " " + x.ime).StartsWith(ime_prezime))
+                .Include(s => s.Opstina_Rodjenja.drzava)
+                .Where(x => ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(ime_prezime) || (x.Prezime + " " + x.Ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.id)
                 .Select(s => new StudentGetAllVM()
                 {
                     id = s.id,
-                    ime = s.ime,
-                    prezime = s.prezime,
-                    broj_indeksa = s.broj_indeksa,
-                    opstina_rodjenja_opis = s.opstina_rodjenja.description,
-                    drzava_rodjenja_opis = s.opstina_rodjenja.drzava.Naziv,
-                    opstina_rodjenja_id = s.opstina_rodjenja_id,
-                    vrijeme_dodavanja = s.created_time.ToString("dd.MM.yyyy"),
+                    ime = s.Ime,
+                    prezime = s.Prezime,
+                    broj_indeksa = s.Broj_Indeksa,
+                    opstina_rodjenja_opis = s.Opstina_Rodjenja.description,
+                    drzava_rodjenja_opis = s.Opstina_Rodjenja.drzava.Naziv,
+                    opstina_rodjenja_id = s.Opstina_Rodjenja_Id,
+                    vrijeme_dodavanja = s.Created_Time.ToString("dd.MM.yyyy"),
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
                 });
 

@@ -109,13 +109,13 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             {
                 studenti.Add(new Student
                 {
-                    broj_indeksa = $"IB200{i:d}",
-                    created_time = DateTime.Now,
-                    ime = TokenGenerator.GenerisiIme(5),
-                    prezime = TokenGenerator.GenerisiIme(5),
+                    Broj_Indeksa = $"IB200{i:d}",
+                    Created_Time = DateTime.Now,
+                    Ime = TokenGenerator.GenerisiIme(5),
+                    Prezime = TokenGenerator.GenerisiIme(5),
                     korisnickoIme = TokenGenerator.GenerisiIme(5),
                     lozinka = "test",
-                    opstina_rodjenja = opstine.GetRandomElements(1)[0],
+                    Opstina_Rodjenja = opstine.GetRandomElements(1)[0],
                     Email = "test@gmail.com",
                     AktivacijaGUID = Guid.NewGuid().ToString(),
                     isAktiviran = true,
