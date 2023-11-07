@@ -15,13 +15,14 @@ namespace FIT_Api_Examples.Migrations
                 name: "Drzava",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Skracenica = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Drzava", x => x.id);
+                    table.PrimaryKey("PK_Drzava", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +78,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_Opstina_Drzava_drzava_id",
                         column: x => x.drzava_id,
                         principalTable: "Drzava",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(

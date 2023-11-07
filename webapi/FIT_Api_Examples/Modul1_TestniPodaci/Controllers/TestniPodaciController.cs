@@ -39,6 +39,7 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             data.Add("Predmet", _dbContext.Predmet.Count());
             data.Add("AkademskaGodina", _dbContext.AkademskaGodina.Count());
             data.Add("Drzava", _dbContext.Drzava.Count());
+            data.Add("PredmetOblast", _dbContext.PredmetOblast.Count());
 
             return Ok(data);
         }
@@ -64,12 +65,12 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             akademskeGodine.Add(new AkademskaGodina { opis = "2021-22" });
             akademskeGodine.Add(new AkademskaGodina { opis = "2022-23" });
 
-            drzave.Add(new Drzava { naziv = "BiH" });
-            drzave.Add(new Drzava { naziv = "HR" });
-            drzave.Add(new Drzava { naziv = "Njemacka" });
-            drzave.Add(new Drzava { naziv = "Austrija" });
-            drzave.Add(new Drzava { naziv = "SAD" });
-            drzave.Add(new Drzava { naziv = "Malezija" });
+            drzave.Add(new Drzava { Naziv = "BiH" });
+            drzave.Add(new Drzava { Naziv = "HR" });
+            drzave.Add(new Drzava { Naziv = "Njemacka" });
+            drzave.Add(new Drzava { Naziv = "Austrija" });
+            drzave.Add(new Drzava { Naziv = "SAD" });
+            drzave.Add(new Drzava { Naziv = "Malezija" });
 
             opstine.Add(new Opstina { description = "Sarajevo", drzava = drzave[0] });
             opstine.Add(new Opstina { description = "Mostar", drzava = drzave[0] });

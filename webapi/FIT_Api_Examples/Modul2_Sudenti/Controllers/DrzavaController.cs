@@ -5,6 +5,7 @@ using FIT_Api_Examples.Helper;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using FIT_Api_Examples.Modul0_Autentifikacija.Models;
 using FIT_Api_Examples.Modul2.Models;
+using FIT_Api_Examples.Modul2_Sudenti.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FIT_Api_Examples.Modul2.Controllers
@@ -21,36 +22,50 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-        public class DrzavaAddVM
+        [HttpPost]
+        public ActionResult<Drzava> Snimi ([FromBody] DrzavaVM x)
         {
-            public string opis { get; set; }
+            // if (!HttpContext.GetLoginInfo().isLogiran)
+            //     return BadRequest("nije logiran");
+            Drzava? drzava ;
+
+            if (x.Id == 0){
+                drzava = new Drzava ();
+                _dbContext.Add(drzava);
+            }
+            else {
+                drzava = _dbContext.Drzava.Find(x.Id);
+            }
+
+            drzava.Naziv = x.Naziv;
+            drzava.Skracenica = x.Skracenica;
+            _dbContext.SaveChanges();
+            return drzava;
         }
 
-        [HttpPost]
-        public ActionResult<Drzava> Add([FromBody] DrzavaAddVM x)
-        {
-            if (!HttpContext.GetLoginInfo().isLogiran)
-                return BadRequest("nije logiran");
+        [HttpDelete]
+        public ActionResult Brisi (int id) {
+            var drzava = _dbContext.Drzava.Find(id);
 
-            var newEmployee = new Drzava
-            {
-                naziv = x.opis,
-            };
+            if (drzava != null){
+                _dbContext.Remove(drzava);
+                _dbContext.SaveChanges();
+                return Ok ($"{drzava.Naziv} Uspjesno izbrisana");
+            }
 
-            _dbContext.Add(newEmployee);
-            _dbContext.SaveChanges();
-            return newEmployee;
+            return BadRequest("Error -> ID Drzave ne postoji");
         }
 
         [HttpGet]
         public ActionResult GetAll()
         {
             var data = _dbContext.Drzava
-                .OrderBy(s => s.naziv)
-                .Select(s => new
+                .OrderBy(s => s.Id)
+                .Select(s => new DrzavaVM
                 {
-                    id = s.id,
-                    opis = s.naziv,
+                    Id = s.Id,
+                    Naziv = s.Naziv,
+                    Skracenica = s.Skracenica
                 })
                 .ToList();
             return Ok(data);

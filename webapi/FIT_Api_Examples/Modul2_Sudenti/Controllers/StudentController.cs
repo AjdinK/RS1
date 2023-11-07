@@ -128,7 +128,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     prezime = s.prezime,
                     broj_indeksa = s.broj_indeksa,
                     opstina_rodjenja_opis = s.opstina_rodjenja.description,
-                    drzava_rodjenja_opis = s.opstina_rodjenja.drzava.naziv,
+                    drzava_rodjenja_opis = s.opstina_rodjenja.drzava.Naziv,
                     opstina_rodjenja_id = s.opstina_rodjenja_id,
                     vrijeme_dodavanja = s.created_time.ToString("dd.MM.yyyy"),
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB

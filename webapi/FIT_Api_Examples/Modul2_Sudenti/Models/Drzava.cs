@@ -5,7 +5,9 @@ namespace FIT_Api_Examples.Modul2.Models
     public class Drzava
     {
         [Key]
-        public int id { get; set; }
-        public string naziv { get; set; }
+        public int Id { get; set; }
+        public string Naziv { get; set; }
+        public string? Skracenica { get; set; } = string.Empty;
+
     }
 }
