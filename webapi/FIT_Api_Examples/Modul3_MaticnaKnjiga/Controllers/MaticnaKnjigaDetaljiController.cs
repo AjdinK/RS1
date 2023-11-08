@@ -43,15 +43,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     a.datumUpisZimski,
                     a.datumOvjeraZimski,
                     a.cijenaSkolarine,
-                    evidentirao_korisnik = a.evidentiraoKorisnik.korisnickoIme
+                    evidentirao_korisnik = a.evidentiraoKorisnik.KorisnickoIme
                 })
                 ;
 
-            var povratnavr = _dbContext.Student.Where(s => s.id == studentid)
+            var povratnavr = _dbContext.Student.Where(s => s.Id == studentid)
 
                 .Select(s => new
                 {
-                    student_id = s.id,
+                    student_id = s.Id,
                     ime = s.Ime,
                     prezime = s.Prezime,
                     listaUpisi = upisAkGodine.ToList(),

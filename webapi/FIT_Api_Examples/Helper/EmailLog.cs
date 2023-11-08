@@ -8,7 +8,7 @@ public class EmailLog
         var logiraniKorisnik = token.korisnickiNalog;
         if (logiraniKorisnik.isNastavnik || logiraniKorisnik.isAdmin)
         {
-            var poruka = $"Postovani/a {logiraniKorisnik.korisnickoIme}<br>" +
+            var poruka = $"Postovani/a {logiraniKorisnik.KorisnickoIme}<br>" +
             "Code za Two factor je " +
              $"<b>{token.twoFactorCode}</b><br>" +
              $"Login info {DateTime.Now}";

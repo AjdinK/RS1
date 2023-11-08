@@ -12,19 +12,13 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
     public class KorisnickiNalog
     {
         [Key]
-        public int id { get; set; }
-        public string korisnickoIme { get; set; }
-        [JsonIgnore]
-        public string lozinka { get; set; }
-        public string Email { get; set; }
-
-        [JsonIgnore]
-        public Student? student => this as Student;
-
-        [JsonIgnore]
-        public Nastavnik? nastavnik => this as Nastavnik;
-        public bool isNastavnik => nastavnik != null;
-        public bool isStudent => student != null;
+        public int Id { get; set; }
+        public string KorisnickoIme { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Ime { get; set; } = string.Empty;
+        public string Prezime { get; set; } = string.Empty;
+        public bool isNastavnik => Nastavnik != null;
+        public bool isStudent => Student != null;
         public bool isAdmin { get; set; }
         public bool isProdekan { get; set; }
         public bool isDekan { get; set; }
@@ -32,5 +26,14 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public byte[]? slika_korisnika_bajtovi { get; set; }
         public bool isAktiviran { get; set; }
         public string? AktivacijaGUID { get; set; }
+
+         [JsonIgnore]
+        public string Lozinka { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        public Student? Student => this as Student;
+
+        [JsonIgnore]
+        public Nastavnik? Nastavnik => this as Nastavnik;
     }
 }

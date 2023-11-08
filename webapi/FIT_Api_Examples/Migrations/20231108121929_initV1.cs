@@ -29,22 +29,24 @@ namespace FIT_Api_Examples.Migrations
                 name: "KorisnickiNalog",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    korisnickoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    KorisnickoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false),
                     isProdekan = table.Column<bool>(type: "bit", nullable: false),
                     isDekan = table.Column<bool>(type: "bit", nullable: false),
                     isStudentskaSluzba = table.Column<bool>(type: "bit", nullable: false),
                     slika_korisnika_bajtovi = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     isAktiviran = table.Column<bool>(type: "bit", nullable: false),
-                    AktivacijaGUID = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AktivacijaGUID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KorisnickiNalog", x => x.id);
+                    table.PrimaryKey("PK_KorisnickiNalog", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,8 +90,8 @@ namespace FIT_Api_Examples.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    evidentiraoKorisnikid = table.Column<int>(type: "int", nullable: true),
-                    izmijenioKorisnikid = table.Column<int>(type: "int", nullable: true),
+                    evidentiraoKorisnikId = table.Column<int>(type: "int", nullable: true),
+                    izmijenioKorisnikId = table.Column<int>(type: "int", nullable: true),
                     datum_update = table.Column<DateTime>(type: "datetime2", nullable: true),
                     datum_added = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -97,15 +99,15 @@ namespace FIT_Api_Examples.Migrations
                 {
                     table.PrimaryKey("PK_AkademskaGodina", x => x.id);
                     table.ForeignKey(
-                        name: "FK_AkademskaGodina_KorisnickiNalog_evidentiraoKorisnikid",
-                        column: x => x.evidentiraoKorisnikid,
+                        name: "FK_AkademskaGodina_KorisnickiNalog_evidentiraoKorisnikId",
+                        column: x => x.evidentiraoKorisnikId,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_AkademskaGodina_KorisnickiNalog_izmijenioKorisnikid",
-                        column: x => x.izmijenioKorisnikid,
+                        name: "FK_AkademskaGodina_KorisnickiNalog_izmijenioKorisnikId",
+                        column: x => x.izmijenioKorisnikId,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -128,7 +130,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_AutentifikacijaToken_KorisnickiNalog_KorisnickiNalogId",
                         column: x => x.KorisnickiNalogId,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -152,25 +154,25 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_LogKretanjePoSistemu_KorisnickiNalog_korisnikID",
                         column: x => x.korisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Nastavnik",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     prezime = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Nastavnik", x => x.id);
+                    table.PrimaryKey("PK_Nastavnik", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Nastavnik_KorisnickiNalog_id",
-                        column: x => x.id,
+                        name: "FK_Nastavnik_KorisnickiNalog_Id",
+                        column: x => x.Id,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -194,12 +196,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_Obavijest_KorisnickiNalog_evidentiraoKorisnikID",
                         column: x => x.evidentiraoKorisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Obavijest_KorisnickiNalog_izmijenioKorisnikID",
                         column: x => x.izmijenioKorisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -267,25 +269,23 @@ namespace FIT_Api_Examples.Migrations
                 name: "Student",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
-                    ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    broj_indeksa = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    opstina_rodjenja_id = table.Column<int>(type: "int", nullable: true),
-                    created_time = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Broj_Indeksa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Created_Time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Opstina_Rodjenja_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.id);
+                    table.PrimaryKey("PK_Student", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Student_KorisnickiNalog_id",
-                        column: x => x.id,
+                        name: "FK_Student_KorisnickiNalog_Id",
+                        column: x => x.Id,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Student_Opstina_opstina_rodjenja_id",
-                        column: x => x.opstina_rodjenja_id,
+                        name: "FK_Student_Opstina_Opstina_Rodjenja_Id",
+                        column: x => x.Opstina_Rodjenja_Id,
                         principalTable: "Opstina",
                         principalColumn: "id");
                 });
@@ -334,7 +334,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_OmiljeniPredmeti_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -359,7 +359,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_PrijavaIspita_Student_StudentID",
                         column: x => x.StudentID,
                         principalTable: "Student",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -386,7 +386,7 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_StudentTest_Student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Student",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -416,12 +416,12 @@ namespace FIT_Api_Examples.Migrations
                         name: "FK_UpisAkGodine_KorisnickiNalog_evidentiraoKorisnikID",
                         column: x => x.evidentiraoKorisnikID,
                         principalTable: "KorisnickiNalog",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_UpisAkGodine_Student_student_id",
                         column: x => x.student_id,
                         principalTable: "Student",
-                        principalColumn: "id");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -472,14 +472,14 @@ namespace FIT_Api_Examples.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AkademskaGodina_evidentiraoKorisnikid",
+                name: "IX_AkademskaGodina_evidentiraoKorisnikId",
                 table: "AkademskaGodina",
-                column: "evidentiraoKorisnikid");
+                column: "evidentiraoKorisnikId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AkademskaGodina_izmijenioKorisnikid",
+                name: "IX_AkademskaGodina_izmijenioKorisnikId",
                 table: "AkademskaGodina",
-                column: "izmijenioKorisnikid");
+                column: "izmijenioKorisnikId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AktivacijaTesta_PredmetId",
@@ -552,9 +552,9 @@ namespace FIT_Api_Examples.Migrations
                 column: "StudentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Student_opstina_rodjenja_id",
+                name: "IX_Student_Opstina_Rodjenja_Id",
                 table: "Student",
-                column: "opstina_rodjenja_id");
+                column: "Opstina_Rodjenja_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentTest_AktivacijaTestaId",

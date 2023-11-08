@@ -50,7 +50,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 nastavnik = new Nastavnik
                 {
-                    lozinka = "test",
+                    Lozinka = "test",
 
                 };
                 _dbContext.Add(nastavnik);
@@ -58,7 +58,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             }
             else
             {
-                nastavnik = _dbContext.Nastavnik.FirstOrDefault(n => n.id == x.id);
+                nastavnik = _dbContext.Nastavnik.FirstOrDefault(n => n.Id == x.id);
             }
 
             if (nastavnik == null)
@@ -66,7 +66,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             nastavnik.ime = x.ime.RemoveTags();
             nastavnik.prezime = x.prezime.RemoveTags();
-            nastavnik.korisnickoIme = x.korisnickoIme;
+            nastavnik.KorisnickoIme = x.korisnickoIme;
             nastavnik.Email = x.Email;
 
             // if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))

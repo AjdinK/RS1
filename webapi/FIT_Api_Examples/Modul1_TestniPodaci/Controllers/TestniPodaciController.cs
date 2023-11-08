@@ -65,25 +65,25 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             akademskeGodine.Add(new AkademskaGodina { opis = "2021-22" });
             akademskeGodine.Add(new AkademskaGodina { opis = "2022-23" });
 
-            drzave.Add(new Drzava { Naziv = "BiH" });
-            drzave.Add(new Drzava { Naziv = "HR" });
-            drzave.Add(new Drzava { Naziv = "Njemacka" });
-            drzave.Add(new Drzava { Naziv = "Austrija" });
-            drzave.Add(new Drzava { Naziv = "SAD" });
-            drzave.Add(new Drzava { Naziv = "Malezija" });
+            drzave.Add(new Drzava { Naziv = "BiH" , Skracenica = "BH" });
+            drzave.Add(new Drzava { Naziv = "Njemacka" , Skracenica = "GER" });
+            drzave.Add(new Drzava { Naziv = "Austrija" , Skracenica = "AUS" });
+            drzave.Add(new Drzava { Naziv = "Turska" , Skracenica = "TUR" });
+            drzave.Add(new Drzava { Naziv = "SAD" , Skracenica = "USA"  });
+            drzave.Add(new Drzava { Naziv = "Malezija" , Skracenica = "MAL" });
 
             opstine.Add(new Opstina { description = "Sarajevo", drzava = drzave[0] });
-            opstine.Add(new Opstina { description = "Mostar", drzava = drzave[0] });
+            opstine.Add(new Opstina { description = "Bihac", drzava = drzave[0] });
             opstine.Add(new Opstina { description = "Zenica", drzava = drzave[0] });
 
-            opstine.Add(new Opstina { description = "Split", drzava = drzave[1] });
-            opstine.Add(new Opstina { description = "Zagreb", drzava = drzave[1] });
+            opstine.Add(new Opstina { description = "Berlin", drzava = drzave[1] });
+            opstine.Add(new Opstina { description = "Frankfurt", drzava = drzave[1] });
 
-            opstine.Add(new Opstina { description = "Berlin", drzava = drzave[2] });
-            opstine.Add(new Opstina { description = "Wiebaden", drzava = drzave[2] });
+            opstine.Add(new Opstina { description = "Wien", drzava = drzave[2] });
+            opstine.Add(new Opstina { description = "Wels", drzava = drzave[2] });
 
-            opstine.Add(new Opstina { description = "Gratz", drzava = drzave[3] });
-            opstine.Add(new Opstina { description = "Klagenfurt", drzava = drzave[3] });
+            opstine.Add(new Opstina { description = "Istanbul", drzava = drzave[3] });
+            opstine.Add(new Opstina { description = "Bursa", drzava = drzave[3] });
 
             opstine.Add(new Opstina { description = "Boston", drzava = drzave[4] });
             opstine.Add(new Opstina { description = "New York", drzava = drzave[4] });
@@ -95,12 +95,12 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera I", Sifra = "RS-RS1" });
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera II", Sifra = "RS-RS2" });
 
-            nastavnici.Add(new Nastavnik { ime = "Denis", prezime = "Music", korisnickoIme = "denis", lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", korisnickoIme = "emina", lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", korisnickoIme = "iris", lozinka = "test", isProdekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", korisnickoIme = "nina", lozinka = "test", isDekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", korisnickoIme = "adil", lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Adil2", prezime = "Joldic2", korisnickoIme = "test", lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString(), isAktiviran = true,});
+            nastavnici.Add(new Nastavnik { ime = "Denis", prezime = "Music", KorisnickoIme = "denis", Lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", KorisnickoIme = "emina", Lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", KorisnickoIme = "iris", Lozinka = "test", isProdekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", KorisnickoIme = "nina", Lozinka = "test", isDekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", KorisnickoIme = "adil", Lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { ime = "Ajdin", prezime = "Kuduzovic", KorisnickoIme = "test", Lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString(), isAktiviran = true,});
 
 
             Random rnd = new Random();
@@ -113,8 +113,8 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
                     Created_Time = DateTime.Now,
                     Ime = TokenGenerator.GenerisiIme(5),
                     Prezime = TokenGenerator.GenerisiIme(5),
-                    korisnickoIme = TokenGenerator.GenerisiIme(5),
-                    lozinka = "test",
+                    KorisnickoIme = TokenGenerator.GenerisiIme(5),
+                    Lozinka = "test",
                     Opstina_Rodjenja = opstine.GetRandomElements(1)[0],
                     Email = "test@gmail.com",
                     AktivacijaGUID = Guid.NewGuid().ToString(),

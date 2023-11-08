@@ -35,12 +35,14 @@ namespace FIT_Api_Examples.Modul2.Controllers
             }
             else {
                 drzava = _dbContext.Drzava.Find(x.Id);
+                if (drzava == null)
+                return BadRequest ("Drzava ne postoji");
             }
 
             drzava.Naziv = x.Naziv;
             drzava.Skracenica = x.Skracenica;
             _dbContext.SaveChanges();
-            return drzava;
+            return Ok($"{drzava.Naziv} Uspjesno ");
         }
 
         [HttpDelete]
@@ -57,18 +59,17 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
-        {
+        public ActionResult GetAll () {
+            
             var data = _dbContext.Drzava
-                .OrderBy(s => s.Id)
-                .Select(s => new DrzavaVM
-                {
-                    Id = s.Id,
-                    Naziv = s.Naziv,
-                    Skracenica = s.Skracenica
-                })
-                .ToList();
-            return Ok(data);
+            .OrderBy(d => d.Id)
+            .Select(d=> new DrzavaVM {
+                Id = d.Id,
+                Naziv = d.Naziv,
+                Skracenica = d.Skracenica
+            }).ToList();
+            
+            return Ok (data);
         }
     }
 }

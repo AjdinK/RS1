@@ -32,7 +32,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             //1- provjera logina
             KorisnickiNalog? logiraniKorisnik = _dbContext.KorisnickiNalog
                 .FirstOrDefault(k =>
-                 k.korisnickoIme == x.korisnickoIme && k.lozinka == x.lozinka);
+                 k.KorisnickoIme == x.korisnickoIme && k.Lozinka == x.lozinka);
 
             if (logiraniKorisnik == null)
             {
@@ -72,7 +72,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
                 return BadRequest("Korisnik nije logiran");
             }
 
-            var token = _dbContext.AutentifikacijaToken.FirstOrDefault(t => t.twoFactorCode == code && t.korisnickiNalog.id == korisnickiNalog.id);
+            var token = _dbContext.AutentifikacijaToken.FirstOrDefault(t => t.twoFactorCode == code && t.korisnickiNalog.Id == korisnickiNalog.Id);
             if (token != null)
             {
                 token.twoFactorCodeJelAktiviran = true;

@@ -46,19 +46,19 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpPost]
         public ActionResult Snimi([FromBody] StudentGetAllVM x)
         {
-            Student student;
+            Student? student;
             if (x.id == 0)
             {
                 student = new Student
                 {
                     Created_Time = DateTime.Now,
-
                 };
+
                 _dbContext.Add(student);
             }
             else
             {
-                student = _dbContext.Student.FirstOrDefault(s => s.id == x.id);
+                student = _dbContext.Student.FirstOrDefault(s => s.Id == x.id);
             }
 
             if (student == null)
@@ -82,10 +82,10 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
                 //slika se snima na File System
                 if (slika_bajtovi_resized_velika != null)
-                    Fajlovi.Snimi(slika_bajtovi_resized_velika, "slike_korisnika/velika-" + student.id + ".png");
+                    Fajlovi.Snimi(slika_bajtovi_resized_velika, "slike_korisnika/velika-" + student.Id + ".png");
 
                 if (slika_bajtovi_resized_mala != null)
-                    Fajlovi.Snimi(slika_bajtovi_resized_mala, "slike_korisnika/mala-" + student.id + ".png");
+                    Fajlovi.Snimi(slika_bajtovi_resized_mala, "slike_korisnika/mala-" + student.Id + ".png");
             }
 
             if (x.omiljeni_predmeti?.Length > 0)
@@ -106,24 +106,24 @@ namespace FIT_Api_Examples.Modul2.Controllers
             if (student.Broj_Indeksa != "")
             {
                 student.Broj_Indeksa = "IB" + x.id;
-                student.korisnickoIme = x.broj_indeksa;
-                student.lozinka = TokenGenerator.Generate(5);
+                student.KorisnickoIme = x.broj_indeksa;
+                student.Lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
             }
             return Ok();
         }
 
-        [Autorizacija(true, true, true, false, true)]
+        //[Autorizacija(true, true, true, false, true)]
         [HttpGet]
         public ActionResult GetAll(string? ime_prezime , int pageNumber = 1 , int pageSize = 20)
         {
             var data = _dbContext.Student
                 .Include(s => s.Opstina_Rodjenja.drzava)
                 .Where(x => ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(ime_prezime) || (x.Prezime + " " + x.Ime).StartsWith(ime_prezime))
-                .OrderByDescending(s => s.id)
+                .OrderByDescending(s => s.Id)
                 .Select(s => new StudentGetAllVM()
                 {
-                    id = s.id,
+                    id = s.Id,
                     ime = s.Ime,
                     prezime = s.Prezime,
                     broj_indeksa = s.Broj_Indeksa,
