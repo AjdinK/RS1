@@ -26,7 +26,6 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             _dbContext = dbContext;
         }
 
-
         [HttpGet]
         public ActionResult Count()
         {
@@ -95,12 +94,12 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera I", Sifra = "RS-RS1" });
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera II", Sifra = "RS-RS2" });
 
-            nastavnici.Add(new Nastavnik { ime = "Denis", prezime = "Music", KorisnickoIme = "denis", Lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Emina", prezime = "Junuz", KorisnickoIme = "emina", Lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Iris", prezime = "Memic-Fisic", KorisnickoIme = "iris", Lozinka = "test", isProdekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Nina", prezime = "Bijedic", KorisnickoIme = "nina", Lozinka = "test", isDekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Adil", prezime = "Joldic", KorisnickoIme = "adil", Lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
-            nastavnici.Add(new Nastavnik { ime = "Ajdin", prezime = "Kuduzovic", KorisnickoIme = "test", Lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString(), isAktiviran = true,});
+            nastavnici.Add(new Nastavnik { Ime = "Denis", Prezime = "Music", KorisnickoIme = "denis", Lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { Ime = "Emina", Prezime = "Junuz", KorisnickoIme = "emina", Lozinka = "test", Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { Ime = "Iris", Prezime = "Memic-Fisic", KorisnickoIme = "iris", Lozinka = "test", isProdekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { Ime = "Nina", Prezime = "Bijedic", KorisnickoIme = "nina", Lozinka = "test", isDekan = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { Ime = "Adil", Prezime = "Joldic", KorisnickoIme = "adil", Lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString() });
+            nastavnici.Add(new Nastavnik { Ime = "Ajdin", Prezime = "Kuduzovic", KorisnickoIme = "test", Lozinka = "test", isAdmin = true, Email = "aaa@gmail.com", AktivacijaGUID = Guid.NewGuid().ToString(), isAktiviran = true,});
 
 
             Random rnd = new Random();

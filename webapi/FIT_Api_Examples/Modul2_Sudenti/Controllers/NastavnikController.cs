@@ -64,8 +64,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
             if (nastavnik == null)
                 return BadRequest("pogresan ID");
 
-            nastavnik.ime = x.ime.RemoveTags();
-            nastavnik.prezime = x.prezime.RemoveTags();
+            nastavnik.Ime = x.ime.RemoveTags();
+            nastavnik.Prezime = x.prezime.RemoveTags();
             nastavnik.KorisnickoIme = x.korisnickoIme;
             nastavnik.Email = x.Email;
 
@@ -81,6 +81,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             //     //slika se snima na File System
             //     Fajlovi.Snimi(slika_bajtovi, "slike_korisnika/" + nastavnik.id + ".png");
             // }
+
             EmailLog.noviNastavnik(nastavnik, HttpContext);
             _dbContext.SaveChanges();
             return Ok();

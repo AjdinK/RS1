@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Examples.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231108121929_initV1")]
+    [Migration("20231108125642_initV1")]
     partial class initV1
     {
         /// <inheritdoc />
@@ -586,14 +586,6 @@ namespace FIT_Api_Examples.Migrations
             modelBuilder.Entity("FIT_Api_Examples.Modul2.Models.Nastavnik", b =>
                 {
                     b.HasBaseType("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog");
-
-                    b.Property<string>("ime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prezime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.ToTable("Nastavnik");
                 });

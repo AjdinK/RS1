@@ -23,7 +23,7 @@ public class EmailLog
             var request = httpContext.Request;
             var location = $"{request.Scheme}://{request.Host}";
             var url = location + "/Nastavnik/Aktivacija/" + nastavnik.AktivacijaGUID;
-            var poruka = $"Postovani/a {nastavnik.ime}, <br> Link za aktivaciju <a href = '{url}'>{url}</a> ";
+            var poruka = $"Postovani/a {nastavnik.Ime}, <br> Link za aktivaciju <a href = '{url}'>{url}</a> ";
             EmailSender.Posalji(nastavnik.Email, "Aktivacija korisnika", poruka, true);
         }
     }

@@ -584,14 +584,6 @@ namespace FIT_Api_Examples.Migrations
                 {
                     b.HasBaseType("FIT_Api_Examples.Modul0_Autentifikacija.Models.KorisnickiNalog");
 
-                    b.Property<string>("ime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prezime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.ToTable("Nastavnik");
                 });
 

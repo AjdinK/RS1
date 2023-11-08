@@ -161,9 +161,7 @@ namespace FIT_Api_Examples.Migrations
                 name: "Nastavnik",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    prezime = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -233,8 +231,8 @@ namespace FIT_Api_Examples.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PredmetID = table.Column<int>(type: "int", nullable: false),
-                    DatumIspita = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DatumIspita = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PredmetID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
