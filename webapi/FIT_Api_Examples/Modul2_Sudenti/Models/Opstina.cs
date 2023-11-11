@@ -6,11 +6,11 @@ namespace FIT_Api_Examples.Modul2.Models
     public class Opstina
     {
         [Key]
-        public int id { get; set; }
-        public string description { get; set; }
+        public int Id { get; set; }
+        public string Description { get; set; }
         
-        [ForeignKey(nameof(drzava))]
-        public int drzava_id { get; set; }
-        public Drzava drzava { get; set; }
+        [ForeignKey(nameof(DrzavaId))]
+        public int DrzavaId { get; set; }
+        public Drzava Drzava { get; set; }
     }
 }

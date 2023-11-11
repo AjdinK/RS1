@@ -71,24 +71,24 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
             drzave.Add(new Drzava { Naziv = "SAD" , Skracenica = "USA"  });
             drzave.Add(new Drzava { Naziv = "Malezija" , Skracenica = "MAL" });
 
-            opstine.Add(new Opstina { description = "Sarajevo", drzava = drzave[0] });
-            opstine.Add(new Opstina { description = "Bihac", drzava = drzave[0] });
-            opstine.Add(new Opstina { description = "Zenica", drzava = drzave[0] });
+            opstine.Add(new Opstina { Description = "Sarajevo", Drzava = drzave[0] });
+            opstine.Add(new Opstina { Description = "Bihac", Drzava = drzave[0] });
+            opstine.Add(new Opstina { Description = "Zenica", Drzava = drzave[0] });
 
-            opstine.Add(new Opstina { description = "Berlin", drzava = drzave[1] });
-            opstine.Add(new Opstina { description = "Frankfurt", drzava = drzave[1] });
+            opstine.Add(new Opstina { Description = "Berlin", Drzava = drzave[1] });
+            opstine.Add(new Opstina { Description = "Frankfurt", Drzava = drzave[1] });
 
-            opstine.Add(new Opstina { description = "Wien", drzava = drzave[2] });
-            opstine.Add(new Opstina { description = "Wels", drzava = drzave[2] });
+            opstine.Add(new Opstina { Description = "Wien", Drzava = drzave[2] });
+            opstine.Add(new Opstina { Description = "Wels", Drzava = drzave[2] });
 
-            opstine.Add(new Opstina { description = "Istanbul", drzava = drzave[3] });
-            opstine.Add(new Opstina { description = "Bursa", drzava = drzave[3] });
+            opstine.Add(new Opstina { Description = "Istanbul", Drzava = drzave[3] });
+            opstine.Add(new Opstina { Description = "Bursa", Drzava = drzave[3] });
 
-            opstine.Add(new Opstina { description = "Boston", drzava = drzave[4] });
-            opstine.Add(new Opstina { description = "New York", drzava = drzave[4] });
+            opstine.Add(new Opstina { Description = "Boston", Drzava = drzave[4] });
+            opstine.Add(new Opstina { Description = "New York", Drzava = drzave[4] });
 
-            opstine.Add(new Opstina { description = "Kuala Lumpur", drzava = drzave[5] });
-            opstine.Add(new Opstina { description = "Subang Jaya", drzava = drzave[5] });
+            opstine.Add(new Opstina { Description = "Kuala Lumpur", Drzava = drzave[5] });
+            opstine.Add(new Opstina { Description = "Subang Jaya", Drzava = drzave[5] });
 
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Programiranje III", Sifra = "RS-PR3" });
             predmeti.Add(new Predmet { ECTS = 5, Naziv = "Razvoj softvera I", Sifra = "RS-RS1" });
