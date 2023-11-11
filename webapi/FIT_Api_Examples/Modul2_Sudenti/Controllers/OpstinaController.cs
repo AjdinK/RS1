@@ -23,33 +23,44 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Opstina> Snimi ([FromBody] OpstinaVM x)
+        public ActionResult<Opstina> Add ([FromBody] OpstinaVM x)
         {
             // if (!HttpContext.GetLoginInfo().isLogiran)
             //     return BadRequest("nije logiran");
 
-            Opstina  opstina = new Opstina () {
+            Opstina  opstina = new () {
                 Description = x.Opis,
-                DrzavaId = x.DrzavaId,
+                Id = x.Id,
             };
-            
+
             _dbContext.Add(opstina);
             _dbContext.SaveChanges();
             return opstina;
         }
 
         [HttpGet]
-        public ActionResult GetByDrzava(int drzava_id)
+        public ActionResult GetByDrzava(int DrzavaId)
         {
-            var data = _dbContext.Opstina.Where(x => x.DrzavaId == drzava_id)
-                .OrderBy(s => s.Description)
+            var data = _dbContext.Opstina.Where(x => x.DrzavaId == DrzavaId)
+                .OrderBy(s => s.DrzavaId)
                 .Select(s => new OpstinaVM
                 {
-                    DrzavaId = s.Id,
+                    Id = s.Id,
                     Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
             return Ok(data);
+        }
+
+        [HttpDelete]
+        public ActionResult Brisi (int id ) {
+            var opstina = _dbContext.Opstina.Find(id);
+            if (opstina != null){
+                _dbContext.Remove(opstina);
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+            return BadRequest("Error");
         }
 
         //[Autorizacija(true, true, true, true, true)]
@@ -60,7 +71,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .OrderBy(s => s.Id)
                 .Select(s => new OpstinaVM
                 {
-                    DrzavaId = s.Id,
+                    Id = s.Id,
                     Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
