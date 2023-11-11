@@ -23,17 +23,16 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Opstina> Add([FromBody] OpstinaAddVM x)
+        public ActionResult<Opstina> Snimi ([FromBody] OpstinaVM x)
         {
-            if (!HttpContext.GetLoginInfo().isLogiran)
-                return BadRequest("nije logiran");
+            // if (!HttpContext.GetLoginInfo().isLogiran)
+            //     return BadRequest("nije logiran");
 
-            var opstina = new Opstina
-            {
-                Description = x.opis,
-                DrzavaId = x.drzava_id,
+            Opstina  opstina = new Opstina () {
+                Description = x.Opis,
+                DrzavaId = x.DrzavaId,
             };
-
+            
             _dbContext.Add(opstina);
             _dbContext.SaveChanges();
             return opstina;
@@ -44,24 +43,25 @@ namespace FIT_Api_Examples.Modul2.Controllers
         {
             var data = _dbContext.Opstina.Where(x => x.DrzavaId == drzava_id)
                 .OrderBy(s => s.Description)
-                .Select(s => new
+                .Select(s => new OpstinaVM
                 {
-                    id = s.Id,
-                    opis = s.Drzava.Naziv + " - " + s.Description,
+                    DrzavaId = s.Id,
+                    Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
             return Ok(data);
         }
+
         //[Autorizacija(true, true, true, true, true)]
         [HttpGet]
         public ActionResult GetByAll()
         {
             var data = _dbContext.Opstina
-                .OrderBy(s => s.Description)
-                .Select(s => new
+                .OrderBy(s => s.Id)
+                .Select(s => new OpstinaVM
                 {
-                    id = s.Id,
-                    opis = s.Drzava.Naziv + " - " + s.Description,
+                    DrzavaId = s.Id,
+                    Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
             return Ok(data);

@@ -7,10 +7,11 @@ namespace FIT_Api_Examples.Modul2.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
+
         
-        [ForeignKey(nameof(DrzavaId))]
+        [ForeignKey(nameof(Drzava))]
         public int DrzavaId { get; set; }
-        public Drzava Drzava { get; set; }
+        public Drzava Drzava { get; set; } = null!;
     }
 }
