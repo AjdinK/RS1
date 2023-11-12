@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FIT_Api_Examples.Migrations
 {
     /// <inheritdoc />
-    public partial class initV3 : Migration
+    public partial class initV4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
