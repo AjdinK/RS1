@@ -6,6 +6,7 @@ using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using FIT_Api_Examples.Modul0_Autentifikacija.Models;
 using FIT_Api_Examples.Modul2.Models;
 using FIT_Api_Examples.Modul2.ViewModels;
+using FIT_Api_Examples.Modul2_Sudenti.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FIT_Api_Examples.Modul2.Controllers
@@ -23,19 +24,28 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Opstina> Add ([FromBody] OpstinaVM x)
+        public ActionResult Snimi ([FromBody] OpstinaVM x)
         {
             // if (!HttpContext.GetLoginInfo().isLogiran)
             //     return BadRequest("nije logiran");
+            Opstina? opstina;
 
-            Opstina  opstina = new () {
-                Description = x.Opis,
-                Id = x.Id,
-            };
-
-            _dbContext.Add(opstina);
+            if (x.Id == 0)
+            {
+                opstina = new Opstina() { 
+                    DrzavaId = x.DrzavaId,
+                };
+                _dbContext.Add(opstina);
+            }
+            else
+            {
+                opstina = _dbContext.Opstina.Find(x.Id);
+                if (opstina == null)
+                return BadRequest("Opstina ne postoji");
+            }
+            opstina.Description = x.Opis;
             _dbContext.SaveChanges();
-            return opstina;
+            return Ok($"{opstina.Description} Uspjesno dodata");
         }
 
         [HttpGet]
@@ -72,6 +82,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .Select(s => new OpstinaVM
                 {
                     Id = s.Id,
+                    DrzavaId = s.Drzava.Id,
                     Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
