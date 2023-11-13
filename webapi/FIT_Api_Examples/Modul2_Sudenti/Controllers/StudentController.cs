@@ -71,6 +71,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             else
             {
                 student = _dbContext.Student.FirstOrDefault(s => s.Id == x.Id);
+               // student = _dbContext.Student.Find(x.Id);
             }
 
             if (student == null)
@@ -115,9 +116,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             _dbContext.SaveChanges();
 
-            if (student.Broj_Indeksa != "")
+            if (student.BrojIndeksa != "")
             {
-                student.Broj_Indeksa = "IB" + x.Id;
+                student.BrojIndeksa = "IB" + x.Id;
                 student.KorisnickoIme = x.BrojIndeksa;
                 student.Lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
@@ -138,7 +139,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     Id = s.Id,
                     Ime = s.Ime,
                     Prezime = s.Prezime,
-                    BrojIndeksa = s.Broj_Indeksa,
+                    BrojIndeksa = s.BrojIndeksa,
                     OpstinaRodjenjaOpis = s.Opstina_Rodjenja.Description,
                     DrzavaRodjenjaOpis = s.Opstina_Rodjenja.Drzava.Naziv,
                     OpstinaRodjenjaId = s.Opstina_Rodjenja_Id,

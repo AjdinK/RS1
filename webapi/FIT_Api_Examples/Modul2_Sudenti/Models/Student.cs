@@ -8,7 +8,7 @@ namespace FIT_Api_Examples.Modul3_MaticnaKnjiga.Models
     [Table("Student")]
     public class Student : KorisnickiNalog
     {
-        public string Broj_Indeksa { get; set; } = string.Empty;
+        public string BrojIndeksa { get; set; } = string.Empty;
 
         [ForeignKey(nameof(Opstina_Rodjenja))]
         public int? Opstina_Rodjenja_Id { get; set; }
