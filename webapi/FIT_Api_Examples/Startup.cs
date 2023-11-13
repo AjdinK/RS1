@@ -79,9 +79,8 @@ namespace FIT_Api_Examples
                .AllowCredentials()
            ); //This needs to set everything allowed
 
-
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -89,7 +88,6 @@ namespace FIT_Api_Examples
                     pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapHub<PorukeHub>("/poruke-hub-putanja");
             });
-
         }
     }
 }

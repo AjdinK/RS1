@@ -23,7 +23,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Drzava> Snimi ([FromBody] DrzavaVM x)
+        public ActionResult Snimi ([FromBody] DrzavaVM x)
         {
             // if (!HttpContext.GetLoginInfo().isLogiran)
             //     return BadRequest("nije logiran");
@@ -60,13 +60,13 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
         [HttpGet]
         public ActionResult GetAll () {
-            
+
             var data = _dbContext.Drzava
             .OrderBy(d => d.Id)
-            .Select(d=> new DrzavaVM {
+            .Select(d => new DrzavaVM {
                 Id = d.Id,
                 Naziv = d.Naziv,
-                Skracenica = d.Skracenica
+                Skracenica = d.Skracenica ?? "Not_Set"
             }).ToList();
             
             return Ok (data);

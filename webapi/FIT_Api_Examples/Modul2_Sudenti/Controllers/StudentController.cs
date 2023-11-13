@@ -118,7 +118,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
         public ActionResult GetAll(string? ime_prezime , int pageNumber = 1 , int pageSize = 20)
         {
             var data = _dbContext.Student
-                .Include(s => s.Opstina_Rodjenja.drzava)
+                .Include(s => s.Opstina_Rodjenja.Drzava)
                 .Where(x => ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(ime_prezime) || (x.Prezime + " " + x.Ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.Id)
                 .Select(s => new StudentGetAllVM()
@@ -127,8 +127,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     ime = s.Ime,
                     prezime = s.Prezime,
                     broj_indeksa = s.Broj_Indeksa,
-                    opstina_rodjenja_opis = s.Opstina_Rodjenja.description,
-                    drzava_rodjenja_opis = s.Opstina_Rodjenja.drzava.Naziv,
+                    opstina_rodjenja_opis = s.Opstina_Rodjenja.Description,
+                    drzava_rodjenja_opis = s.Opstina_Rodjenja.Drzava.Naziv,
                     opstina_rodjenja_id = s.Opstina_Rodjenja_Id,
                     vrijeme_dodavanja = s.Created_Time.ToString("dd.MM.yyyy"),
                     slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB

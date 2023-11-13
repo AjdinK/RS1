@@ -6,6 +6,7 @@ using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using FIT_Api_Examples.Modul0_Autentifikacija.Models;
 using FIT_Api_Examples.Modul2.Models;
 using FIT_Api_Examples.Modul2.ViewModels;
+using FIT_Api_Examples.Modul2_Sudenti.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FIT_Api_Examples.Modul2.Controllers
@@ -23,45 +24,66 @@ namespace FIT_Api_Examples.Modul2.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Opstina> Add([FromBody] OpstinaAddVM x)
+        public ActionResult Snimi ([FromBody] OpstinaVM x)
         {
-            if (!HttpContext.GetLoginInfo().isLogiran)
-                return BadRequest("nije logiran");
+            // if (!HttpContext.GetLoginInfo().isLogiran)
+            //     return BadRequest("nije logiran");
+            Opstina? opstina;
 
-            var opstina = new Opstina
+            if (x.Id == 0)
             {
-                description = x.opis,
-                drzava_id = x.drzava_id,
-            };
-
-            _dbContext.Add(opstina);
+                opstina = new Opstina() { 
+                    DrzavaId = x.DrzavaId,
+                };
+                _dbContext.Add(opstina);
+            }
+            else
+            {
+                opstina = _dbContext.Opstina.Find(x.Id);
+                if (opstina == null)
+                return BadRequest("Opstina ne postoji");
+            }
+            opstina.Description = x.Opis;
             _dbContext.SaveChanges();
-            return opstina;
+            return Ok($"{opstina.Description} Uspjesno dodata");
         }
 
         [HttpGet]
-        public ActionResult GetByDrzava(int drzava_id)
+        public ActionResult GetByDrzava(int DrzavaId)
         {
-            var data = _dbContext.Opstina.Where(x => x.drzava_id == drzava_id)
-                .OrderBy(s => s.description)
-                .Select(s => new
+            var data = _dbContext.Opstina.Where(x => x.DrzavaId == DrzavaId)
+                .OrderBy(s => s.DrzavaId)
+                .Select(s => new OpstinaVM
                 {
-                    id = s.id,
-                    opis = s.drzava.Naziv + " - " + s.description,
+                    Id = s.Id,
+                    Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
             return Ok(data);
         }
-        [Autorizacija(true, true, true, true, true)]
+
+        [HttpDelete]
+        public ActionResult Brisi (int id ) {
+            var opstina = _dbContext.Opstina.Find(id);
+            if (opstina != null){
+                _dbContext.Remove(opstina);
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+            return BadRequest("Error");
+        }
+
+        //[Autorizacija(true, true, true, true, true)]
         [HttpGet]
         public ActionResult GetByAll()
         {
             var data = _dbContext.Opstina
-                .OrderBy(s => s.description)
-                .Select(s => new
+                .OrderBy(s => s.Id)
+                .Select(s => new OpstinaVM
                 {
-                    id = s.id,
-                    opis = s.drzava.Naziv + " - " + s.description,
+                    Id = s.Id,
+                    DrzavaId = s.Drzava.Id,
+                    Opis = s.Drzava.Naziv + " - " + s.Description,
                 })
                 .ToList();
             return Ok(data);

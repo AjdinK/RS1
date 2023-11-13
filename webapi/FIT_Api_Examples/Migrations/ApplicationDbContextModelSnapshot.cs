@@ -268,22 +268,22 @@ namespace FIT_Api_Examples.Migrations
 
             modelBuilder.Entity("FIT_Api_Examples.Modul2.Models.Opstina", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("description")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("drzava_id")
+                    b.Property<int>("DrzavaId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("drzava_id");
+                    b.HasIndex("DrzavaId");
 
                     b.ToTable("Opstina");
                 });
@@ -676,13 +676,13 @@ namespace FIT_Api_Examples.Migrations
 
             modelBuilder.Entity("FIT_Api_Examples.Modul2.Models.Opstina", b =>
                 {
-                    b.HasOne("FIT_Api_Examples.Modul2.Models.Drzava", "drzava")
+                    b.HasOne("FIT_Api_Examples.Modul2.Models.Drzava", "Drzava")
                         .WithMany()
-                        .HasForeignKey("drzava_id")
+                        .HasForeignKey("DrzavaId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("drzava");
+                    b.Navigation("Drzava");
                 });
 
             modelBuilder.Entity("FIT_Api_Examples.Modul2.Models.PrijavaIspita", b =>

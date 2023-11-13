@@ -11,12 +11,12 @@ namespace FIT_Api_Examples.Modul2.Models
 
 
         [ForeignKey(nameof(StudentID))]
-        public Student Student { get; set; }
+        public Student Student { get; set; } = null!;
         public int StudentID { get; set; }
 
 
         [ForeignKey(nameof(IspitID))]
-        public Ispit Ispit { get; set; }
+        public Ispit Ispit { get; set; } = null!;
         public int IspitID { get; set; }
 
 
