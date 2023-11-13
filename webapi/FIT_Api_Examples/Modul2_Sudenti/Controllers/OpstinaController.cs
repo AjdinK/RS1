@@ -44,12 +44,13 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 return BadRequest("Opstina ne postoji");
             }
             opstina.Description = x.Opis;
+            opstina.DrzavaId = x.DrzavaId;
             _dbContext.SaveChanges();
             return Ok($"{opstina.Description} Uspjesno dodata");
         }
 
         [HttpGet]
-        public ActionResult GetByDrzava(int DrzavaId)
+        public ActionResult GetByDrzavaId(int DrzavaId)
         {
             var data = _dbContext.Opstina.Where(x => x.DrzavaId == DrzavaId)
                 .OrderBy(s => s.DrzavaId)
