@@ -27,9 +27,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
             this._dbContext = dbContext;
         }
 
-        [Autorizacija(true, true, true, false, true)]
+        //[Autorizacija(true, true, true, false, true)]
         [HttpPost("{id}")]
-
         public ActionResult Obrisi2(int id)
         {
             Student student = _dbContext.Student.Find(id);
@@ -42,12 +41,25 @@ namespace FIT_Api_Examples.Modul2.Controllers
             return Ok(student);
         }
 
-        [Autorizacija(true, true, true, false, true)]
+        [HttpDelete()]
+        public ActionResult Obrisi(int id)
+        {
+            Student student = _dbContext.Student.Find(id);
+
+            if (student == null || id == 1)
+                return BadRequest("pogresan ID");
+
+            _dbContext.Remove(student);
+            _dbContext.SaveChanges();
+            return Ok(student);
+        }
+
+       // [Autorizacija(true, true, true, false, true)]
         [HttpPost]
-        public ActionResult Snimi([FromBody] StudentGetAllVM x)
+        public ActionResult Snimi ([FromBody] StudentVM x)
         {
             Student? student;
-            if (x.id == 0)
+            if (x.Id == 0)
             {
                 student = new Student
                 {
@@ -58,20 +70,20 @@ namespace FIT_Api_Examples.Modul2.Controllers
             }
             else
             {
-                student = _dbContext.Student.FirstOrDefault(s => s.Id == x.id);
+                student = _dbContext.Student.FirstOrDefault(s => s.Id == x.Id);
             }
 
             if (student == null)
                 return BadRequest("pogresan ID");
 
-            student.Ime = x.ime.RemoveTags();
-            student.Prezime = x.prezime.RemoveTags();
-            student.Opstina_Rodjenja_Id = x.opstina_rodjenja_id;
+            student.Ime = x.Ime.RemoveTags();
+            student.Prezime = x.Prezime.RemoveTags();
+            student.Opstina_Rodjenja_Id = x.OpstinaRodjenjaId;
 
-            if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))
+            if (!string.IsNullOrEmpty(x.SlikaKorisnikaNovaBase64))
             {
                 //slika se snima u db
-                byte[]? slika_bajtovi = x.slika_korisnika_nova_base64?.ParsirajBase64();
+                byte[]? slika_bajtovi = x.SlikaKorisnikaNovaBase64?.ParsirajBase64();
 
                 if (slika_bajtovi == null)
                     return BadRequest("format slike nije base64");
@@ -88,9 +100,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     Fajlovi.Snimi(slika_bajtovi_resized_mala, "slike_korisnika/mala-" + student.Id + ".png");
             }
 
-            if (x.omiljeni_predmeti?.Length > 0)
+            if (x.OmiljeniPredmeti?.Length > 0)
             {
-                foreach (int pID in x.omiljeni_predmeti)
+                foreach (int pID in x.OmiljeniPredmeti)
                 {
                     var op = new OmiljeniPredmeti
                     {
@@ -105,8 +117,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             if (student.Broj_Indeksa != "")
             {
-                student.Broj_Indeksa = "IB" + x.id;
-                student.KorisnickoIme = x.broj_indeksa;
+                student.Broj_Indeksa = "IB" + x.Id;
+                student.KorisnickoIme = x.BrojIndeksa;
                 student.Lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
             }
@@ -121,20 +133,20 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 .Include(s => s.Opstina_Rodjenja.Drzava)
                 .Where(x => ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(ime_prezime) || (x.Prezime + " " + x.Ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.Id)
-                .Select(s => new StudentGetAllVM()
+                .Select(s => new StudentVM()
                 {
-                    id = s.Id,
-                    ime = s.Ime,
-                    prezime = s.Prezime,
-                    broj_indeksa = s.Broj_Indeksa,
-                    opstina_rodjenja_opis = s.Opstina_Rodjenja.Description,
-                    drzava_rodjenja_opis = s.Opstina_Rodjenja.Drzava.Naziv,
-                    opstina_rodjenja_id = s.Opstina_Rodjenja_Id,
-                    vrijeme_dodavanja = s.Created_Time.ToString("dd.MM.yyyy"),
-                    slika_korisnika_postojeca_base64_DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
+                    Id = s.Id,
+                    Ime = s.Ime,
+                    Prezime = s.Prezime,
+                    BrojIndeksa = s.Broj_Indeksa,
+                    OpstinaRodjenjaOpis = s.Opstina_Rodjenja.Description,
+                    DrzavaRodjenjaOpis = s.Opstina_Rodjenja.Drzava.Naziv,
+                    OpstinaRodjenjaId = s.Opstina_Rodjenja_Id,
+                    Created_Time = s.Created_Time.ToString("dd.MM.yyyy"),
+                    SlikaKorisnikaPostojecaBase64DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
                 });
 
-                return Ok(PagedList<StudentGetAllVM>.Create(data,pageNumber,pageSize));
+                return Ok(PagedList<StudentVM>.Create(data,pageNumber,pageSize));
 
             // data.ForEach(s=>
             // {

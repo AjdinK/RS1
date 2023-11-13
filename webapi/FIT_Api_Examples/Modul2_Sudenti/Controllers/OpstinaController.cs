@@ -66,12 +66,13 @@ namespace FIT_Api_Examples.Modul2.Controllers
         [HttpDelete]
         public ActionResult Brisi (int id ) {
             var opstina = _dbContext.Opstina.Find(id);
-            if (opstina != null){
-                _dbContext.Remove(opstina);
-                _dbContext.SaveChanges();
-                return Ok();
+            
+            if (opstina == null || id == 1){
+              return BadRequest("Error");
             }
-            return BadRequest("Error");
+            _dbContext.Remove(opstina);
+            _dbContext.SaveChanges();
+            return Ok();
         }
 
         //[Autorizacija(true, true, true, true, true)]

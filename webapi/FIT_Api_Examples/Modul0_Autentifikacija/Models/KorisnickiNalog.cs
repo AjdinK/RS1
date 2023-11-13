@@ -17,8 +17,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public string Email { get; set; } = string.Empty;
         public string Ime { get; set; } = string.Empty;
         public string Prezime { get; set; } = string.Empty;
-        public bool isNastavnik => Nastavnik != null;
-        public bool isStudent => Student != null;
+        public DateTime Created_Time { get; set; }
         public bool isAdmin { get; set; }
         public bool isProdekan { get; set; }
         public bool isDekan { get; set; }
@@ -26,10 +25,13 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Models
         public byte[]? slika_korisnika_bajtovi { get; set; }
         public bool isAktiviran { get; set; }
         public string? AktivacijaGUID { get; set; }
-        public DateTime Created_Time { get; set; }
 
         [JsonIgnore]
         public string Lozinka { get; set; } = string.Empty;
+
+
+        public bool isNastavnik => Nastavnik != null;
+        public bool isStudent => Student != null;
 
         [JsonIgnore]
         public Student? Student => this as Student;

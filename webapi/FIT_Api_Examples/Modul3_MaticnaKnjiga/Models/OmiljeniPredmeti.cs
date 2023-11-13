@@ -7,15 +7,15 @@ public class OmiljeniPredmeti
 {
 
     [Key]
-    public int id { get; set; }
+    public int Id { get; set; }
 
     [ForeignKey(nameof(StudentId))]
     public int StudentId { get; set; }
-    public Student Student { get; set; }
+    public Student Student { get; set; } = null!;
 
 
     [ForeignKey(nameof(PredmetId))]
     public int PredmetId { get; set; }
-    public Predmet Predmet { get; set; }
+    public Predmet Predmet { get; set; } = null!;
 
 }

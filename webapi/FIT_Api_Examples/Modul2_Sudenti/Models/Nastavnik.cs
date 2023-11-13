@@ -5,4 +5,5 @@ namespace FIT_Api_Examples.Modul2.Models
 {
     [Table("Nastavnik")]
     public class Nastavnik : KorisnickiNalog {}
+    
 }

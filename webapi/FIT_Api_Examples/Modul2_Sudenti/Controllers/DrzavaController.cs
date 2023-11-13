@@ -49,13 +49,12 @@ namespace FIT_Api_Examples.Modul2.Controllers
         public ActionResult Brisi (int id) {
             var drzava = _dbContext.Drzava.Find(id);
 
-            if (drzava != null){
-                _dbContext.Remove(drzava);
-                _dbContext.SaveChanges();
-                return Ok ($"{drzava.Naziv} Uspjesno izbrisana");
+            if (drzava == null || id == 1){
+               return BadRequest("Error -> ID Drzave ne postoji");
             }
-
-            return BadRequest("Error -> ID Drzave ne postoji");
+            _dbContext.Remove(drzava);
+            _dbContext.SaveChanges();
+            return Ok ($"{drzava.Naziv} Uspjesno izbrisana");
         }
 
         [HttpGet]
