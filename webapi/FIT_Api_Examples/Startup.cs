@@ -43,6 +43,7 @@ namespace FIT_Api_Examples
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        [Obsolete]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -57,10 +58,8 @@ namespace FIT_Api_Examples
                 app.UseHsts();
             }
 
-
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
             app.UseHttpsRedirection();
             app.UseSwagger();
 

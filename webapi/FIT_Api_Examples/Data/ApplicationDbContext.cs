@@ -31,7 +31,7 @@ namespace FIT_Api_Examples.Data
         public DbSet<StudentTest> StudentTest { get; set; } = null!;
         public DbSet<StudentTestPitanja> StudentTestPitanja { get; set; } = null!;
 
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions options) : base (options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

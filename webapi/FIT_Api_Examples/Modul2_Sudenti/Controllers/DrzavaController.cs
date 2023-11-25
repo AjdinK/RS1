@@ -42,7 +42,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             drzava.Naziv = x.Naziv;
             drzava.Skracenica = x.Skracenica;
             _dbContext.SaveChanges();
-            return Ok($"{drzava.Naziv} Uspjesno ");
+            return Ok($"{drzava.Naziv} Uspjesno dodata");
         }
 
         [HttpDelete]
@@ -50,7 +50,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             var drzava = _dbContext.Drzava.Find(id);
 
             if (drzava == null || id == 1){
-               return BadRequest("Error -> ID Drzave ne postoji");
+               return BadRequest("Error -> Drzava ne postoji");
             }
             _dbContext.Remove(drzava);
             _dbContext.SaveChanges();
