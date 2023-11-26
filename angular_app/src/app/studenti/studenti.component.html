@@ -26,7 +26,7 @@
 <hr>
 <button class="form-label" (click)="novi_student_dugme()">Novi student</button>
 
-<table class="table table-warning">
+<table class="table table-striped">
   <tr>
     <th>ID</th>
     <th>Ime</th>
@@ -58,9 +58,9 @@
     <!--<td><img class="profilna-slika" src="{{get_slika_novi_request_FS(s)}}" ></td>-->
 
     <td>
-      <button (click)="obrisibutton2(s)" >Obrisi</button>
-      <button (click)="odabranistudent=s">Uredi</button>
-      <button (click)="otvori_maticnuknjigu(s)">Maticna knjiga</button>
+      <button class = "btn btn btn-danger" (click)="obrisibutton2(s)" >Obrisi</button>
+      <button class = "btn btn-info" (click)="odabranistudent=s">Uredi</button>
+      <button class = "btn btn-secondary" (click)="otvori_maticnuknjigu(s)">Maticna knjiga</button>
     </td>
   </tr>
   </tbody>
@@ -116,3 +116,4 @@
     </div>
   </div>
 </div>
+
