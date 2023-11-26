@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FIT_Api_Examples.Migrations
 {
     /// <inheritdoc />
-    public partial class initV5 : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,12 +35,12 @@ namespace FIT_Api_Examples.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Created_Time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    slika_korisnika_bajtovi = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false),
                     isProdekan = table.Column<bool>(type: "bit", nullable: false),
                     isDekan = table.Column<bool>(type: "bit", nullable: false),
                     isStudentskaSluzba = table.Column<bool>(type: "bit", nullable: false),
-                    slika_korisnika_bajtovi = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     isAktiviran = table.Column<bool>(type: "bit", nullable: false),
                     AktivacijaGUID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false)

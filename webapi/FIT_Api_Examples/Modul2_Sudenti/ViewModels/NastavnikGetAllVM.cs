@@ -1,12 +1,12 @@
 ﻿namespace FIT_Api_Examples.Modul2.ViewModels
 {
-    public class NastavnikGetAllVM
+    public class NastavnikVM
     {
-        public int id { get; set; }
-        public string ime { get; set; }
-        public string prezime { get; set; }
-        public string korisnickoIme { get; set; }
-        public string Email { get; set; }
+        public int Id { get; set; }
+        public string Ime { get; set; } = string.Empty;
+        public string Prezime { get; set; } = string.Empty;
+        public string KorisnickoIme { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
         
         // public string vrijeme_dodavanja { get; set; }
         // public string? slika_korisnika_nova_base64 { get;  set; }

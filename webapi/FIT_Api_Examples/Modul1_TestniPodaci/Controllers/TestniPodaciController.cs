@@ -109,7 +109,7 @@ namespace FIT_Api_Examples.Modul1_TestniPodaci.Controllers
                 studenti.Add(new Student
                 {
                     BrojIndeksa = $"IB200{i:d}",
-                    Created_Time = DateTime.Now,
+                    CreatedTime = DateTime.Now,
                     Ime = TokenGenerator.GenerisiIme(5),
                     Prezime = TokenGenerator.GenerisiIme(5),
                     KorisnickoIme = TokenGenerator.GenerisiIme(5),

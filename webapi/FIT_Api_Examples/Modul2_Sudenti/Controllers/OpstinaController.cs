@@ -80,12 +80,12 @@ namespace FIT_Api_Examples.Modul2.Controllers
         public ActionResult GetByAll()
         {
             var data = _dbContext.Opstina
-                .OrderBy(s => s.Id)
-                .Select(s => new OpstinaVM
+                .OrderBy(o => o.Id)
+                .Select(o => new OpstinaVM
                 {
-                    Id = s.Id,
-                    DrzavaId = s.Drzava.Id,
-                    Opis = s.Drzava.Naziv + " - " + s.Description,
+                    Id = o.Id,
+                    DrzavaId = o.Drzava.Id,
+                    Opis = o.Drzava.Naziv + " - " + o.Description,
                 })
                 .ToList();
             return Ok(data);

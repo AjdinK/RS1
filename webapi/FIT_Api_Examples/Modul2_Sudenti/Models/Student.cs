@@ -10,6 +10,7 @@ namespace FIT_Api_Examples.Modul3_MaticnaKnjiga.Models
     {
         public string BrojIndeksa { get; set; } = string.Empty;
 
+
         [ForeignKey(nameof(Opstina_Rodjenja))]
         public int? Opstina_Rodjenja_Id { get; set; }
         public Opstina Opstina_Rodjenja { get; set; } = null!;

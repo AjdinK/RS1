@@ -43,10 +43,10 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
         [HttpPost]
         [Autorizacija(true, true, true, false, true)]
-        public ActionResult Snimi([FromBody] NastavnikGetAllVM x)
+        public ActionResult Snimi([FromBody] NastavnikVM x)
         {
             Nastavnik? nastavnik;
-            if (x.id == 0)
+            if (x.Id == 0)
             {
                 nastavnik = new Nastavnik
                 {
@@ -58,15 +58,15 @@ namespace FIT_Api_Examples.Modul2.Controllers
             }
             else
             {
-                nastavnik = _dbContext.Nastavnik.FirstOrDefault(n => n.Id == x.id);
+                nastavnik = _dbContext.Nastavnik.FirstOrDefault(n => n.Id == x.Id);
             }
 
             if (nastavnik == null)
                 return BadRequest("pogresan ID");
 
-            nastavnik.Ime = x.ime.RemoveTags();
-            nastavnik.Prezime = x.prezime.RemoveTags();
-            nastavnik.KorisnickoIme = x.korisnickoIme;
+            nastavnik.Ime = x.Ime.RemoveTags();
+            nastavnik.Prezime = x.Prezime.RemoveTags();
+            nastavnik.KorisnickoIme = x.KorisnickoIme;
             nastavnik.Email = x.Email;
 
             // if (!string.IsNullOrEmpty(x.slika_korisnika_nova_base64))

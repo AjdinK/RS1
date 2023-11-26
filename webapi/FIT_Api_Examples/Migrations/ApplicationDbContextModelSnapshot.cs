@@ -69,7 +69,7 @@ namespace FIT_Api_Examples.Migrations
                     b.Property<string>("AktivacijaGUID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created_Time")
+                    b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")

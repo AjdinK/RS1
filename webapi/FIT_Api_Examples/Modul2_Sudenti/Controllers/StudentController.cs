@@ -63,7 +63,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 student = new Student
                 {
-                    Created_Time = DateTime.Now,
+                    CreatedTime = DateTime.Now,
                 };
 
                 _dbContext.Add(student);
@@ -72,10 +72,9 @@ namespace FIT_Api_Examples.Modul2.Controllers
             {
                 student = _dbContext.Student.FirstOrDefault(s => s.Id == x.Id);
                // student = _dbContext.Student.Find(x.Id);
-            }
-
-            if (student == null)
+               if (student == null)
                 return BadRequest("pogresan ID");
+            }
 
             student.Ime = x.Ime.RemoveTags();
             student.Prezime = x.Prezime.RemoveTags();
@@ -132,7 +131,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
         {
             var data = _dbContext.Student
                 .Include(s => s.Opstina_Rodjenja.Drzava)
-                .Where(x => ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(ime_prezime) || (x.Prezime + " " + x.Ime).StartsWith(ime_prezime))
+                .Where(x => ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(ime_prezime) || 
+                (x.Prezime + " " + x.Ime).StartsWith(ime_prezime))
                 .OrderByDescending(s => s.Id)
                 .Select(s => new StudentVM()
                 {
@@ -143,7 +143,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
                     OpstinaRodjenjaOpis = s.Opstina_Rodjenja.Description,
                     DrzavaRodjenjaOpis = s.Opstina_Rodjenja.Drzava.Naziv,
                     OpstinaRodjenjaId = s.Opstina_Rodjenja_Id,
-                    Created_Time = s.Created_Time.ToString("dd.MM.yyyy"),
+                    CreatedTime = s.CreatedTime.ToString("dd.MM.yyyy"),
                     SlikaKorisnikaPostojecaBase64DB = s.slika_korisnika_bajtovi,//varijanta 1: slika iz DB
                 });
 
@@ -157,7 +157,6 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             //     s.slika_korisnika_postojeca_base64_DB ??= Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");//ako je null
             // });
-            
         }
 
         [HttpGet("{id}")]

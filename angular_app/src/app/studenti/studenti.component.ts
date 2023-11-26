@@ -99,15 +99,15 @@ export class StudentiComponent implements OnInit {
       id:0,
       prezime:"",
       ime: this.probaSignalR2.imePrezime,
-      opstina_rodjenja_opis:"",
-      broj_indeksa:"",
-      vrijeme_dodavanja:"",
-      drzava_rodjenja_opis:"",
-      opstina_rodjenja_id:5,
+      opstinaRodjenjaOpis:"",
+      brojIndeksa:"",
+      createdTime:"",
+      drzavaRodjenjaOpis:"",
+      opstinaRodjenjaId:5,
       slika_korisnika_nova_base64:"",
       slika_korisnika_postojeca_base64_FS:"",
       slika_korisnika_postojeca_base64_DB:"",
-      omiljeni_predmeti: [],
+      omiljeniPredmeti: [],
     };
   }
 
@@ -117,7 +117,7 @@ export class StudentiComponent implements OnInit {
   }
 
   snimi_dugme() {
-    this.odabranistudent!.omiljeni_predmeti = this.predmetiPodaci.filter((x:any)=> x.jel_selektovan).map((p:any)=>p.id);
+    this.odabranistudent!.omiljeniPredmeti = this.predmetiPodaci.filter((x:any)=> x.jel_selektovan).map((p:any)=>p.id);
     this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Snimi`, this.odabranistudent, MojConfig.http_opcije()).subscribe(x=>{
       this.fetchStudenti();
       this.odabranistudent=null;

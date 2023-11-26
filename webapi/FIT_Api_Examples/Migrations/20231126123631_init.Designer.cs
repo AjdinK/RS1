@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Examples.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231120140910_initV5")]
-    partial class initV5
+    [Migration("20231126123631_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,7 +72,7 @@ namespace FIT_Api_Examples.Migrations
                     b.Property<string>("AktivacijaGUID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created_Time")
+                    b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
