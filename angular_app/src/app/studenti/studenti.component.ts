@@ -23,6 +23,7 @@ export class StudentiComponent implements OnInit {
   opstinePodaci: any;
   predmetiPodaci:any;
   ime_u_student: string = "";
+  pretregaImePrezime :string = "";
 
   currentPage : number = 1;
 
@@ -80,14 +81,14 @@ export class StudentiComponent implements OnInit {
     );
   }
 
-  //get_podaci_filtrirano2() {
-   // if (this.studentPodaci == null)
-    //  return [];
+  get_podaci_filtrirano2() {
+   if (this.studentPodaci == null)
+      return [];
 
-    //return this.studentPodaci.dataItems.filter((a:any)=>(
-     // a.ime.toLowerCase().startsWith(this.probaSignalR2.imePrezime)
-    //));
-//  }
+    return this.studentPodaci.dataItems.filter((a:any)=>(
+      a.ime.toLowerCase().startsWith(this.pretregaImePrezime.toLowerCase())
+    ));
+ }
 
   obrisibutton1(s: any) {
     //kompletan objekat "s" se salje kroz body... post ima 3 parametra
@@ -121,7 +122,6 @@ export class StudentiComponent implements OnInit {
   }
 
   otvori_maticnuknjigu(s: StudentGetallVM) {
-    //
     this.router.navigate(['/student-maticnaknjiga', s.id]);
   }
 

@@ -1,4 +1,14 @@
-<p>two-factor-otkljucaj works!</p>
-<label>Uniste code za two factor</label>
-<input [(ngModel)]="kode">
-<button (click)="otkljucaj()">Otkljucaj</button>
+<div id = "container">
+  <h3>Two-Factor Autentikacija</h3>
+
+<label>Imate postavljenu dvofaktorsku autentikaciju na svom računu radi dodatne sigurnosti.
+  Otvorite svoj email i unesite 6-znamenkasti kod
+</label>
+
+  <div class="input-group mb-3">
+    <input [(ngModel)]="kode" type="text" class="form-control" placeholder="Unesite kod" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-primary" type="button" (click)="otkljucaj()">Otkljucaj</button>
+    </div>
+  </div>
+</div>
