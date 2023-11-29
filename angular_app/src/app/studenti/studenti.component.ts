@@ -80,6 +80,15 @@ export class StudentiComponent implements OnInit {
     );
   }
 
+  //get_podaci_filtrirano2() {
+   // if (this.studentPodaci == null)
+    //  return [];
+
+    //return this.studentPodaci.dataItems.filter((a:any)=>(
+     // a.ime.toLowerCase().startsWith(this.probaSignalR2.imePrezime)
+    //));
+//  }
+
   obrisibutton1(s: any) {
     //kompletan objekat "s" se salje kroz body... post ima 3 parametra
     this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Obrisi1`, s, MojConfig.http_opcije()).subscribe(x=>{
@@ -201,4 +210,7 @@ export class StudentiComponent implements OnInit {
       return;
   }
 
+  btnPretrega() {
+    this.get_podaci_filtrirano2();
+  }
 }

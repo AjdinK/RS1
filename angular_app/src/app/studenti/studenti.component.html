@@ -1,14 +1,21 @@
-<p>studenti works!</p>
+<!--
+<div class="input-group">
+  <input  [(ngModel)]="probaSignalR2.imePrezime" class="form-control rounded" placeholder="Ime studenta" aria-label="Search" aria-describedby="search-addon" />
+  <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="btnPretrega()">Pretrega</button>
+</div>
+-->
 
 <div>
   <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
   <input (keyup)="probaSignalR2.PosaljiImePrezime()" [(ngModel)]="probaSignalR2.imePrezime" [disabled]="!filter_ime_prezime"><br>
+
   <hr>
 
   <input [(ngModel)] = "filter_opstina" type="checkbox"> Filter by <span style="font-weight: bold">Opština rođenja</span> <br>
   <input [(ngModel)]="opstina" [disabled]="!filter_opstina"><br>
   <hr>
 </div>
+
 
 <!-- \\reading val from another component example
 <div style="border:5px solid red">
@@ -58,10 +65,11 @@
     <!--<td><img class="profilna-slika" src="{{get_slika_novi_request_FS(s)}}" ></td>-->
 
     <td>
-      <button class = "btn btn btn-danger" (click)="obrisibutton2(s)" >Obrisi</button>
+      <button class = "btn btn btn-danger" (click)="obrisibutton2(s)">Obrisi</button>
       <button class = "btn btn-info" (click)="odabranistudent=s">Uredi</button>
       <button class = "btn btn-secondary" (click)="otvori_maticnuknjigu(s)">Maticna knjiga</button>
     </td>
+
   </tr>
   </tbody>
 </table>
