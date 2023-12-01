@@ -1,24 +1,14 @@
 
 <div>
   <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
-  <input (keyup)="probaSignalR2.PosaljiImePrezime()" [(ngModel)]="probaSignalR2.imePrezime" [disabled]="!filter_ime_prezime"><br>
+  <input class="form-control" (keyup)="probaSignalR2.PosaljiImePrezime()" [(ngModel)]="probaSignalR2.imePrezime" [disabled]="!filter_ime_prezime">
 
   <hr>
 
   <input [(ngModel)] = "filter_opstina" type="checkbox"> Filter by <span style="font-weight: bold">Opština rođenja</span> <br>
-  <input [(ngModel)]="opstina" [disabled]="!filter_opstina"><br>
+  <input class="form-control"[(ngModel)]="opstina" [disabled]="!filter_opstina">
   <hr>
 </div>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <div class="input-group-text">
-      <input type="checkbox">Filter by <span style="font-weight: bold"> Ime / prezime</span>
-    </div>
-  </div>
-  <input type="text" class="form-control" aria-label="Text input with checkbox">
-</div>
-
 
 <!-- \\reading val from another component example
 <div style="border:5px solid red">
@@ -35,7 +25,7 @@
   </ul>
 </nav>
 <hr>
-
+<button class = "btn btn-primary" (click)="novi_student_dugme()">Novi Student</button><br><br>
 <table class="table table-striped">
   <tr>
     <th>ID</th>
@@ -80,16 +70,20 @@
 
 <div *ngIf="odabranistudent!=null" class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
   <div class="modal-dialog">
+
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Novi semestar za </h5>
+        <h5 class="modal-title" id="exampleModalLiveLabel">Novi Student </h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="odabranistudent=null"></button>
       </div>
+
       <div class="modal-body">
+
         <div class="mb-3">
           <label class="form-label">Ime</label>
           <input class="form-control" placeholder="Ime" [(ngModel)]="odabranistudent.ime">
         </div>
+
         <div class="mb-3">
           <label class="form-label">Prezime</label>
           <input class="form-control" placeholder="Prezime" [(ngModel)]="odabranistudent.prezime"/>
@@ -102,6 +96,8 @@
           </select>
         </div>
 
+        <hr>
+
         <div class="mb-3">
           <label class="form-label">Omiljeni predmeti</label>
           <div class="form-check" *ngFor="let x of predmetiPodaci">
@@ -110,10 +106,14 @@
           </div>
         </div>
 
+        <hr>
+
         <div class="mb-3">
           <label class="form-label">Stara slika</label>
           <img style="display:block;max-width: 100%; height: 200px" src="{{get_slika_base64_FS(odabranistudent)}}">
         </div>
+
+        <hr>
 
         <div class="mb-3">
           <label class="form-label">Nova slika</label>
@@ -121,10 +121,12 @@
           <img style="max-width: 100%; height: 200px" src="{{odabranistudent.slika_korisnika_nova_base64}}">
         </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="odabranistudent=null">Close</button>
         <button type="button" class="btn btn-primary" (click)="snimi_dugme()"  >Save changes</button>
       </div>
+
     </div>
   </div>
 </div>
