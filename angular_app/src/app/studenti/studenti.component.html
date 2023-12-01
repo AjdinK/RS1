@@ -1,5 +1,4 @@
-
-<div>
+<div class = "searchInput">
   <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
   <input class="form-control" (keyup)="probaSignalR2.PosaljiImePrezime()" [(ngModel)]="probaSignalR2.imePrezime" [disabled]="!filter_ime_prezime">
 
