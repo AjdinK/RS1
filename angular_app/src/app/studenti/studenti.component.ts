@@ -17,7 +17,7 @@ export class StudentiComponent implements OnInit {
 
   opstina: string = '';
   studentPodaci?: StudentGetallVMPagedList | null;
-  filter_ime_prezime: boolean=false;
+  filter_ime_prezime: boolean = false;
   filter_opstina: boolean=false;
   odabranistudent?: StudentGetallVM | null;
   opstinePodaci: any;
@@ -42,7 +42,7 @@ export class StudentiComponent implements OnInit {
   fetchStudenti() :void
   {
     //https://localhost:5001/Student/GetAll?pageNumber=2&pageSize=20
-    this.httpKlijent.get<StudentGetallVMPagedList>(MojConfig.adresa_servera+ "/Student/GetAll?pageNumber=" + this.currentPage, MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.httpKlijent.get<StudentGetallVMPagedList>(MojConfig.adresa_servera + "/Student/GetAll?pageNumber=" + this.currentPage, MojConfig.http_opcije()).subscribe((x:any)=>{
       this.studentPodaci = x;
     });
   }
@@ -64,32 +64,17 @@ export class StudentiComponent implements OnInit {
       if (this.studentPodaci == null)
         return [];
 
-    return this.studentPodaci.dataItems.filter((a:any)=>
+    return this.studentPodaci.dataItems.filter((s:any)=>
       (!this.filter_ime_prezime ||
-
-      (a.ime + " " +a.prezime).startsWith(this.probaSignalR2.imePrezime)
-
-      ||
-
-      (a.prezime + " " +a.ime).startsWith(this.probaSignalR2.imePrezime))
-
+      (s.ime.toLowerCase() + " " +s.prezime.toLowerCase()).startsWith(this.probaSignalR2.imePrezime.toLowerCase()) ||
+      (s.prezime.toLowerCase() + " " +s.ime.toLowerCase()).startsWith(this.probaSignalR2.imePrezime.toLowerCase())
+      )
       &&
-      (
-        !this.filter_opstina ||
-        (a.opstina_rodjenja != null && a.opstina_rodjenja.description).startsWith(this.opstina)
+      (!this.filter_opstina ||
+        (s.opstinaRodjenjaOpis.toLowerCase()).startsWith(this.opstina.toLowerCase())
       )
     );
   }
-
-  get_podaci_filtrirano2() {
-   if (this.studentPodaci == null)
-      return [];
-
-    return this.studentPodaci.dataItems.filter((a:any)=>(
-      a.ime.toLowerCase().startsWith(this.pretregaImePrezime.toLowerCase())
-    ));
- }
-
   obrisibutton1(s: any) {
     //kompletan objekat "s" se salje kroz body... post ima 3 parametra
     this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Obrisi1`, s, MojConfig.http_opcije()).subscribe(x=>{
@@ -127,9 +112,9 @@ export class StudentiComponent implements OnInit {
 
   snimi_dugme() {
     this.odabranistudent!.omiljeniPredmeti = this.predmetiPodaci.filter((x:any)=> x.jel_selektovan).map((p:any)=>p.id);
-    this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Snimi`, this.odabranistudent, MojConfig.http_opcije()).subscribe(x=>{
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Student/Snimi`, this.odabranistudent, MojConfig.http_opcije()).subscribe((x:any)=>{
       this.fetchStudenti();
-      this.odabranistudent=null;
+      this.odabranistudent = null;
     });
   }
 
@@ -156,9 +141,9 @@ export class StudentiComponent implements OnInit {
 
   generisi_preview() {
     // @ts-ignore
-    var file = document.getElementById("slika-input").files[0];
+    let file = document.getElementById("slika-input").files[0];
     if (file) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       let this2=this;
       reader.onload = function () {
         this2.odabranistudent!.slika_korisnika_nova_base64 = reader.result?.toString();
@@ -208,9 +193,5 @@ export class StudentiComponent implements OnInit {
     }
     if (p == this.currentPage)
       return;
-  }
-
-  btnPretrega() {
-    this.get_podaci_filtrirano2();
   }
 }

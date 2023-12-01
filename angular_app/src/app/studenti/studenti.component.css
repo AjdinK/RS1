@@ -8,3 +8,9 @@ button {
   margin: 20px 0;
   width: 600px;
 }
+span {
+  margin-left: 5px;
+}
+.input{
+  padding: 30px;
+}
