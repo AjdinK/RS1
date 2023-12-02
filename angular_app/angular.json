@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "angularFIT1"
+  "defaultProject": "angularFIT1",
+  "cli": {
+    "analytics": false
+  }
 }

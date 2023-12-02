@@ -117,7 +117,7 @@ namespace FIT_Api_Examples.Modul2.Controllers
 
             if (student.BrojIndeksa == "")
             {
-                student.BrojIndeksa = "IB" + DateTime.Now.ToString("yyyy") + x.Id;
+                student.BrojIndeksa = "IB" + DateTime.Now.ToString("yyyy") + student.Id;
                 student.KorisnickoIme = x.BrojIndeksa;
                 student.Lozinka = TokenGenerator.Generate(5);
                 _dbContext.SaveChanges();
