@@ -1,10 +1,10 @@
 ﻿import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 
 
 @Injectable()
-export class AutorizacijaLoginProvjera implements CanActivate {
+export class AutorizacijaLoginProvjera  {
 
   constructor(private router: Router) { }
 
