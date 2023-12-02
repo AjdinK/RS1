@@ -1,10 +1,19 @@
 .profilna-slika {
   width: 30px;
 }
-button {
+td>button{
   margin-right: 20px;
 }
 .input-group {
   margin: 20px 0;
-  width: 600px;
 }
+.form-control , hr{
+  width: 500px;
+}
+div.modal-content{
+  width: 550px;
+}
+.searchInput {
+  margin-top: 20px;
+}
+
