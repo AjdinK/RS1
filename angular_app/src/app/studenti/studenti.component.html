@@ -1,10 +1,3 @@
-
-<div class="input-group">
-  <input  [(ngModel)]="pretregaImePrezime" class="form-control rounded" placeholder="Ime studenta" aria-label="Search" aria-describedby="search-addon" />
-  <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="btnPretrega()">Pretrega</button>
-</div>
-
-<!--
 <div>
   <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
   <input (keyup)="probaSignalR2.PosaljiImePrezime()" [(ngModel)]="probaSignalR2.imePrezime" [disabled]="!filter_ime_prezime"><br>
@@ -15,7 +8,7 @@
   <input [(ngModel)]="opstina" [disabled]="!filter_opstina"><br>
   <hr>
 </div>
--->
+
 
 <!-- \\reading val from another component example
 <div style="border:5px solid red">
@@ -46,20 +39,21 @@
     <th>Opstina rođenja</th>
     <th>Datum dodavanja</th>
     <th>Profilna slika base64_DB</th>
-   <!-- <th>Profilna slika novi_request_DB</th> -->
 
+    <!-- <th>Profilna slika novi_request_DB</th> -->
     <!-- <th>Profilna slika base64_FS</th> -->
     <!-- <th>Profilna slika novi_request_FS</th> -->
+
     <th>Akcija</th>
   </tr>
   <tbody>
-  <tr *ngFor="let s of get_podaci_filtrirano2()">
+  <tr *ngFor="let s of get_podaci_filtrirano()">
     <td>{{s.id}}</td>
     <td>{{s.ime}}</td>
     <td>{{s.prezime}}</td>
     <td>{{s.brojIndeksa}}</td>
     <td>{{s.drzavaRodjenjaOpis}}</td>
-    <td>{{s.opstinaRodjenjaId}}</td>
+    <td>{{s.opstinaRodjenjaOpis}}</td>
     <td>{{s.createdTime}}</td>
     <td><img class="profilna-slika" src="{{get_slika_base64_DB(s)}}" ></td>
 
@@ -111,7 +105,7 @@
 
         <div class="mb-3">
           <label class="form-label">Stara slika</label>
-          <img style="display:block;max-width: 100%; height: 200px" src="{{get_slika_base64_FS(odabranistudent.slika_korisnika_postojeca_base64_FS)}}">
+          <img style="display:block;max-width: 100%; height: 200px" src="{{get_slika_base64_FS(odabranistudent)}}">
         </div>
 
         <div class="mb-3">

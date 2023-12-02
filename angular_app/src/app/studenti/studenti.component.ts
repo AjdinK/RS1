@@ -74,9 +74,8 @@ export class StudentiComponent implements OnInit {
       (a.prezime + " " +a.ime).startsWith(this.probaSignalR2.imePrezime))
 
       &&
-      (
-        !this.filter_opstina ||
-        (a.opstina_rodjenja != null && a.opstina_rodjenja.description).startsWith(this.opstina)
+      (!this.filter_opstina ||
+        (a.opstinaRodjenjaOpis.toLowerCase()).startsWith(this.opstina.toLowerCase())
       )
     );
   }
@@ -209,9 +208,5 @@ export class StudentiComponent implements OnInit {
     }
     if (p == this.currentPage)
       return;
-  }
-
-  btnPretrega() {
-    this.get_podaci_filtrirano2();
   }
 }
