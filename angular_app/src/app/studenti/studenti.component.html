@@ -1,10 +1,10 @@
-<!--
+
 <div class="input-group">
-  <input  [(ngModel)]="probaSignalR2.imePrezime" class="form-control rounded" placeholder="Ime studenta" aria-label="Search" aria-describedby="search-addon" />
+  <input  [(ngModel)]="pretregaImePrezime" class="form-control rounded" placeholder="Ime studenta" aria-label="Search" aria-describedby="search-addon" />
   <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="btnPretrega()">Pretrega</button>
 </div>
--->
 
+<!--
 <div>
   <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
   <input (keyup)="probaSignalR2.PosaljiImePrezime()" [(ngModel)]="probaSignalR2.imePrezime" [disabled]="!filter_ime_prezime"><br>
@@ -15,7 +15,7 @@
   <input [(ngModel)]="opstina" [disabled]="!filter_opstina"><br>
   <hr>
 </div>
-
+-->
 
 <!-- \\reading val from another component example
 <div style="border:5px solid red">
@@ -50,7 +50,7 @@
     <th>Akcija</th>
   </tr>
   <tbody>
-  <tr *ngFor="let s of get_podaci_filtrirano()">
+  <tr *ngFor="let s of get_podaci_filtrirano2()">
     <td>{{s.id}}</td>
     <td>{{s.ime}}</td>
     <td>{{s.prezime}}</td>
