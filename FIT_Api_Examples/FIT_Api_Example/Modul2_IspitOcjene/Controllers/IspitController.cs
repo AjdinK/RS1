@@ -1,5 +1,4 @@
 ﻿using FIT_Api_Example.Data;
-using FIT_Api_Example.Modul2_IspitOcjene.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FIT_Api_Example.Modul2_IspitOcjene.Controllers
@@ -14,6 +13,7 @@ namespace FIT_Api_Example.Modul2_IspitOcjene.Controllers
         {
             _applicationDbContext = applicationDbContext;
         }
+
         [HttpGet()]
         public ActionResult Proba0(string? naziv)
         {

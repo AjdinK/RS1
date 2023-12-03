@@ -1,6 +1,5 @@
 ﻿using System.Text.Json.Serialization;
 using FIT_Api_Example.Data;
-using FIT_Api_Example.Modul0_Autentifikacija.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FIT_Api_Example.Helper.AutentifikacijaAutorizacija

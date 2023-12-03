@@ -1,6 +1,4 @@
-﻿using FIT_Api_Example.Modul1.Models;
-
-namespace FIT_Api_Example.Modul1.ViewModels
+﻿namespace FIT_Api_Example.Modul1.ViewModels
 {
     public class PredmetGetAllVM
     {

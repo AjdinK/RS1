@@ -28,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Modul0_Autentifikacija\Models\" />
+    <Folder Include="Modul1\Models\" />
+    <Folder Include="Modul2_IspitOcjene\Models\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

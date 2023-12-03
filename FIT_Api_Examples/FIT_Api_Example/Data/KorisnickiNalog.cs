@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using FIT_Api_Example.Modul1.Models;
 
-namespace FIT_Api_Example.Modul0_Autentifikacija.Models
+namespace FIT_Api_Example.Data
 {
     [Table("KorisnickiNalog")]
     public class KorisnickiNalog
@@ -26,7 +25,7 @@ namespace FIT_Api_Example.Modul0_Autentifikacija.Models
         public bool isProdekan { get; set; }
         public bool isDekan { get; set; }
         public bool isStudentskaSluzba { get; set; }
-        
- 
+
+
     }
 }

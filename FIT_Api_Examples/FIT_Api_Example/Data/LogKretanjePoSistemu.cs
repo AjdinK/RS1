@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FIT_Api_Example.Modul0_Autentifikacija.Models
+namespace FIT_Api_Example.Data
 {
     public class LogKretanjePoSistemu
     {

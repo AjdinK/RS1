@@ -1,6 +1,5 @@
 ﻿using FIT_Api_Example.Data;
 using FIT_Api_Example.Helper;
-using FIT_Api_Example.Modul1.Models;
 using FIT_Api_Example.Modul1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
