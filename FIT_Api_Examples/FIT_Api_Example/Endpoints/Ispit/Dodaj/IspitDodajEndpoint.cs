@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FIT_Api_Example.Endpoints.Ispit.Dodaj
 {
     [Route("ispit-dodaj")]
-    public class IspitDodajEndpoint: MyBaseEndpoint<IspitDodajRequest,  IspitDodajResponse>
+    public class IspitDodajEndpoint: MyBaseEndpoint <IspitDodajRequest,IspitDodajResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
@@ -15,7 +15,7 @@ namespace FIT_Api_Example.Endpoints.Ispit.Dodaj
         }
 
         [HttpPost]
-        public override async Task<IspitDodajResponse> Obradi([FromBody]IspitDodajRequest request)
+        public override async Task <IspitDodajResponse> Obradi ([FromBody] IspitDodajRequest request)
         {
             var noviObj = new Data.Models.Ispit
             {
@@ -25,7 +25,7 @@ namespace FIT_Api_Example.Endpoints.Ispit.Dodaj
             };
             _applicationDbContext.Ispit.Add(noviObj);//
 
-            await _applicationDbContext.SaveChangesAsync();//izvrašva se "insert into Ispit value ...."
+            await _applicationDbContext.SaveChangesAsync(); //izvrašva se "insert into Ispit value ...."
 
             return new IspitDodajResponse
             {

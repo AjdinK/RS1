@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.Ispit.Pretraga
 {
     [Route("ispit-pretraga")]
-    public class IspitPretragaEndpoint: MyBaseEndpoint<IspitPretragaRequest,  IspitPretragaResponse>
+    public class IspitPretragaEndpoint: MyBaseEndpoint <IspitPretragaRequest,  IspitPretragaResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
