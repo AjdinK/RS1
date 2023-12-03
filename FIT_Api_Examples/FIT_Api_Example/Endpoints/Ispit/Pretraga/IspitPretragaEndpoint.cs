@@ -19,7 +19,7 @@ namespace FIT_Api_Example.Endpoints.Ispit.Pretraga
         public override async Task <IspitPretragaResponse> Obradi([FromQuery] IspitPretragaRequest request)
         {
             var ispiti = await _applicationDbContext.Ispit
-                .Where(x => request.Naziv == null || x.Predmet.Naziv.ToLower().StartsWith(request.Naziv.ToLower()))
+                .Where(x => request.Naziv == null || x.Predmet.Naziv.ToLower().Contains(request.Naziv.ToLower()))
                 .Select(x => new IspitPretragaResponseIspit()
                 {
                     IdIspita = x.ID,

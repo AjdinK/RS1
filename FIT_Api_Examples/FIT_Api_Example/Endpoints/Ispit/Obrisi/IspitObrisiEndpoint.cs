@@ -22,7 +22,6 @@ namespace FIT_Api_Example.Endpoints.Ispit.Obrisi
             var ispiti = _applicationDbContext.Ispit.FirstOrDefault(x => x.ID == request.IspitID);
 
             if (ispiti == null)
-
             {
                 throw new Exception("nije pronadjen ispit za id = " + request.IspitID);
             }
