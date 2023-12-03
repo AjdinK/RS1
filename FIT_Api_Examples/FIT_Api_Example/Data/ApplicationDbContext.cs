@@ -25,5 +25,15 @@ namespace FIT_Api_Example.Data
             DbContextOptions options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            foreach (var realtionship in modelBuilder.Model.GetEntityTypes().SelectMany
+                (e => e.GetForeignKeys()))
+            {
+                realtionship.DeleteBehavior = DeleteBehavior.NoAction;
+            }
+        }
     }
 }

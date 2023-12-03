@@ -309,7 +309,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "korisnickiNalog")
                         .WithMany()
                         .HasForeignKey("KorisnickiNalogId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("korisnickiNalog");
@@ -320,13 +320,13 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "EvidentiraoKorisnik")
                         .WithMany()
                         .HasForeignKey("CreatedByKorisnikID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "IzmijenioKorisnik")
                         .WithMany()
                         .HasForeignKey("IzmijenioKorisnikID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("EvidentiraoKorisnik");
@@ -339,7 +339,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul1.Models.Drzava", "drzava")
                         .WithMany()
                         .HasForeignKey("DrzavaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("drzava");
@@ -350,7 +350,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul1.Models.Predmet", "Predmet")
                         .WithMany()
                         .HasForeignKey("PredmetID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Predmet");
@@ -361,13 +361,13 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul2_IspitOcjene.Models.Ispit", "Ispit")
                         .WithMany()
                         .HasForeignKey("IspitID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("FIT_Api_Example.Modul1.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Ispit");
@@ -395,7 +395,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul1.Models.Opstina", "OpstinaRodjenja")
                         .WithMany()
                         .HasForeignKey("OpstinaRodjenjaID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("OpstinaRodjenja");

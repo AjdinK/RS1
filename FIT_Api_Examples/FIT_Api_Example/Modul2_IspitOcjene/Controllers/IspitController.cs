@@ -17,8 +17,7 @@ namespace FIT_Api_Example.Modul2_IspitOcjene.Controllers
         [HttpGet()]
         public ActionResult Proba0(string? naziv)
         {
-            var rezultat = _applicationDbContext
-                .Ispit
+            var rezultat = _applicationDbContext.Ispit
                 .Where(x=>naziv == null || x.Predmet.Naziv.ToLower().StartsWith(naziv.ToLower()))
                 .Select(x => new IspitGet
                 {
