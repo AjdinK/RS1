@@ -3,6 +3,7 @@
     public class IspitPretragaResponse
     {
         public List<IspitPretragaResponseIspit> Ispiti { get; set; }
+
     }
 
     public class IspitPretragaResponseIspit
@@ -14,7 +15,6 @@
         public string PuniNaziv { get; set; }
         public string SifraPredmeta { get; set; }
         public int Bodovi { get; set; }
-
-        public string Opis => PuniNaziv + ": " + SifraPredmeta;
+        public string Opis => PuniNaziv + " : " + SifraPredmeta;
     }
 }
