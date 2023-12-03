@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace FIT_Api_Example.Data
+namespace FIT_Api_Example.Data.Models
 {
     [Table("KorisnickiNalog")]
     public class KorisnickiNalog

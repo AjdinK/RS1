@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FIT_Api_Example.Data
+namespace FIT_Api_Example.Data.Models
 {
-    public class Drzava
+    public class Predmet
     {
         [Key]
         public int ID { get; set; }
         public string Naziv { get; set; }
-        public string? Skracenica { get; set; }
+        public string Sifra { get; set; }
+        public int Ects { get; set; }
+
     }
 }

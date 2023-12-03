@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Example.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231203120331_initv1")]
-    partial class initv1
+    [Migration("20231018074651_skriptaTblIspit")]
+    partial class skriptaTblIspit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,7 +221,7 @@ namespace FIT_Api_Example.Migrations
                     b.Property<DateTime>("DatumVrijemeIspita")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Komentar")
+                    b.Property<string>("Naziv")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -233,35 +233,6 @@ namespace FIT_Api_Example.Migrations
                     b.HasIndex("PredmetID");
 
                     b.ToTable("Ispit");
-                });
-
-            modelBuilder.Entity("FIT_Api_Example.Modul2_IspitOcjene.Models.PrijavaIspita", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<DateTime>("DatumPrijave")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IspitID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("OdjavaIspit")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("StudentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("IspitID");
-
-                    b.HasIndex("StudentID");
-
-                    b.ToTable("PrijavaIspita");
                 });
 
             modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Nastavnik", b =>
@@ -311,7 +282,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "korisnickiNalog")
                         .WithMany()
                         .HasForeignKey("KorisnickiNalogId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("korisnickiNalog");
@@ -322,13 +293,13 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "EvidentiraoKorisnik")
                         .WithMany()
                         .HasForeignKey("CreatedByKorisnikID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "IzmijenioKorisnik")
                         .WithMany()
                         .HasForeignKey("IzmijenioKorisnikID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EvidentiraoKorisnik");
@@ -341,7 +312,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul1.Models.Drzava", "drzava")
                         .WithMany()
                         .HasForeignKey("DrzavaID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("drzava");
@@ -352,29 +323,10 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul1.Models.Predmet", "Predmet")
                         .WithMany()
                         .HasForeignKey("PredmetID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Predmet");
-                });
-
-            modelBuilder.Entity("FIT_Api_Example.Modul2_IspitOcjene.Models.PrijavaIspita", b =>
-                {
-                    b.HasOne("FIT_Api_Example.Modul2_IspitOcjene.Models.Ispit", "Ispit")
-                        .WithMany()
-                        .HasForeignKey("IspitID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("FIT_Api_Example.Modul1.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Ispit");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Nastavnik", b =>
@@ -397,7 +349,7 @@ namespace FIT_Api_Example.Migrations
                     b.HasOne("FIT_Api_Example.Modul1.Models.Opstina", "OpstinaRodjenja")
                         .WithMany()
                         .HasForeignKey("OpstinaRodjenjaID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("OpstinaRodjenja");

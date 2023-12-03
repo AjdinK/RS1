@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FIT_Api_Example.Data
+namespace FIT_Api_Example.Data.Models
 {
     public class Ispit
     {

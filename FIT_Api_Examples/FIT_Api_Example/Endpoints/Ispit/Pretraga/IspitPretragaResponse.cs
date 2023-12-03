@@ -1,6 +1,11 @@
-﻿namespace FIT_Api_Example.Modul2_IspitOcjene
+﻿namespace FIT_Api_Example.Endpoints.Ispit.Pretraga
 {
-    public class IspitGet
+    public class IspitPretragaResponse
+    {
+        public List<IspitPretragaResponseIspit> Ispiti { get; set; }
+    }
+
+    public class IspitPretragaResponseIspit
     {
         public int IdIspita { get; set; }
         public string Komnt { get; set; }

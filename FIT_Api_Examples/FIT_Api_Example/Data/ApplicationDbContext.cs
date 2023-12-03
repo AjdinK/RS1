@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FIT_Api_Example.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FIT_Api_Example.Data
 {
@@ -21,16 +22,6 @@ namespace FIT_Api_Example.Data
         public ApplicationDbContext(
             DbContextOptions options) : base(options)
         {
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            foreach (var realtionship in modelBuilder.Model.GetEntityTypes().SelectMany
-                (e => e.GetForeignKeys()))
-            {
-                realtionship.DeleteBehavior = DeleteBehavior.NoAction;
-            }
         }
     }
 }
