@@ -1,0 +1,28 @@
+<h2>Pretraga na front endu (Java scripta)</h2>
+<input [(ngModel)]="pretragaNaziv">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Ime</th>
+    <th>Prezime</th>
+    <th>Drzava rodenja</th>
+    <th>Opstina Rodjenja</th>
+    <th>Datum Rodjenja</th>
+    <th>Korisnicko Ime</th>
+    <th>Slika Korisnika</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of getFiltriraniStudetni()">
+    <td>{{ item.ime }}</td>
+    <td>{{ item.prezime }}</td>
+    <td>{{ item.opstinaRodjenjaDrzava }}</td>
+    <td>{{ item.opstinaRodjenjaNaziv }}</td>
+    <td>{{ item.datumRodjenja | date }}</td>
+    <td>{{ item.korisnickoIme }}</td>
+    <td>
+      <img class="profilna-slika" src="{{ item.slikaKorisnika }}">
+    </td>
+  </tr>
+  </tbody>
+</table>

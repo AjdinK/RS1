@@ -22,24 +22,7 @@ namespace FIT_Api_Example.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.AkademskaGodina", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Opis")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("AkademskaGodina");
-                });
-
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.AutentifikacijaToken", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul0_Autentifikacija.Models.AutentifikacijaToken", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -67,52 +50,7 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("AutentifikacijaToken");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Drzava", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Skracenica")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Drzava");
-                });
-
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Ispit", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<DateTime>("DatumVrijemeIspita")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Komentar")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PredmetID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PredmetID");
-
-                    b.ToTable("Ispit");
-                });
-
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.KorisnickiNalog", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -149,7 +87,44 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("KorisnickiNalog");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Obavijest", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.AkademskaGodina", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Opis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("AkademskaGodina");
+                });
+
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Drzava", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Skracenica")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Drzava");
+                });
+
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Obavijest", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -187,7 +162,7 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("Obavijest");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Opstina", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Opstina", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -209,7 +184,7 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("Opstina");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Predmet", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Predmet", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -233,7 +208,32 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("Predmet");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.PrijavaIspita", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul2_IspitOcjene.Models.Ispit", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("DatumVrijemeIspita")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Komentar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PredmetID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PredmetID");
+
+                    b.ToTable("Ispit");
+                });
+
+            modelBuilder.Entity("FIT_Api_Example.Modul2_IspitOcjene.Models.PrijavaIspita", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -262,9 +262,9 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("PrijavaIspita");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Nastavnik", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Nastavnik", b =>
                 {
-                    b.HasBaseType("FIT_Api_Example.Data.Models.KorisnickiNalog");
+                    b.HasBaseType("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog");
 
                     b.Property<string>("Ime")
                         .IsRequired()
@@ -277,9 +277,9 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("Nastavnik");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Student", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Student", b =>
                 {
-                    b.HasBaseType("FIT_Api_Example.Data.Models.KorisnickiNalog");
+                    b.HasBaseType("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog");
 
                     b.Property<string>("BrojIndeksa")
                         .IsRequired()
@@ -304,40 +304,29 @@ namespace FIT_Api_Example.Migrations
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.AutentifikacijaToken", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul0_Autentifikacija.Models.AutentifikacijaToken", b =>
                 {
-                    b.HasOne("FIT_Api_Example.Data.Models.KorisnickiNalog", "korisnickiNalog")
+                    b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "korisnickiNalog")
                         .WithMany()
                         .HasForeignKey("KorisnickiNalogId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("korisnickiNalog");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Ispit", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Obavijest", b =>
                 {
-                    b.HasOne("FIT_Api_Example.Data.Models.Predmet", "Predmet")
-                        .WithMany()
-                        .HasForeignKey("PredmetID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Predmet");
-                });
-
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Obavijest", b =>
-                {
-                    b.HasOne("FIT_Api_Example.Data.Models.KorisnickiNalog", "EvidentiraoKorisnik")
+                    b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "EvidentiraoKorisnik")
                         .WithMany()
                         .HasForeignKey("CreatedByKorisnikID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FIT_Api_Example.Data.Models.KorisnickiNalog", "IzmijenioKorisnik")
+                    b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", "IzmijenioKorisnik")
                         .WithMany()
                         .HasForeignKey("IzmijenioKorisnikID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EvidentiraoKorisnik");
@@ -345,29 +334,40 @@ namespace FIT_Api_Example.Migrations
                     b.Navigation("IzmijenioKorisnik");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Opstina", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Opstina", b =>
                 {
-                    b.HasOne("FIT_Api_Example.Data.Models.Drzava", "drzava")
+                    b.HasOne("FIT_Api_Example.Modul1.Models.Drzava", "drzava")
                         .WithMany()
                         .HasForeignKey("DrzavaID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("drzava");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.PrijavaIspita", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul2_IspitOcjene.Models.Ispit", b =>
                 {
-                    b.HasOne("FIT_Api_Example.Data.Models.Ispit", "Ispit")
+                    b.HasOne("FIT_Api_Example.Modul1.Models.Predmet", "Predmet")
                         .WithMany()
-                        .HasForeignKey("IspitID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasForeignKey("PredmetID")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FIT_Api_Example.Data.Models.Student", "Student")
+                    b.Navigation("Predmet");
+                });
+
+            modelBuilder.Entity("FIT_Api_Example.Modul2_IspitOcjene.Models.PrijavaIspita", b =>
+                {
+                    b.HasOne("FIT_Api_Example.Modul2_IspitOcjene.Models.Ispit", "Ispit")
+                        .WithMany()
+                        .HasForeignKey("IspitID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FIT_Api_Example.Modul1.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Ispit");
@@ -375,27 +375,27 @@ namespace FIT_Api_Example.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Nastavnik", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Nastavnik", b =>
                 {
-                    b.HasOne("FIT_Api_Example.Data.Models.KorisnickiNalog", null)
+                    b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
                         .WithOne()
-                        .HasForeignKey("FIT_Api_Example.Data.Models.Nastavnik", "ID")
+                        .HasForeignKey("FIT_Api_Example.Modul1.Models.Nastavnik", "ID")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FIT_Api_Example.Data.Models.Student", b =>
+            modelBuilder.Entity("FIT_Api_Example.Modul1.Models.Student", b =>
                 {
-                    b.HasOne("FIT_Api_Example.Data.Models.KorisnickiNalog", null)
+                    b.HasOne("FIT_Api_Example.Modul0_Autentifikacija.Models.KorisnickiNalog", null)
                         .WithOne()
-                        .HasForeignKey("FIT_Api_Example.Data.Models.Student", "ID")
+                        .HasForeignKey("FIT_Api_Example.Modul1.Models.Student", "ID")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
-                    b.HasOne("FIT_Api_Example.Data.Models.Opstina", "OpstinaRodjenja")
+                    b.HasOne("FIT_Api_Example.Modul1.Models.Opstina", "OpstinaRodjenja")
                         .WithMany()
                         .HasForeignKey("OpstinaRodjenjaID")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("OpstinaRodjenja");

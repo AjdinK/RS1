@@ -23,19 +23,5 @@ namespace FIT_Api_Example.Data
             DbContextOptions options) : base(options)
         {
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            //ovdje pise FluentAPI konfiguraciju
-            //modelBuilder.Entity<Student>().ToTable("Student");
-            //modelBuilder.Entity<Nastavnik>().ToTable("Nastavnik");
-
-            foreach (var realtionship in modelBuilder.Model.GetEntityTypes().SelectMany
-                (e => e.GetForeignKeys()))
-            {
-                realtionship.DeleteBehavior = DeleteBehavior.NoAction;
-            }
-        }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.Ispit.Pretraga
 {
     [Route("ispit-pretraga")]
-    public class IspitPretragaEndpoint: MyBaseEndpoint <IspitPretragaRequest,  IspitPretragaResponse>
+    public class IspitPretragaEndpoint: MyBaseEndpoint<IspitPretragaRequest,  IspitPretragaResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
@@ -16,10 +16,11 @@ namespace FIT_Api_Example.Endpoints.Ispit.Pretraga
         }
 
         [HttpGet]
-        public override async Task <IspitPretragaResponse> Obradi([FromQuery] IspitPretragaRequest request)
+        public override async Task<IspitPretragaResponse> Obradi([FromQuery] IspitPretragaRequest request)
         {
-            var ispiti = await _applicationDbContext.Ispit
-                .Where(x => request.Naziv == null || x.Predmet.Naziv.ToLower().Contains(request.Naziv.ToLower()))
+            var ispiti = await _applicationDbContext
+                .Ispit
+                .Where(x => request.Naziv == null || x.Predmet.Naziv.ToLower().StartsWith(request.Naziv.ToLower()))
                 .Select(x => new IspitPretragaResponseIspit()
                 {
                     IdIspita = x.ID,
