@@ -1,14 +1,22 @@
 <p>sedmica6-edit works!</p>
-<div *ngIf="odabraniStudent!=null">
+<div *ngIf="odabraniStudent">
 
   <div>
-    <label> Ime: </label><input [(ngModel)]="odabraniStudent.ime">
+    <label> ID: </label>
+    <input [value]="odabraniStudent.id" disabled>
   </div>
 
   <div>
-    <label> Prezime: </label><input [(ngModel)]="odabraniStudent.prezime">
+    <label> Ime: </label>
+    <input [(ngModel)]="odabraniStudent.ime">
   </div>
 
+  <div>
+    <label> Prezime: </label>
+    <input [(ngModel)]="odabraniStudent.prezime">
+  </div>
+
+  <button (click)="snimi()">Snimi</button>
 
 </div>
 

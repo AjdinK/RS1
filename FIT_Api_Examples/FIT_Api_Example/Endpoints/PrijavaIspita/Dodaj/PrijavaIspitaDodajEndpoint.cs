@@ -16,7 +16,7 @@ namespace FIT_Api_Example.Endpoints.PrijavaIspita.Dodaj
         }
 
         [HttpPost]
-        public override async Task<PrijavaIspitaDodajResponse> Obradi([FromBody] PrijavaIspitaDodajRequest request)
+        public override async Task<PrijavaIspitaDodajResponse> Obradi([FromBody] PrijavaIspitaDodajRequest request , CancellationToken cancellationToken)
         {
             var noviObj = new Data.Models.PrijavaIspita
             {

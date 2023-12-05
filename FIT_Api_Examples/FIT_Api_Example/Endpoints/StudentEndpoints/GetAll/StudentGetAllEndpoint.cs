@@ -1,5 +1,6 @@
 ﻿using FIT_Api_Example.Data;
 using FIT_Api_Example.Helper;
+using FIT_Api_Example.Helper.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,15 +10,24 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetAll;
 public class StudentGetAllEndpoint: MyBaseEndpoint<StudentSedmica5Request,  StudentGetAllResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
+    private readonly MyAuthService _authService;
 
-    public StudentGetAllEndpoint(ApplicationDbContext applicationDbContext)
+    public StudentGetAllEndpoint(ApplicationDbContext applicationDbContext, MyAuthService authService)
     {
         _applicationDbContext = applicationDbContext;
+        _authService = authService;
     }
 
     [HttpGet("get-all")]
     public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentSedmica5Request request, CancellationToken cancellationToken)
     {
+        
+
+        if (!_authService.JelLogiran())
+        {
+            throw new Exception("nije logiran");
+        }
+
         var student = await _applicationDbContext.Student
             .OrderByDescending(x => x.ID)
             .Select(x=>new StudentGetAllResponseStudent()

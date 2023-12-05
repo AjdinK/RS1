@@ -17,7 +17,7 @@ namespace FIT_Api_Example.Endpoints.Student.GetAll
         }
 
         [HttpGet]
-        public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentGetAllRequest request)
+        public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentGetAllRequest request , CancellationToken cancellationToken)
         {
             var student = await _applicationDbContext.Student
                 .OrderByDescending(x => x.ID)

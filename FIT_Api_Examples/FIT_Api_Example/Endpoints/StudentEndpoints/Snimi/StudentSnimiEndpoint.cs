@@ -35,9 +35,9 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 
         student.Ime = request.Ime.RemoveTags();
         student.Prezime = request.Prezime.RemoveTags();
-        student.BrojIndeksa = request.BrojIndeksa;
-        student.DatumRodjenja = request.DatumRodjenja;
-        student.OpstinaRodjenjaID = request.OpstinaRodjenjaId;
+        //student.BrojIndeksa = request.BrojIndeksa;
+        //student.DatumRodjenja = request.DatumRodjenja;
+        //student.OpstinaRodjenjaID = request.OpstinaRodjenjaId;
 
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
 

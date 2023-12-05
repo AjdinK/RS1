@@ -16,7 +16,7 @@ namespace FIT_Api_Example.Endpoints.Ispit.Pretraga
         }
 
         [HttpGet]
-        public override async Task<IspitPretragaResponse> Obradi([FromQuery] IspitPretragaRequest request)
+        public override async Task<IspitPretragaResponse> Obradi([FromQuery] IspitPretragaRequest request , CancellationToken cancellationToken)
         {
             var ispiti = await _applicationDbContext
                 .Ispit

@@ -16,7 +16,7 @@ namespace FIT_Api_Example.Endpoints.Student.Pretraga
         }
 
         [HttpGet]
-        public override async Task<StudentPretragaResponse> Obradi([FromQuery]StudentPretragaRequest request)
+        public override async Task<StudentPretragaResponse> Obradi([FromQuery]StudentPretragaRequest request , CancellationToken cancellationToken)
         {
             var student = await _applicationDbContext.Student.Where(x =>
                     request.Pretraga == null || 

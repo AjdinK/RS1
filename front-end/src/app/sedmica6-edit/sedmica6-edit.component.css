@@ -1,3 +1,7 @@
 .profilna-slika{
   width: 15px;
 }
+
+label, input{
+  display: block;
+}

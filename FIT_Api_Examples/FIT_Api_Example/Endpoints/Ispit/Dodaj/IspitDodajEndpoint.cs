@@ -15,7 +15,8 @@ namespace FIT_Api_Example.Endpoints.Ispit.Dodaj
         }
 
         [HttpPost]
-        public override async Task<IspitDodajResponse> Obradi([FromBody]IspitDodajRequest request)
+        public override async Task<IspitDodajResponse> Obradi([FromBody]IspitDodajRequest request ,CancellationToken cancellationToken
+            )
         {
             var noviObj = new Data.Models.Ispit
             {

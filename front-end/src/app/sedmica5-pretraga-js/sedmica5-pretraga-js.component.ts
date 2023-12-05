@@ -17,7 +17,11 @@ export class Sedmica5PretragaJsComponent implements OnInit {
   pretragaNaziv="";
   ngOnInit(): void {
     let url = MojConfig.adresa_servera +`/student/get-all`
-    this.httpClient.get<StudentiGetAllResponse>(url).subscribe((x:StudentiGetAllResponse)=>{
+    this.httpClient.get<StudentiGetAllResponse>(url, {
+      headers:{
+        "my-auth-token":"wHxquBw8ZR"
+      }
+    }).subscribe((x:StudentiGetAllResponse)=>{
       this.studenti = x.studenti;
     })
   }
