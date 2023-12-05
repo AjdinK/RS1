@@ -35,7 +35,6 @@ export class Sedmica6EditComponent implements OnInit {
     this.httpClient.post(url, this.odabraniStudent).subscribe((x)=>{
       alert("uredu")
       this.ngOnInit();
-      this.odabraniStudent = null
     })
   }
 }

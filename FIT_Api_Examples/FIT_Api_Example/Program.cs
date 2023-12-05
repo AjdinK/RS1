@@ -1,5 +1,4 @@
 using FIT_Api_Example.Data;
-using FIT_Api_Example.Helper.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +19,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<MyAuthService>();
-builder.Services.AddHttpContextAccessor();
-
 
 var app = builder.Build();
 
