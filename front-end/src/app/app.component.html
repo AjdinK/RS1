@@ -1,22 +1,23 @@
+<!--
+<div>
+  <button class="btn btn-primary" (click)="idi('/sedmica4')">Sedmica 4</button>
+  <button class="btn btn-primary" (click)="idi(  '/sedmica5')">Sedmica 5</button>
+  <button class="btn btn-primary" (click)="idi(  '/sedmica5-js')">Sedmica 5 pretraga JS</button>
+  <button class="btn btn-primary" (click)="idi(  '/sedmica5-backend')">Sedmica 5 pretraga Backend</button>
+  <button class="btn btn-primary" (click)="idi( '/sedmica6')">Sedmica 6 Edit</button>
+</div>
+-->
 
-  <button (click)="isVidljivoSedmica4 = !isVidljivoSedmica4">Sedmica 4 {{isVidljivoSedmica4?'da':'ne'}}</button>
-  <button (click)="isVidljivoSedmica5 = !isVidljivoSedmica5">Sedmica 5 {{isVidljivoSedmica5?'da':'ne'}}</button>
-  <button (click)="isVidljivoSedmica5PretragaJs = !isVidljivoSedmica5PretragaJs">Sedmica 5 pretraga JS {{isVidljivoSedmica5PretragaJs?'da':'ne'}}</button>
-  <button (click)="isVidljivoSedmica5PretragaBackend = !isVidljivoSedmica5PretragaBackend">Sedmica 5 pretraga Backend {{isVidljivoSedmica5PretragaBackend?'da':'ne'}}</button>
+<div>
+  <a class="btn btn-primary" routerLink='/sedmica4'>Sedmica 4 </a>
+  <a class="btn btn-primary" routerLink='/sedmica5'>Sedmica 5 </a>
+  <a class="btn btn-primary" routerLink='/sedmica5-js'>Sedmica 5 pretraga JS </a>
+  <a class="btn btn-primary" routerLink='/sedmica5-backend'>Sedmica 5 pretraga Backend </a>
+  <a class="btn btn-primary" routerLink='/sedmica6'>Sedmica 6 Edit </a>
+</div>
 
-  <div *ngIf="isVidljivoSedmica4" style="border:1px solid red">
-    <app-sedmica4></app-sedmica4>
-  </div>
+<div style="border: 1px solid red">
+  <router-outlet></router-outlet>
+</div>
 
-  <div *ngIf="isVidljivoSedmica5" style="border:1px solid red">
-    <app-sedmica5></app-sedmica5>
-  </div>
-
-  <div *ngIf="isVidljivoSedmica5PretragaJs" style="border:1px solid red">
-    <app-sedmica5-pretraga-js></app-sedmica5-pretraga-js>
-  </div>
-
-  <div *ngIf="isVidljivoSedmica5PretragaBackend" style="border:1px solid red">
-    <app-sedmica5-pretraga-backend></app-sedmica5-pretraga-backend>
-  </div>
 

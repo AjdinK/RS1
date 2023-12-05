@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())//ovaj if iskljucuje swagger nakon deploya na app.fit.ba
 {
     app.UseSwagger();
     app.UseSwaggerUI();

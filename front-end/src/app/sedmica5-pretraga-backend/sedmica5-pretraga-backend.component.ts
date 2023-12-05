@@ -16,7 +16,7 @@ export class Sedmica5PretragaBackendComponent implements OnInit {
 
   studenti: StudentPretragaResponseStudent[] = [];
   ngOnInit(): void {
-    let url = MojConfig.adresa_servera +`/student-pretraga`
+    let url = MojConfig.adresa_servera +`/student/pretraga`
     this.httpClient.get<StudentPretragaResponse>(url).subscribe((x:StudentPretragaResponse)=>{
       this.studenti = x.studenti;
     })
@@ -25,7 +25,7 @@ export class Sedmica5PretragaBackendComponent implements OnInit {
   preuzmiNovePodatke($event: Event) {
     // @ts-ignore
     let naziv = $event.target.value;
-    let url = MojConfig.adresa_servera +`/student-pretraga?Pretraga=${naziv}`
+    let url = MojConfig.adresa_servera +`/student/pretraga?Pretraga=${naziv}`
     this.httpClient.get<StudentPretragaResponse>(url).subscribe((x:StudentPretragaResponse)=>{
       this.studenti = x.studenti;
     })

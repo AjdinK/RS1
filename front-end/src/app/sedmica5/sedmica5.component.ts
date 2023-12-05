@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MojConfig} from "../moj-config";
-import {StudentOldGetAllResponse} from "./student-old-get-all-response";
+import {StudentSedmica5Response} from "./student-sedmica5-response";
 
 @Component({
   selector: 'app-sedmica5',
@@ -14,10 +14,10 @@ export class Sedmica5Component implements OnInit {
   ngOnInit(): void {
   }
 
-  studenti: StudentOldGetAllResponse[] = [];
+  studenti: StudentSedmica5Response[] = [];
 
   getStudenti() {
-    let url = MojConfig.adresa_servera +`/Student/GetAll`
+    let url = MojConfig.adresa_servera +`/student/sedmica5`
     fetch(url)
       .then(response=>{
         if (response.status != 200)

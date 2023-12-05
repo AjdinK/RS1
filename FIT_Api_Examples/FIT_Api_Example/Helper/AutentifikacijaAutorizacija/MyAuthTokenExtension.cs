@@ -3,50 +3,49 @@ using FIT_Api_Example.Data;
 using FIT_Api_Example.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FIT_Api_Example.Helper.AutentifikacijaAutorizacija
+namespace FIT_Api_Example.Helper.AutentifikacijaAutorizacija;
+
+public static class MyAuthTokenExtension
 {
-    public static class MyAuthTokenExtension
+    public class LoginInformacije
     {
-        public class LoginInformacije
+        public LoginInformacije(AutentifikacijaToken? autentifikacijaToken)
         {
-            public LoginInformacije(AutentifikacijaToken? autentifikacijaToken)
-            {
-                this.autentifikacijaToken = autentifikacijaToken;
-            }
+            this.autentifikacijaToken = autentifikacijaToken;
+        }
 
-            [JsonIgnore]
-            public KorisnickiNalog? korisnickiNalog => autentifikacijaToken?.korisnickiNalog;
-            public AutentifikacijaToken? autentifikacijaToken { get; set; }
+        [JsonIgnore]
+        public KorisnickiNalog? korisnickiNalog => autentifikacijaToken?.korisnickiNalog;
+        public AutentifikacijaToken? autentifikacijaToken { get; set; }
             
-            public bool isLogiran => korisnickiNalog != null;
+        public bool isLogiran => korisnickiNalog != null;
          
-        }
+    }
 
 
-        public static LoginInformacije GetLoginInfo(this HttpContext httpContext)
-        {
-            var token = httpContext.GetAuthToken();
+    public static LoginInformacije GetLoginInfo(this HttpContext httpContext)
+    {
+        var token = httpContext.GetAuthToken();
 
-            return new LoginInformacije(token);
-        }
+        return new LoginInformacije(token);
+    }
     
-        public static AutentifikacijaToken? GetAuthToken(this HttpContext httpContext)
-        {
-            string token = httpContext.GetMyAuthToken();
-            ApplicationDbContext db = httpContext.RequestServices.GetService<ApplicationDbContext>();
+    public static AutentifikacijaToken? GetAuthToken(this HttpContext httpContext)
+    {
+        string token = httpContext.GetMyAuthToken();
+        ApplicationDbContext db = httpContext.RequestServices.GetService<ApplicationDbContext>();
 
-            AutentifikacijaToken? korisnickiNalog = db.AutentifikacijaToken
-                .Include(s=>s.korisnickiNalog)
-                .SingleOrDefault(x => x.vrijednost == token);
+        AutentifikacijaToken? korisnickiNalog = db.AutentifikacijaToken
+            .Include(s=>s.korisnickiNalog)
+            .SingleOrDefault(x => x.vrijednost == token);
             
-            return korisnickiNalog;
-        }
+        return korisnickiNalog;
+    }
 
 
-        public static string GetMyAuthToken(this HttpContext httpContext)
-        {
-            string token = httpContext.Request.Headers["autentifikacija-token"];
-            return token;
-        }
+    public static string GetMyAuthToken(this HttpContext httpContext)
+    {
+        string token = httpContext.Request.Headers["autentifikacija-token"];
+        return token;
     }
 }

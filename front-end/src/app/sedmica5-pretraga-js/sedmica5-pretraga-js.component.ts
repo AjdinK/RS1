@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {StudentOldGetAllResponse} from "../sedmica5/student-old-get-all-response";
+import {StudentSedmica5Response} from "../sedmica5/student-sedmica5-response";
 import {MojConfig} from "../moj-config";
 import {StudentiGetAllResponse, StudentiGetAllResponseStudent} from "./studenti-getall-response";
 
@@ -16,7 +16,7 @@ export class Sedmica5PretragaJsComponent implements OnInit {
   studenti: StudentiGetAllResponseStudent[] = [];
   pretragaNaziv="";
   ngOnInit(): void {
-    let url = MojConfig.adresa_servera +`/student-getall`
+    let url = MojConfig.adresa_servera +`/student/get-all`
     this.httpClient.get<StudentiGetAllResponse>(url).subscribe((x:StudentiGetAllResponse)=>{
       this.studenti = x.studenti;
     })

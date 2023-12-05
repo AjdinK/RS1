@@ -1,0 +1,50 @@
+<p>sedmica6-edit works!</p>
+<div *ngIf="odabraniStudent">
+
+  <div>
+    <label> ID: </label>
+    <input [value]="odabraniStudent.id" disabled>
+  </div>
+
+  <div>
+    <label> Ime: </label>
+    <input [(ngModel)]="odabraniStudent.ime">
+  </div>
+
+  <div>
+    <label> Prezime: </label>
+    <input [(ngModel)]="odabraniStudent.prezime">
+  </div>
+
+  <button (click)="snimi()">Snimi</button>
+
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Ime</th>
+    <th>Prezime</th>
+    <th>Drzava rodenja</th>
+    <th>Opstina Rodjenja</th>
+    <th>Datum Rodjenja</th>
+    <th>Korisnicko Ime</th>
+    <th>Slika Korisnika</th>
+    <th>Akcija</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of studenti">
+    <td>{{ item.ime }}</td>
+    <td>{{ item.prezime }}</td>
+    <td>{{ item.opstinaRodjenjaDrzava }}</td>
+    <td>{{ item.opstinaRodjenjaNaziv }}</td>
+    <td>{{ item.datumRodjenja | date }}</td>
+    <td>{{ item.korisnickoIme }}</td>
+    <td>
+      <img class="profilna-slika" src="{{ item.slikaKorisnika }}">
+    </td>
+    <td><button (click)="odaberi(item)">Odaberi</button></td>
+  </tr>
+  </tbody>
+</table>
