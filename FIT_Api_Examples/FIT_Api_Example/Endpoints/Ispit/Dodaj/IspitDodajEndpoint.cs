@@ -32,7 +32,5 @@ namespace FIT_Api_Example.Endpoints.Ispit.Dodaj
                 IspitId = noviObj.ID
             };
         }
-
-
     }
 }

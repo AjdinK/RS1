@@ -31,7 +31,7 @@ public class ApplicationDbContext : DbContext
 
         foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
         {
-            relationship.DeleteBehavior = DeleteBehavior.NoAction;
+            relationship.DeleteBehavior = DeleteBehavior.Restrict;
         }
     }
 }
