@@ -31,7 +31,6 @@ export class Sedmica7LoginComponent implements OnInit {
         let token = x.autentifikacijaToken.vrijednost;
         window.localStorage.setItem("my-auth-token",token)
         this.router.navigate(["/sedmica5-js"])
-
       }
     })
   }
