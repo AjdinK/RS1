@@ -8,12 +8,13 @@
 </div>
 -->
 
-<div>
+<div *ngIf="myAuthService.jelLogiran()">
   <a class="btn btn-primary" routerLink='/sedmica4'>Sedmica 4 </a>
   <a class="btn btn-primary" routerLink='/sedmica5'>Sedmica 5 </a>
   <a class="btn btn-primary" routerLink='/sedmica5-js'>Sedmica 5 pretraga JS </a>
   <a class="btn btn-primary" routerLink='/sedmica5-backend'>Sedmica 5 pretraga Backend </a>
   <a class="btn btn-primary" routerLink='/sedmica6'>Sedmica 6 Edit </a>
+  <a class="btn btn-primary" (click)="logout()">Sedmica7 Logout </a>
 </div>
 
 <div style="border: 1px solid red">

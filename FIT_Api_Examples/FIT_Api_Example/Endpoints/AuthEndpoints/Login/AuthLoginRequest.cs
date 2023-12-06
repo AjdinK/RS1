@@ -1,4 +1,4 @@
-﻿namespace FIT_Api_Example.Endpoints.AuthEndpoints;
+﻿namespace FIT_Api_Example.Endpoints.AuthEndpoints.Login;
 
 public class AuthLoginRequest
 {
