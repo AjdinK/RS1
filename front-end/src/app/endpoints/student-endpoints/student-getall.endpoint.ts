@@ -9,16 +9,13 @@ export class StudentGetAllEndpoint implements  MyBaseEndpoint<void, Student6Pret
 
   obradi(request: void): Observable<Student6PretragaResponse> {
     let url=MojConfig.adresa_servera+`/student/pretraga`;
-
     let token = window.localStorage.getItem("my-auth-token")??"";
-
       return this.httpClient.get<Student6PretragaResponse>(url,{
         headers:{
           "my-auth-token": token
         }
       } );
     }
-
 }
 
 export interface Student6PretragaResponse {

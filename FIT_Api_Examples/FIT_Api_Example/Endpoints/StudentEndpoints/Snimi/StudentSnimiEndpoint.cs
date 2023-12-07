@@ -59,6 +59,4 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 
         return student.ID;
     }
-
-
 }

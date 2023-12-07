@@ -14,7 +14,7 @@ import {
   styleUrls: ['./sedmica6-edit.component.css']
 })
 export class Sedmica6EditComponent implements OnInit {
-  public studenti:Student6PretragaResponseStudenti[]=[];
+  public studenti:Student6PretragaResponseStudenti [] = [];
   public odabraniStudent: StudentSnimiRequest | null = null;
   constructor(
     private snimiEndpoint:StudentSnimiEndpoint,
@@ -35,14 +35,12 @@ export class Sedmica6EditComponent implements OnInit {
       id: item.id
     } ;
   }
-
-
   snimi(): void {
-
     this.snimiEndpoint.obradi(this.odabraniStudent!).subscribe((x)=>{
       alert("uredu")
       this.ngOnInit();
       this.odabraniStudent = null
     })
   }
+
 }
