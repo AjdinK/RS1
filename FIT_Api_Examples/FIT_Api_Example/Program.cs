@@ -11,7 +11,7 @@ var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
     .Build();
 
-WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("db1")));

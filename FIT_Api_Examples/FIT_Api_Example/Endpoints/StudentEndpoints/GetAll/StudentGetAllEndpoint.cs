@@ -23,7 +23,7 @@ public class StudentGetAllEndpoint: MyBaseEndpoint<StudentSedmica5Request,  Stud
   
     public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentSedmica5Request request, CancellationToken cancellationToken)
     {
-        if (!_authService.JelLogiran())
+        if (!_authService.IsLogiran())
         {
             throw new Exception("nije logiran");
         }

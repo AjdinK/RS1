@@ -2,7 +2,7 @@
 
 namespace FIT_Api_Example.Data.Models;
 
-[Table("Nastavnik")]
+[Table("Nastavnik")]// ako obrisemo -onda se koristi TPH
 public class Nastavnik : KorisnickiNalog
 {
     public string Ime { get; set; }

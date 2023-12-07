@@ -23,7 +23,7 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
     public override async Task<int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
     {
 
-        if (!_authService.JelLogiran())
+        if (!_authService.IsLogiran())
         {
             throw new Exception("nije logiran");
         }
@@ -59,4 +59,6 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 
         return student.ID;
     }
+
+
 }

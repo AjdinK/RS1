@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MojConfig} from "../moj-config";
+import {MojConfig} from "../../moj-config";
 import {StudentSedmica5Response} from "./student-sedmica5-response";
 
 @Component({

@@ -32,4 +32,6 @@ public class AuthLogoutEndpoint : MyBaseEndpoint<NoRequest, NoResponse>
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
         return new NoResponse();
     }
+
+
 }

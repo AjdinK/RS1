@@ -23,6 +23,9 @@ export class AppComponent implements OnInit{
   }
 
   logout() {
+
+
+
     let token = window.localStorage.getItem("my-auth-token")??"";
     window.localStorage.setItem("my-auth-token","");
 
@@ -35,6 +38,6 @@ export class AppComponent implements OnInit{
         console.log("logout uspjesan")
     })
 
-    this.router.navigate(["/sedmica7-login"])
+    this.router.navigate(["/auth/login"])
   }
 }

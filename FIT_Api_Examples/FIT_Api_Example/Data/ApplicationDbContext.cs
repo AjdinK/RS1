@@ -33,5 +33,7 @@ public class ApplicationDbContext : DbContext
         {
             relationship.DeleteBehavior = DeleteBehavior.NoAction;
         }
+
+       // modelBuilder.Entity<KorisnickiNalog>().UseTpcMappingStrategy();
     }
 }

@@ -15,10 +15,26 @@ namespace FIT_Api_Example.Helper.Services
             _applicationDbContext = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
         }
-        public bool JelLogiran()
+        public bool IsLogiran()
         {
             return GetAuthInfo().isLogiran;
         }
+
+        public bool IsAdmin()
+        {
+            return GetAuthInfo().korisnickiNalog?.isAdmin??false;
+        }
+
+        public bool IsStudentskaSluzba()
+        {
+            return GetAuthInfo().korisnickiNalog?.isStudentskaSluzba ?? false;
+        }
+
+        public bool IsNastavnik()
+        {
+            return GetAuthInfo().korisnickiNalog?.isNastavnik ?? false;
+        }
+
 
         public MyAuthInfo GetAuthInfo()
         {
