@@ -1,12 +1,13 @@
 ﻿using FIT_Api_Example.Data;
 using FIT_Api_Example.Helper;
-using FIT_Api_Example.Helper.Services;
+using FIT_Api_Example.Helper.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.Pretraga;
 
 [Route("student")]
+[MyAuthorization]
 public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  StudentPretragaResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
@@ -20,10 +21,7 @@ public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  St
     [HttpGet("pretraga")]
     public override async Task<StudentPretragaResponse> Obradi([FromQuery]StudentPretragaRequest request, CancellationToken cancellationToken)
     {
-        if (!_authService.IsLogiran())
-        {
-            throw new Exception("nije logiran");
-        }
+       
         var student = await _applicationDbContext.Student.Where(x =>
                 request.Pretraga == null || 
                 (x.Ime + " " + x.Prezime).StartsWith(request.Pretraga) ||

@@ -1,9 +1,9 @@
-﻿using FIT_Api_Example.Data;
+﻿using System.Text.Json.Serialization;
+using FIT_Api_Example.Data;
 using FIT_Api_Example.Data.Models;
-using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace FIT_Api_Example.Helper.Services
+namespace FIT_Api_Example.Helper.Auth
 {
     public class MyAuthService
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FIT_Api_Example.Helper.Auth;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FIT_Api_Example.Helper;
 

@@ -1,12 +1,13 @@
 ﻿using FIT_Api_Example.Data;
 using FIT_Api_Example.Helper;
-using FIT_Api_Example.Helper.Services;
+using FIT_Api_Example.Helper.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetById;
 
 [Route("student")]
+[MyAuthorization]
 public class StudentGetByIdEndpoint: MyBaseEndpoint<int, StudentGetByIdResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
@@ -20,10 +21,7 @@ public class StudentGetByIdEndpoint: MyBaseEndpoint<int, StudentGetByIdResponse>
     [HttpGet("{id}")]
     public override async Task<StudentGetByIdResponse> Obradi(int id, CancellationToken cancellationToken)
     {
-        if (!_authService.IsLogiran())
-        {
-            throw new Exception("nije logiran");
-        }
+     
         var student = await _applicationDbContext.Student
             .OrderByDescending(x => x.ID)
             .Select(x=>new StudentGetByIdResponse

@@ -6,14 +6,14 @@ namespace FIT_Api_Example.Data.Models;
 public class LogKretanjePoSistemu
 {
     [Key]
-    public int id { get; set; }
-    [ForeignKey(nameof(korisnik))]
-    public int korisnikID { get; set; }
-    public KorisnickiNalog korisnik { get; set; }
-    public string? queryPath { get; set; }
-    public string? postData { get; set; }
-    public DateTime vrijeme { get; set; }
-    public string? ipAdresa { get; set; }
-    public string? exceptionMessage { get; set; }
-    public bool isException { get; set; }
+    public int ID { get; set; }
+    [ForeignKey(nameof(Korisnik))]
+    public int KorisnikID { get; set; }
+    public KorisnickiNalog Korisnik { get; set; }
+    public string? QueryPath { get; set; }
+    public string? PostData { get; set; }
+    public DateTime Vrijeme { get; set; }
+    public string? IpAdresa { get; set; }
+    public string? ExceptionMessage { get; set; }
+    public bool IsException { get; set; }
 }

@@ -25,6 +25,7 @@ public abstract class  KorisnickiNalog
     public bool isProdekan { get; set; }
     public bool isDekan { get; set; }
     public bool isStudentskaSluzba { get; set; }
+    public bool Is2FActive { get; set; }
 
 
 }

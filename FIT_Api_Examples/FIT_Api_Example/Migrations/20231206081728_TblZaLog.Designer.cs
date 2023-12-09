@@ -4,6 +4,7 @@ using FIT_Api_Example.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Example.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206081728_TblZaLog")]
+    partial class TblZaLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,14 +49,8 @@ namespace FIT_Api_Example.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<bool>("Is2FOtkljucano")
-                        .HasColumnType("bit");
-
                     b.Property<int>("KorisnickiNalogId")
                         .HasColumnType("int");
-
-                    b.Property<string>("TwoFKey")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ipAdresa")
                         .HasColumnType("nvarchar(max)");
@@ -125,9 +121,6 @@ namespace FIT_Api_Example.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<bool>("Is2FActive")
-                        .HasColumnType("bit");
 
                     b.Property<string>("KorisnickoIme")
                         .IsRequired()

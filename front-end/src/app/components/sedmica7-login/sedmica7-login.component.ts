@@ -34,14 +34,19 @@ export class Sedmica7LoginComponent implements OnInit {
       }
       else{
         this.myAuthService.setLogiraniKorisnik(x.autentifikacijaToken);
-        if (this.myAuthService.isStudent()){
+
+        if(this.myAuthService.is2FActive())
+        {
+          this.router.navigate(["/2f-authorize"])
+        } else if (this.myAuthService.isStudent()){
           this.router.navigate(["/home-student"])
         }
         else{
           this.router.navigate(["/home-nastavnik"])
         }
+
+
       }
     })
   }
-
 }

@@ -18,6 +18,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<Ispit> Ispit{ get; set; }
     public DbSet<PrijavaIspita> PrijavaIspita{ get; set; }
 
+    public DbSet<LogKretanjePoSistemu> LogKretanjePoSistemu { get; set; }
+
 
     public ApplicationDbContext(
         DbContextOptions options) : base(options)

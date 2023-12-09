@@ -23,8 +23,13 @@ export class Sedmica6EditComponent implements OnInit {
 
   ngOnInit(): void {
     let url=MojConfig.adresa_servera+`/student/pretraga`;
-    this.getAllEndpoint.obradi().subscribe((x:Student6PretragaResponse)=>{
-      this.studenti=x.studenti;
+    this.getAllEndpoint.obradi().subscribe({
+      next: x =>{
+        this.studenti=x.studenti;
+      },
+      error: x =>{
+        alert("greska: " + x.error)
+      }
     })
   }
 

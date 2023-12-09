@@ -1,7 +1,7 @@
 ﻿using FIT_Api_Example.Data;
 using FIT_Api_Example.Data.Models;
 using FIT_Api_Example.Helper;
-using FIT_Api_Example.Helper.Services;
+using FIT_Api_Example.Helper.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +11,13 @@ namespace FIT_Api_Example.Endpoints.AuthEndpoints.Login;
 public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
 {
     private readonly ApplicationDbContext _applicationDbContext;
+    private readonly MyEmailSenderService _emailSenderService;
 
-    public AuthLoginEndpoint(ApplicationDbContext applicationDbContext)
+
+    public AuthLoginEndpoint(ApplicationDbContext applicationDbContext, MyEmailSenderService emailSenderService)
     {
         _applicationDbContext = applicationDbContext;
+        _emailSenderService = emailSenderService;
     }
 
     [HttpPost("login")]
@@ -31,6 +34,14 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
             return new MyAuthInfo(null);
         }
 
+        string? twoFKey = null;
+
+        if (logiraniKorisnik.Is2FActive)
+        {
+            twoFKey = TokenGenerator.Generate(4);
+            _emailSenderService.Posalji("xeceyo7099@mcenb.com", "2f", $"Vasi 2f kljuc je {twoFKey}", false);
+        }
+
         //2- generisati random string
         string randomString = TokenGenerator.Generate(10);
 
@@ -40,7 +51,8 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
             ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
             vrijednost = randomString,
             korisnickiNalog = logiraniKorisnik,
-            vrijemeEvidentiranja = DateTime.Now
+            vrijemeEvidentiranja = DateTime.Now,
+            TwoFKey= twoFKey
         };
 
         _applicationDbContext.Add(noviToken);
@@ -49,4 +61,6 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
         //4- vratiti token string
         return new MyAuthInfo(noviToken);
     }
+
+
 }

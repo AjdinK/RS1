@@ -8,4 +8,5 @@ export interface KorisnickiNalog {
   isProdekan: boolean
   isDekan: boolean
   isStudentskaSluzba: boolean
+  is2FActive: boolean
 }

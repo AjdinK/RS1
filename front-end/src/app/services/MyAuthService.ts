@@ -38,6 +38,10 @@ export class MyAuthService{
     return this.getAuthorizationToken()?.korisnickiNalog.isStudent ?? false
   }
 
+  is2FActive():boolean {
+    return this.getAuthorizationToken()?.korisnickiNalog.is2FActive ?? false
+  }
+
   isProdekan():boolean{
     return this.getAuthorizationToken()?.korisnickiNalog.isProdekan ?? false
   }
@@ -50,5 +54,6 @@ export class MyAuthService{
       window.localStorage.setItem("my-auth-token", JSON.stringify(x));
     }
   }
+
 
 }
