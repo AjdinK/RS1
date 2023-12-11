@@ -5,7 +5,7 @@ namespace FIT_Api_Example.Helper.Auth
 {
     public class AutorizacijaSwaggerHeader : IOperationFilter
     {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        public void Apply (OpenApiOperation operation, OperationFilterContext context)
         {
             operation.Parameters.Add(new OpenApiParameter
             {

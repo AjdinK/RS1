@@ -17,7 +17,7 @@ namespace FIT_Api_Example.Helper.Auth
     }
     public class MyAuthorizationAsyncActionFilter : IAsyncActionFilter
     {
-        public async Task OnActionExecutionAsync(
+        public async Task OnActionExecutionAsync (
             ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var authService = context.HttpContext.RequestServices.GetService<MyAuthService>()!;

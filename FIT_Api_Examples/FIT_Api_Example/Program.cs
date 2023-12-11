@@ -13,20 +13,18 @@ var config = new ConfigurationBuilder()
     .Build();
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(config.GetConnectionString("db1")));
+options.UseSqlServer(config.GetConnectionString("db1")));
 
 /*
 builder.Services.AddDbContext<LogDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbLog")));
 */
 
-
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(x=>x.OperationFilter<AutorizacijaSwaggerHeader>());
+builder.Services.AddSwaggerGen(x=>x.OperationFilter <AutorizacijaSwaggerHeader>());
 builder.Services.AddTransient<MyAuthService>();
 builder.Services.AddTransient<MyActionLogService>();
 builder.Services.AddTransient<MyEmailSenderService>();
@@ -53,12 +51,8 @@ app.UseCors(
         .AllowCredentials()
 ); //This needs to set everything allowed
 
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
