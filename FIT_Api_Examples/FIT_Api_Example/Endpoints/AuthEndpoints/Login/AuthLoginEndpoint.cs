@@ -13,7 +13,6 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyEmailSenderService _emailSenderService;
 
-
     public AuthLoginEndpoint(ApplicationDbContext applicationDbContext, MyEmailSenderService emailSenderService)
     {
         _applicationDbContext = applicationDbContext;

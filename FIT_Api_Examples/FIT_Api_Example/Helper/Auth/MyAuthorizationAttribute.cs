@@ -11,7 +11,7 @@ namespace FIT_Api_Example.Helper.Auth
 {
     public class MyAuthorizationAttribute : TypeFilterAttribute
     {
-        public MyAuthorizationAttribute() : base(typeof(MyAuthorizationAsyncActionFilter))
+        public MyAuthorizationAttribute () : base(typeof(MyAuthorizationAsyncActionFilter))
         {
         }
     }
