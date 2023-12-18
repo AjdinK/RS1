@@ -7,16 +7,17 @@ namespace FIT_Api_Example.Services
 {
     public class MyActionLogService
     {
-        public async Task Create (HttpContext httpContext)
+        public async Task Create(HttpContext httpContext)
         {
             var authService = httpContext.RequestServices.GetService<MyAuthService>()!;
             var request = httpContext.Request;
+
             var queryString = request.Query;
 
             //if (queryString.Count == 0 && !request.HasFormContentType)
             //    return 0;
-            //IHttpRequestFeature feature = request.HttpContext.Features.Get<IHttpRequestFeature>();
 
+            //IHttpRequestFeature feature = request.HttpContext.Features.Get<IHttpRequestFeature>();
             string detalji = "";
             if (request.HasFormContentType)
             {
@@ -47,6 +48,7 @@ namespace FIT_Api_Example.Services
             }*/
 
             ApplicationDbContext db = request.HttpContext.RequestServices.GetService<ApplicationDbContext>();
+
             db.Add(x);
             await db.SaveChangesAsync();
         }

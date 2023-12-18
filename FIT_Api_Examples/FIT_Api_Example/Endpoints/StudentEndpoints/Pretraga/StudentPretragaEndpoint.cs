@@ -28,6 +28,7 @@ public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  St
                 (x.Prezime + " " + x.Ime).StartsWith(request.Pretraga) 
             )
             .OrderByDescending(x=>x.ID)
+            .Where(x => x.Obrisan == false)
             .Select(x=>new StudentPretragaResponseStudent()
             {
                 ID = x.ID,
@@ -37,7 +38,8 @@ public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  St
                 KorisnickoIme = x.KorisnickoIme,
                 OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
                 OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
-                SlikaKorisnika = x.SlikaKorisnika
+                SlikaKorisnika = x.SlikaKorisnika,
+                OpstinaRodjenjaID = x.OpstinaRodjenjaID
             })
             .ToListAsync(cancellationToken: cancellationToken);
 

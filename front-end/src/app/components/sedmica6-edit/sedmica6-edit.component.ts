@@ -7,6 +7,10 @@ import {
   Student6PretragaResponseStudenti,
   StudentGetAllEndpoint
 } from "../../endpoints/student-endpoints/student-getall.endpoint";
+import {
+  OpstineGetAllEndpoint,
+  OpstineGetAllResponseOpstina
+} from "../../endpoints/opstine-endpoints/opstine-getall.endpoint";
 
 @Component({
   selector: 'app-sedmica6-edit',
@@ -16,9 +20,14 @@ import {
 export class Sedmica6EditComponent implements OnInit {
   public studenti:Student6PretragaResponseStudenti[]=[];
   public odabraniStudent: StudentSnimiRequest | null = null;
+  modalTitle = "Edit student";
+  public opstine: OpstineGetAllResponseOpstina[] = [];
+  public pretragaNaziv: string="";
+
   constructor(
     private snimiEndpoint:StudentSnimiEndpoint,
-    private getAllEndpoint:StudentGetAllEndpoint
+    private getAllEndpoint:StudentGetAllEndpoint,
+    private opstineGetAllEndpoint: OpstineGetAllEndpoint
     ) { }
 
   ngOnInit(): void {
@@ -31,16 +40,32 @@ export class Sedmica6EditComponent implements OnInit {
         alert("greska: " + x.error)
       }
     })
+
+    this.opstineGetAllEndpoint
+      .obradi()
+      .subscribe({
+        next: x=>{
+          this.opstine = x.opstine;
+        }
+      })
   }
 
   odaberi(item: Student6PretragaResponseStudenti) {
     this.odabraniStudent = {
       ime: item.ime,
       prezime: item.prezime,
-      id: item.id
+      id: item.id,
+      opstinaRodjenjaID: item.opstinaRodjenjaID
     } ;
   }
+  getFiltriraniStudetni() {
+    return this.studenti
+      .filter(x=>
 
+        (x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) || x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
+
+      )
+  }
 
   snimi(): void {
 
@@ -49,5 +74,9 @@ export class Sedmica6EditComponent implements OnInit {
       this.ngOnInit();
       this.odabraniStudent = null
     })
+  }
+
+  zatvori() {
+    this.odabraniStudent = null;
   }
 }

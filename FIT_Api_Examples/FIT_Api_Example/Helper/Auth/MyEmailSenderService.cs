@@ -38,7 +38,6 @@ namespace FIT_Api_Example.Helper.Auth
             SmtpServer.UseDefaultCredentials = false;
             SmtpServer.Credentials = new NetworkCredential(from, lozinka);
             SmtpServer.Send(email);
-
         }
     }
 }

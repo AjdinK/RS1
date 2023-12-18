@@ -27,4 +27,5 @@ public abstract class  KorisnickiNalog
     public bool isStudentskaSluzba { get; set; }
     public bool Is2FActive { get; set; }
 
+
 }

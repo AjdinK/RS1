@@ -26,6 +26,7 @@ public class StudentGetAllEndpoint: MyBaseEndpoint<StudentSedmica5Request,  Stud
     {
         var student = await _applicationDbContext.Student
             .OrderByDescending(x => x.ID)
+            .Where(x => x.Obrisan == false)
             .Select(x=>new StudentGetAllResponseStudent()
             {
                 ID = x.ID,
@@ -35,8 +36,10 @@ public class StudentGetAllEndpoint: MyBaseEndpoint<StudentSedmica5Request,  Stud
                 KorisnickoIme = x.KorisnickoIme,
                 OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
                 OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
-                SlikaKorisnika = x.SlikaKorisnika
+                SlikaKorisnika = x.SlikaKorisnika,
+                OpstinaRodjenjaID = x.OpstinaRodjenjaID
             })
+            
             .ToListAsync(cancellationToken: cancellationToken);
 
         return new StudentGetAllResponse

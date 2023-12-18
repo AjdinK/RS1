@@ -19,6 +19,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<PrijavaIspita> PrijavaIspita{ get; set; }
 
     public DbSet<LogKretanjePoSistemu> LogKretanjePoSistemu { get; set; }
+    public DbSet<UpisAkGodine> UpisAkGodine { get; set; }
 
 
     public ApplicationDbContext(

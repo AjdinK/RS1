@@ -21,6 +21,7 @@ export interface Student6PretragaResponse {
 }
 
 export interface Student6PretragaResponseStudenti {
+  opstinaRodjenjaID: number;
   id: number
   ime: string
   prezime: string

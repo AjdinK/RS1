@@ -10,6 +10,7 @@ public class StudentPretragaResponseStudent
     public int ID{ get; set; }
     public string Ime{ get; set; }
     public string Prezime{ get; set; }
+    public int OpstinaRodjenjaID{ get; set; }
     public string OpstinaRodjenjaNaziv{ get; set; }
     public string OpstinaRodjenjaDrzava{ get; set; }
     public DateTime DatumRodjenja{ get; set; }

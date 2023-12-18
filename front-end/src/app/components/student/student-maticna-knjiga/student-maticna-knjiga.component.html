@@ -1,0 +1,46 @@
+<p>student-maticna-knjiga works!</p>
+
+{{studentid}}
+
+
+
+<form>
+
+  <div class="mb-3">
+    <label for="ime-id" class="form-label">Ime</label>
+    <input  class="form-control" id="ime-id" [value]="podaci?.ime">
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Prezime</label>
+    <input  class="form-control" [value]="podaci?.prezime">
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>akademskaGodina</th>
+    <th>godinaStudija</th>
+    <th>obnova</th>
+    <th>zimskiSemestarUpis</th>
+    <th>zimskiSemestarOvjera</th>
+    <th>korisnik</th>
+    <th>Akcija</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of podaci?.upisaneGodine">
+    <td>{{ item.id }}</td>
+    <td>{{ item.akademskaGodina }}</td>
+    <td>{{ item.godinaStudija }}</td>
+    <td>{{ item.obnova }}</td>
+    <td>{{ item.zimskiSemestarUpis |date }}</td>
+    <td>{{ item.zimskiSemestarOvjera |date }}</td>
+    <td>{{ item.korisnikEvidentirao.ime }}</td>
+    <td>
+      <button  class="btn btn-warning" (click)="ovjera(item)">Ovjeri zimski semstar</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

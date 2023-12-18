@@ -12,4 +12,5 @@ public class Student : KorisnickiNalog
     public int OpstinaRodjenjaID { get; set; }
     public Opstina OpstinaRodjenja { get; set; }
     public DateTime DatumRodjenja { get; set; }
+    public bool Obrisan { get; set; }
 }
