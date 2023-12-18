@@ -58,12 +58,11 @@ export class Sedmica6EditComponent implements OnInit {
       opstinaRodjenjaID: item.opstinaRodjenjaID
     } ;
   }
+
   getFiltriraniStudetni() {
     return this.studenti
       .filter(x=>
-
-        (x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) || x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
-
+        (x.ime + ' ' + x.prezime).startsWith (this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) || x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
       )
   }
 

@@ -17,7 +17,6 @@ export class StudentMaticnaKnjigaComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentid = this.activatedRoute.snapshot.params["studentid"];
-
     this.studentMaticnaKnjigaGetEndpoint.obradi(this.studentid)
       .subscribe({
         next: x=>{
@@ -25,8 +24,6 @@ export class StudentMaticnaKnjigaComponent implements OnInit {
         }
       })
   }
-
   ovjera(item: StudentMaticnaKnjigaGetResponseUpisaneGodine) {
-
   }
 }

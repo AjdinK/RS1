@@ -46,9 +46,7 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
         student.OpstinaRodjenjaID = request.OpstinaRodjenjaID;
 
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
-
         return student.ID;
+
     }
-
-
 }
