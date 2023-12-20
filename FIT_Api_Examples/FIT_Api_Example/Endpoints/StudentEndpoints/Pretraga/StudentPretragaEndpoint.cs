@@ -19,17 +19,19 @@ public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  St
     }
 
     [HttpGet("pretraga")]
-    public override async Task<StudentPretragaResponse> Obradi([FromQuery]StudentPretragaRequest request, CancellationToken cancellationToken)
+    public override async Task <StudentPretragaResponse> 
+        Obradi ([FromQuery] StudentPretragaRequest request, CancellationToken cancellationToken)
     {
        
-        var student = await _applicationDbContext.Student.Where(x =>
+        var student = await _applicationDbContext.Student
+            .Where(x =>
                 request.Pretraga == null || 
                 (x.Ime + " " + x.Prezime).StartsWith(request.Pretraga) ||
                 (x.Prezime + " " + x.Ime).StartsWith(request.Pretraga) 
             )
             .OrderByDescending(x=>x.ID)
             .Where(x => x.Obrisan == false)
-            .Select(x=>new StudentPretragaResponseStudent()
+            .Select(x => new StudentPretragaResponseStudent()
             {
                 ID = x.ID,
                 DatumRodjenja = x.DatumRodjenja,

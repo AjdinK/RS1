@@ -2,7 +2,7 @@
 
 public class StudentGetAllResponse
 {
-    public List<StudentGetAllResponseStudent> Studenti { get; set; }
+    public List <StudentGetAllResponseStudent> Studenti { get; set; }
 }
 
 public class StudentGetAllResponseStudent

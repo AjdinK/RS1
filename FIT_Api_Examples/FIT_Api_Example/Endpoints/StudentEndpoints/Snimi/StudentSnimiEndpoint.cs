@@ -25,13 +25,14 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
     {
        
         Data.Models.Student? student;
+
         if (request.ID == 0)
         {
             student = new Data.Models.Student();
             _applicationDbContext.Add(student);
-
             student.SlikaKorisnika = Config.SlikeURL + "empty.png";
         }
+
         else
         {
             student = _applicationDbContext.Student.Include(s => s.OpstinaRodjenja.drzava).FirstOrDefault(s => s.ID == request.ID);
@@ -41,9 +42,9 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 
         student.Ime = request.Ime.RemoveTags();
         student.Prezime = request.Prezime.RemoveTags();
+        student.OpstinaRodjenjaID = request.OpstinaRodjenjaID;
         //student.BrojIndeksa = request.BrojIndeksa;
         //student.DatumRodjenja = request.DatumRodjenja;
-        student.OpstinaRodjenjaID = request.OpstinaRodjenjaID;
 
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
         return student.ID;

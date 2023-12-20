@@ -19,6 +19,6 @@ export interface OpstineGetAllResponseOpstina {
   opis: string
 }
 export interface OpstineGetAllResponse {
-  opstine: OpstineGetAllResponseOpstina[]
+  opstine: OpstineGetAllResponseOpstina []
 }
 

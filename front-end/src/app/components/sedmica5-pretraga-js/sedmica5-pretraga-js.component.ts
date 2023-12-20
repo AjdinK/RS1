@@ -19,7 +19,7 @@ export class Sedmica5PretragaJsComponent implements OnInit {
     private router: Router,
     ) {
   }
-  studenti: StudentiGetAllResponseStudent[] = [];
+  studenti: StudentiGetAllResponseStudent [] = [];
   pretragaNaziv="";
   ngOnInit(): void {
 
@@ -31,6 +31,7 @@ export class Sedmica5PretragaJsComponent implements OnInit {
   }
 
   getFiltriraniStudetni() {
-    return this.studenti.filter(x=>(x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv))
+    return this.studenti.filter(x=>
+      (x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv))
   }
 }
