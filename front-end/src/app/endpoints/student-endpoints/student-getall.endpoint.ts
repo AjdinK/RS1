@@ -7,7 +7,7 @@ import {Injectable} from "@angular/core";
 export class StudentGetAllEndpoint implements  MyBaseEndpoint <void, Student6PretragaResponse> {
   constructor(public httpClient:HttpClient) { }
 
-  obradi(request: void): Observable<Student6PretragaResponse> {
+  obradi(request: void): Observable <Student6PretragaResponse> {
     let url= MojConfig.adresa_servera +`/student/pretraga`;
       return this.httpClient.get<Student6PretragaResponse>(url);
     }
