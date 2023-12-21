@@ -15,13 +15,13 @@ export class Sedmica5PretragaJsComponent implements OnInit {
 
   constructor(
     public httpClient: HttpClient,
-    private myAuthService:MyAuthService,
+    private myAuthService: MyAuthService,
     private router: Router,
     ) {}
 
   studenti: StudentiGetAllResponseStudent [] = [];
-
   pretragaNaziv="";
+
   ngOnInit(): void {
   this.fetchStudenti();
 }

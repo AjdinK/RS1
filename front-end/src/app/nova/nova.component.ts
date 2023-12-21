@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {MyAuthService} from "../services/MyAuthService";
 
 @Component({
   selector: 'app-nova',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovaComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private httpKlijent : HttpClient,
+    private router : Router,
+    private myAuthService: MyAuthService,
+  ) { }
 
   ngOnInit(): void {
   }

@@ -9,10 +9,8 @@ export class StudentSnimiEndpoint implements  MyBaseEndpoint<StudentSnimiRequest
 
   obradi(request: StudentSnimiRequest): Observable<number> {
       let url=MojConfig.adresa_servera+`/student/snimi`;
-
       return this.httpClient.post<number>(url, request);
     }
-
 }
 
 export interface StudentSnimiRequest {

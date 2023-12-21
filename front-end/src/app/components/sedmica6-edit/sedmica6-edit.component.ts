@@ -19,7 +19,7 @@ import {
 })
 export class Sedmica6EditComponent implements OnInit {
 
-  public studenti:Student6PretragaResponseStudenti [] = [];
+  public studenti: Student6PretragaResponseStudenti [] = [];
   public odabraniStudent: StudentSnimiRequest | null = null;
   modalTitle = "Edit student";
   public opstine: OpstineGetAllResponseOpstina [] = [];

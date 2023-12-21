@@ -1,6 +1,5 @@
-export interface StudentiGetAllResponse{
-  studenti: StudentiGetAllResponseStudent[]
-
+export interface StudentiGetAllResponse {
+  studenti: StudentiGetAllResponseStudent []
 }
 
 export interface StudentiGetAllResponseStudent {
