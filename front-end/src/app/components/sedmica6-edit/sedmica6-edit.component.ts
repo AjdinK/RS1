@@ -21,33 +21,40 @@ export class Sedmica6EditComponent implements OnInit {
 
   public studenti: Student6PretragaResponseStudenti [] = [];
   public odabraniStudent: StudentSnimiRequest | null = null;
-  modalTitle = "Edit student";
   public opstine: OpstineGetAllResponseOpstina [] = [];
-  public pretragaNaziv: string="";
+  public pretragaNaziv: string = "";
+  modalTitle = "Edit student";
 
   constructor(
-    private snimiEndpoint:StudentSnimiEndpoint,
-    private getAllEndpoint:StudentGetAllEndpoint,
+    private snimiEndpoint: StudentSnimiEndpoint,
+    private getAllEndpoint: StudentGetAllEndpoint,
     private opstineGetAllEndpoint: OpstineGetAllEndpoint
     ) { }
 
-  ngOnInit(): void {
-    let url=MojConfig.adresa_servera+`/student/pretraga`;
+  ngOnInit (): void {
+    this.fetchStudenti();
+    this.fetchOpstine();
+  }
+
+  fetchStudenti () {
     this.getAllEndpoint.obradi().subscribe({
       next: x =>{
-        this.studenti=x.studenti;
+        this.studenti = x.studenti;
       },
       error: x =>{
         alert("greska: " + x.error)
       }
     })
+  }
 
-    this.opstineGetAllEndpoint
-      .obradi()
-      .subscribe({
+  fetchOpstine () {
+    this.opstineGetAllEndpoint.obradi().subscribe({
         next: x=>{
           this.opstine = x.opstine;
-        }
+        },
+      error: x=> {
+        alert("greska: " + x.error)
+      }
       })
   }
 
@@ -68,7 +75,6 @@ export class Sedmica6EditComponent implements OnInit {
   }
 
   snimi(): void {
-
     this.snimiEndpoint.obradi(this.odabraniStudent!).subscribe((x)=>{
       alert("uredu")
       this.ngOnInit();

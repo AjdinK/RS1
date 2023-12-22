@@ -22,14 +22,13 @@ public class StudentSedmica5Endpoint : MyBaseEndpoint<StudentSedmica5Request, Li
     [HttpGet("sedmica5")]
     public override async Task<List<Student>> Obradi([FromQuery] StudentSedmica5Request request, CancellationToken cancellationToken)
     {
-   
         var data = _applicationDbContext.Student
               .Include(s => s.OpstinaRodjenja.drzava)
-              .Where(x => request.ime_prezime == null || (x.Ime + " " + x.Prezime).StartsWith(request.ime_prezime) || (x.Prezime + " " + x.Ime)
-              .StartsWith(request.ime_prezime))
+              .Where(x => request.ime_prezime == null || 
+              (x.Ime + " " + x.Prezime).StartsWith(request.ime_prezime) ||
+              (x.Prezime + " " + x.Ime).StartsWith(request.ime_prezime))
               .OrderByDescending(s => s.ID)
               .AsQueryable();
         return data.Take(100).ToList();
-
     }
 }

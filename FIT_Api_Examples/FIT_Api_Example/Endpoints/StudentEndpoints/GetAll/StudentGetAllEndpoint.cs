@@ -24,7 +24,7 @@ public class StudentGetAllEndpoint : MyBaseEndpoint <StudentGetAllRequest, Stude
     public override async Task <StudentGetAllResponse> Obradi 
         ([FromQuery] StudentGetAllRequest request, CancellationToken cancellationToken)
     {
-        var student = await _applicationDbContext.Student
+        List<StudentGetAllResponseStudent>? student = await _applicationDbContext.Student
             .OrderByDescending(x => x.ID)
             .Where(x => x.Obrisan == false)
             .Select(x => new StudentGetAllResponseStudent()
