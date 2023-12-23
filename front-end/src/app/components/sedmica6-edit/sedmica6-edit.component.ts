@@ -29,7 +29,7 @@ export class Sedmica6EditComponent implements OnInit {
     private snimiEndpoint: StudentSnimiEndpoint,
     private getAllEndpoint: StudentGetAllEndpoint,
     private opstineGetAllEndpoint: OpstineGetAllEndpoint
-    ) { }
+    ) {}
 
   ngOnInit (): void {
     this.fetchStudenti();
@@ -58,7 +58,7 @@ export class Sedmica6EditComponent implements OnInit {
       })
   }
 
-  odaberi(item: Student6PretragaResponseStudenti) {
+  odaberi (item: Student6PretragaResponseStudenti) {
     this.odabraniStudent = {
       ime: item.ime,
       prezime: item.prezime,
@@ -68,10 +68,10 @@ export class Sedmica6EditComponent implements OnInit {
   }
 
   getFiltriraniStudetni() {
-    return this.studenti
-      .filter(x=>
-        (x.ime + ' ' + x.prezime).startsWith (this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) || x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
-      )
+    return this.studenti.filter (x=>
+        (x.ime + ' ' + x.prezime).startsWith (this.pretragaNaziv) ||
+        (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) ||
+        x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase()))
   }
 
   snimi(): void {
@@ -79,6 +79,19 @@ export class Sedmica6EditComponent implements OnInit {
       alert("uredu")
       this.ngOnInit();
       this.odabraniStudent = null
+    })
+  }
+
+  snimi2(): void {
+    this.snimiEndpoint.obradi(this.odabraniStudent!).subscribe({
+      next: x=>{
+        alert("uredu")
+        this.ngOnInit();
+        this.odabraniStudent = null
+      },
+      error: x=> {
+        alert("greska: " + x.error)
+      }
     })
   }
 

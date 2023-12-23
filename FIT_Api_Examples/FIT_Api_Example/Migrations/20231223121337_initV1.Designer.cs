@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FIT_Api_Example.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231213095858_deletstudent")]
-    partial class deletstudent
+    [Migration("20231223121337_initV1")]
+    partial class initV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

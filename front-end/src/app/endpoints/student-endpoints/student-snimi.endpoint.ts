@@ -4,10 +4,10 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 @Injectable({providedIn: 'root'})
-export class StudentSnimiEndpoint implements  MyBaseEndpoint<StudentSnimiRequest, number>{
+export class StudentSnimiEndpoint implements  MyBaseEndpoint <StudentSnimiRequest, number> {
   constructor(public httpClient:HttpClient) { }
 
-  obradi(request: StudentSnimiRequest): Observable<number> {
+  obradi(request: StudentSnimiRequest): Observable <number> {
       let url=MojConfig.adresa_servera+`/student/snimi`;
       return this.httpClient.post<number>(url, request);
     }

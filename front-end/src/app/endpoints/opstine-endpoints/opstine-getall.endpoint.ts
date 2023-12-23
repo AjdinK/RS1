@@ -5,10 +5,9 @@ import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 @Injectable({providedIn: 'root'})
 export class OpstineGetAllEndpoint implements  MyBaseEndpoint <void, OpstineGetAllResponse>{
-  constructor(public httpClient:HttpClient) {
+  constructor(public httpClient:HttpClient) {}
 
-  }
-  obradi(request: void): Observable<OpstineGetAllResponse> {
+  obradi (request: void): Observable<OpstineGetAllResponse> {
     let url=MojConfig.adresa_servera+`/Opstina/get-all`;
       return this.httpClient.get<OpstineGetAllResponse>(url);
     }
