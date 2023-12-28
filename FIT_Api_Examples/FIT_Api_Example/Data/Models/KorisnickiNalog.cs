@@ -5,28 +5,27 @@ using System.Text.Json.Serialization;
 namespace FIT_Api_Example.Data.Models;
 
 [Table("KorisnickiNalog")]
-public abstract class KorisnickiNalog
+public abstract class  KorisnickiNalog
 {
     [Key]
     public int ID { get; set; }
     public string KorisnickoIme { get; set; }
+    [JsonIgnore]
+    public string Lozinka { get; set; }
     public string SlikaKorisnika { get; set; }
 
-   
+    [JsonIgnore]
+    public Student? Student => this as Student;
+
+    [JsonIgnore]
+    public Nastavnik? Nastavnik => this as Nastavnik;
+    public bool isNastavnik => Nastavnik != null;
+    public bool isStudent => Student != null;
     public bool isAdmin { get; set; }
     public bool isProdekan { get; set; }
     public bool isDekan { get; set; }
     public bool isStudentskaSluzba { get; set; }
     public bool Is2FActive { get; set; }
 
-    [JsonIgnore]
-    public string Lozinka { get; set; }
-    [JsonIgnore]
-    public Student? Student => this as Student;
-    [JsonIgnore]
-    public Nastavnik? Nastavnik => this as Nastavnik;
-
-    public bool isNastavnik => Nastavnik != null;
-    public bool isStudent => Student != null;
 
 }

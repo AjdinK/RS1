@@ -18,60 +18,54 @@ import {
   styleUrls: ['./sedmica6-edit.component.css']
 })
 export class Sedmica6EditComponent implements OnInit {
-
-  public studenti: Student6PretragaResponseStudenti [] = [];
+  public studenti:Student6PretragaResponseStudenti[]=[];
   public odabraniStudent: StudentSnimiRequest | null = null;
-  public opstine: OpstineGetAllResponseOpstina [] = [];
-  public pretragaNaziv: string = "";
-  modalTitle = "Edit student";
+  public modalTitle = "Edit student";
+  public opstine: OpstineGetAllResponseOpstina[] = [];
+  public pretragaNaziv: string="";
 
   constructor(
-    private snimiEndpoint: StudentSnimiEndpoint,
-    private getAllEndpoint: StudentGetAllEndpoint,
+    private snimiEndpoint:StudentSnimiEndpoint,
+    private getAllEndpoint:StudentGetAllEndpoint,
     private opstineGetAllEndpoint: OpstineGetAllEndpoint
-    ) {}
+    ) { }
 
-  ngOnInit (): void {
-    this.fetchStudenti();
-    this.fetchOpstine();
-  }
-
-  fetchStudenti () {
+  ngOnInit(): void {
+    let url=MojConfig.adresa_servera+`/student/pretraga`;
     this.getAllEndpoint.obradi().subscribe({
       next: x =>{
-        this.studenti = x.studenti;
+        this.studenti=x.studenti;
       },
       error: x =>{
         alert("greska: " + x.error)
       }
     })
-  }
 
-  fetchOpstine () {
-    this.opstineGetAllEndpoint.obradi().subscribe({
+    this.opstineGetAllEndpoint
+      .obradi()
+      .subscribe({
         next: x=>{
           this.opstine = x.opstine;
-        },
-      error: x=> {
-        alert("greska: " + x.error)
-      }
+        }
       })
   }
 
-  odaberi (item: Student6PretragaResponseStudenti) {
+  odaberi(item: Student6PretragaResponseStudenti) {
     this.odabraniStudent = {
       ime: item.ime,
       prezime: item.prezime,
       id: item.id,
-      opstinaRodjenjaID: item.opstinaRodjenjaID
+      opstinaRodjenjaID: item.opstinaRodjenjaID,
+      slika_base64_format:""
     } ;
   }
-
   getFiltriraniStudetni() {
-    return this.studenti.filter (x=>
-        (x.ime + ' ' + x.prezime).startsWith (this.pretragaNaziv) ||
-        (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) ||
-        x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase()))
+    return this.studenti
+      .filter(x=>
+
+        (x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) || x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
+
+      )
   }
 
   snimi(): void {
@@ -82,20 +76,23 @@ export class Sedmica6EditComponent implements OnInit {
     })
   }
 
-  snimi2(): void {
-    this.snimiEndpoint.obradi(this.odabraniStudent!).subscribe({
-      next: x=>{
-        alert("uredu")
-        this.ngOnInit();
-        this.odabraniStudent = null
-      },
-      error: x=> {
-        alert("greska: " + x.error)
-      }
-    })
-  }
-
   zatvori() {
     this.odabraniStudent = null;
   }
+
+  generisi_preview() {
+    // @ts-ignore
+    var file = document.getElementById("slika-input").files[0];
+    if (file && this.odabraniStudent)
+    {
+      var reader = new FileReader();
+      reader.onload = ()=>{
+        this.odabraniStudent!.slika_base64_format = reader.result?.toString();
+      }
+      reader.readAsDataURL(file)
+    }
+
+  }
+
+  protected readonly MojConfig = MojConfig;
 }

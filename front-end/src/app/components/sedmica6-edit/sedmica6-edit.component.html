@@ -34,13 +34,18 @@
               <option *ngFor="let x of opstine" [value]="x.id">{{x.opis}}</option>
             </select>
           </div>
-        </div>
 
+
+          <div>
+            <label>Nova slika</label>
+            <input id="slika-input" type="file" accept="image/*" (change)="generisi_preview()">
+            <img style="max-width: 100%; height: 200px" src="{{this.odabraniStudent?.slika_base64_format}}">
+          </div>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" (click)="zatvori()" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" (click)="snimi()">Save changes</button>
         </div>
-
       </div>
     </div>
   </div>
@@ -68,10 +73,10 @@
     <td>{{ item.datumRodjenja | date }}</td>
     <td>{{ item.korisnickoIme }}</td>
     <td>
-      <img class="profilna-slika" src="{{ item.slikaKorisnika }}">
+      <img class="profilna-slika" src="{{MojConfig.adresa_servera}}/student/slika?id={{item.id}}">
     </td>
     <td>
-      <button  class="btn btn-warning" (click) = "odaberi(item)">Odaberi</button>
+      <button  class="btn btn-warning" (click)="odaberi(item)">Odaberi</button>
       <a class="btn btn-primary" [routerLink]="['/student/maticna-knjiga', item.id]">Maticna knjiga</a>
     </td>
   </tr>

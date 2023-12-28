@@ -76,7 +76,7 @@ public class PodaciController : ControllerBase
         predmeti.Add(new Predmet { Ects = 5, Naziv = "Razvoj softvera I", Sifra = "RS-RS1" });
         predmeti.Add(new Predmet { Ects = 5, Naziv = "Razvoj softvera II", Sifra = "RS-RS2" });
 
-        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Denis", Prezime = "Music", KorisnickoIme = "denis", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", });
+        nastavnici.Add(new Nastavnik { Is2FActive = false, Ime = "Denis", Prezime = "Music", KorisnickoIme = "denis", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", });
         nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Emina", Prezime = "Junuz", KorisnickoIme = "emina", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", });
         nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Iris", Prezime = "Memic-Fisic", KorisnickoIme = "iris", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", isProdekan = true });
         nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Nina", Prezime = "Bijedic", KorisnickoIme = "nina", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", isDekan = true });

@@ -14,16 +14,13 @@ namespace FIT_Api_Example.Endpoints.OpstinaEndpoints.GetAll
         {
             _dbContext = dbContext;
         }
-
         [HttpGet("get-all")]
-        public override async Task <OpstinaGetAllResponse> Obradi ([FromQuery] NoRequest request, CancellationToken cancellationToken)
+        public override async Task<OpstinaGetAllResponse> Obradi([FromQuery]NoRequest request, CancellationToken cancellationToken)
         {
-            var opstine = await _dbContext.Opstina
-                .OrderBy(o => o.ID)
-                .Select(o => new OpstinaGetAllResponseOpstina (o.ID, o.drzava.Naziv + " " + o.description))
-                .ToListAsync(cancellationToken: cancellationToken);
+            var opstine =await _dbContext.Opstina.Select(x => new OpstinaGetAllResponseOpstina(x.ID, x.drzava.Naziv + " " + x.description)
+            ).ToListAsync(cancellationToken: cancellationToken);
 
-            return new OpstinaGetAllResponse (opstine);
+            return new OpstinaGetAllResponse(opstine);
         }
     }
 }

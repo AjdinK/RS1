@@ -9,7 +9,7 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetAll;
 
 [Route("student")]
 [MyAuthorization]
-public class StudentGetAllEndpoint : MyBaseEndpoint <StudentGetAllRequest, StudentGetAllResponse>
+public class StudentGetAllEndpoint: MyBaseEndpoint<StudentSedmica5Request,  StudentGetAllResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
@@ -21,26 +21,26 @@ public class StudentGetAllEndpoint : MyBaseEndpoint <StudentGetAllRequest, Stude
     }
 
     [HttpGet("get-all")]
-    public override async Task <StudentGetAllResponse> Obradi 
-        ([FromQuery] StudentGetAllRequest request, CancellationToken cancellationToken)
+  
+    public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentSedmica5Request request, CancellationToken cancellationToken)
     {
-        List<StudentGetAllResponseStudent>? student = await _applicationDbContext.Student
+        var student = await _applicationDbContext.Student
             .OrderByDescending(x => x.ID)
             .Where(x => x.Obrisan == false)
-            .Select(x => new StudentGetAllResponseStudent()
+            .Select(x=>new StudentGetAllResponseStudent()
             {
                 ID = x.ID,
                 DatumRodjenja = x.DatumRodjenja,
                 Ime = x.Ime,
-                Prezime = x.Prezime,
+                Prezime =  x.Prezime,
                 KorisnickoIme = x.KorisnickoIme,
                 OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
                 OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
                 SlikaKorisnika = x.SlikaKorisnika,
                 OpstinaRodjenjaID = x.OpstinaRodjenjaID
-
             })
-            .ToListAsync (cancellationToken : cancellationToken);
+            
+            .ToListAsync(cancellationToken: cancellationToken);
 
         return new StudentGetAllResponse
         {

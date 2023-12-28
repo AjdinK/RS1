@@ -41,7 +41,7 @@ public class StudentMaticnaKnjigaGetEndpoint : MyBaseEndpoint<int, StudentMaticn
                     KorisnikEvidentirao = new StudentMaticnaKnjigaGetResponseUpisaneGodineKorisnik
                     {
                         Ime = x.EvidentiraoKorisnik.KorisnickoIme, //todo: dodati ime i prezime u korisnik
-                        Prezime = x.EvidentiraoKorisnik.KorisnickoIme, //todo: dodati ime i prezime u korisnik
+                        Prezime = x.EvidentiraoKorisnik.KorisnickoIme,//todo: dodati ime i prezime u korisnik
                         Id = x.Id
                     },
                     Id = x.Id,
@@ -51,6 +51,9 @@ public class StudentMaticnaKnjigaGetEndpoint : MyBaseEndpoint<int, StudentMaticn
                 })
                 .ToListAsync(cancellationToken)
         };
+        
+
+
         return result;
     }
 }

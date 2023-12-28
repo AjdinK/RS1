@@ -17,7 +17,6 @@ import { HomeStudentComponent } from './components/home-student/home-student.com
 import { HomeNastavnikComponent } from './components/home-nastavnik/home-nastavnik.component';
 import { Authorize2fComponent } from './components/authorize2f/authorize2f.component';
 import { StudentMaticnaKnjigaComponent } from './components/student/student-maticna-knjiga/student-maticna-knjiga.component';
-import { NovaComponent } from './nova/nova.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +29,7 @@ import { NovaComponent } from './nova/nova.component';
     HomeStudentComponent,
     HomeNastavnikComponent,
     Authorize2fComponent,
-    StudentMaticnaKnjigaComponent,
-    NovaComponent
+    StudentMaticnaKnjigaComponent
   ],
     imports: [
         BrowserModule,

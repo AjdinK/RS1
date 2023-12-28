@@ -22,7 +22,11 @@ public class ApplicationDbContext : DbContext
     public DbSet<UpisAkGodine> UpisAkGodine { get; set; }
 
 
-    public ApplicationDbContext(DbContextOptions options) : base(options) {}
+    public ApplicationDbContext(
+        DbContextOptions options) : base(options)
+    {
+
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

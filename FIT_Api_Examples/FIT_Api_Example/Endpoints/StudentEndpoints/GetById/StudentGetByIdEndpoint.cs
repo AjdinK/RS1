@@ -19,8 +19,9 @@ public class StudentGetByIdEndpoint: MyBaseEndpoint<int, StudentGetByIdResponse>
     }
 
     [HttpGet("{id}")]
-    public override async Task <StudentGetByIdResponse> Obradi (int id, CancellationToken cancellationToken)
+    public override async Task<StudentGetByIdResponse> Obradi(int id, CancellationToken cancellationToken)
     {
+     
         var student = await _applicationDbContext.Student
             .OrderByDescending(x => x.ID)
             .Select(x=>new StudentGetByIdResponse

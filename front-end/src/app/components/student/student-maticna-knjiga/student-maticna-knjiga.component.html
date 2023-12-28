@@ -2,7 +2,10 @@
 
 {{studentid}}
 
+
+
 <form>
+
   <div class="mb-3">
     <label for="ime-id" class="form-label">Ime</label>
     <input  class="form-control" id="ime-id" [value]="podaci?.ime">
@@ -41,3 +44,57 @@
   </tr>
   </tbody>
 </table>
+
+
+
+<div *ngIf="upisNoviSemestar">
+
+  <div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLiveLabel">Novi semestar za {{modalTitle}}</h1>
+          <button  class="btn-close" data-bs-dismiss="modal" (click)="zatvori()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label class="form-label"> Datum: </label>
+            <input class="form-control" type="date" [value]="upisNoviSemestar.zimskiSemestarUpis">
+          </div>
+
+          <div>
+            <label class="form-label"> Godina studija: </label>
+            <input class="form-control" [(ngModel)]="upisNoviSemestar.godinaStudija">
+          </div>
+
+          <div>
+            <label class="form-label"> Ak. godina: </label>
+            <select class="form-control" [(ngModel)]="upisNoviSemestar.akademskaGodinaId">
+              <option *ngFor="let x of akademskeGodinePodaci" [value]="x.id">{{x.opis}}</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label"> Cijena skolarine: </label>
+            <input class="form-control" [(ngModel)]="upisNoviSemestar.cijenaSkolarine">
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="upisNoviSemestar.obnova" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Jel obnova
+            </label>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="zatvori()" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="snimi()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button class="btn btn-primary" (click)="otvoriDialog()">Otvori dialog</button>
