@@ -17,21 +17,17 @@ export class AppComponent implements OnInit{
     private httpClient: HttpClient,
     public myAuthService: MyAuthService,
     private signalRService: SignalRService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.signalRService.otvori_ws_konekciju()
   }
-
 
   idi(s: string) {
     this.router.navigate([s])
   }
 
   logout() {
-
-
 
     let token = window.localStorage.getItem("my-auth-token")??"";
     window.localStorage.setItem("my-auth-token","");
