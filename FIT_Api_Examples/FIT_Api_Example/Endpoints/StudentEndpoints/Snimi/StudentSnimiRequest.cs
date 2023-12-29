@@ -8,6 +8,5 @@ public class StudentSnimiRequest
     //public string BrojIndeksa { get; set; }
     public int OpstinaRodjenjaID { get; set; }
     //public DateTime DatumRodjenja { get; set; }
-
     public string? Slika_base64_format { get; set; }
 }

@@ -60,11 +60,10 @@ export class Sedmica6EditComponent implements OnInit {
     } ;
   }
   getFiltriraniStudetni() {
-    return this.studenti
-      .filter(x=>
-
-        (x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) || (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) || x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
-
+    return this.studenti.filter (x=>
+        (x.ime + ' ' + x.prezime).startsWith(this.pretragaNaziv) ||
+        (x.prezime + ' ' + x.ime).startsWith(this.pretragaNaziv) ||
+        x.opstinaRodjenjaNaziv.toLowerCase().startsWith(this.pretragaNaziv.toLowerCase())
       )
   }
 
@@ -91,8 +90,6 @@ export class Sedmica6EditComponent implements OnInit {
       }
       reader.readAsDataURL(file)
     }
-
   }
-
   protected readonly MojConfig = MojConfig;
 }

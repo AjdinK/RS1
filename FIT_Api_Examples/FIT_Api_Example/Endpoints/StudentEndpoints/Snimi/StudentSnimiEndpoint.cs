@@ -28,7 +28,6 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
     [HttpPost("snimi")]
     public override async Task<int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
     {
-       
         Data.Models.Student? student;
         if (request.ID == 0)
         {
