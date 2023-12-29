@@ -14,33 +14,34 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
     public class StudentGetSlika : ControllerBase
     {
         [HttpGet("slika")]
-        public async Task<FileContentResult> GetByID(int id, CancellationToken cancellationToken)
+        public async Task <FileContentResult> GetByID (int id, CancellationToken cancellationToken)
         {
             var folderPath = "slike-studenata";
-
             byte[] slika;
+
             try
             {
                 var fileName = $"{folderPath}/{id}-velika.jpg";
-                slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
-                return File(slika, GetMimeType(fileName));
+                slika = await System.IO.File.ReadAllBytesAsync (fileName, cancellationToken);
+                return File (slika, GetMimeType(fileName));
             }
+
             catch (Exception ex)
             {
                 var fileName = $"wwwroot/profile_images/empty.png";
                 slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
-                return File(slika, GetMimeType(fileName));
+                return File (slika, GetMimeType(fileName));
             }
 
         }
 
-        static string GetMimeType(string fileName)
+        static string GetMimeType (string fileName)
         {
             // Create a new instance of FileExtensionContentTypeProvider
             var provider = new FileExtensionContentTypeProvider();
 
             // Try to get the MIME type
-            if (provider.TryGetContentType(fileName, out var contentType))
+            if (provider.TryGetContentType (fileName, out var contentType))
             {
                 return contentType;
             }
@@ -49,6 +50,4 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
             return "application/octet-stream";
         }
     }
-
-
 }
