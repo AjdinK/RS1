@@ -21,6 +21,7 @@ export interface Student6PretragaResponse {
 }
 
 export interface Student6PretragaResponseStudenti {
+  random: any;
   opstinaRodjenjaID: number;
   id: number
   ime: string

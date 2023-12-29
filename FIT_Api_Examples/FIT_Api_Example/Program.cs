@@ -7,6 +7,7 @@ using Microsoft.Identity.Web;
 
 using Microsoft.Extensions.Configuration;
 using FIT_Api_Example.Services;
+using FIT_Api_Example.SignalR;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
@@ -31,7 +32,7 @@ builder.Services.AddTransient<MyAuthService>();
 builder.Services.AddTransient<MyActionLogService>();
 builder.Services.AddTransient<MyEmailSenderService>();
 builder.Services.AddHttpContextAccessor();
-
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -60,5 +61,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<SignalRHub>("/hub-putanja");
 
 app.Run();

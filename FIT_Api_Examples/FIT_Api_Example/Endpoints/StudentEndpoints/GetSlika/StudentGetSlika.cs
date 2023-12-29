@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Threading;
 using System;
 using System.Web;
+using FIT_Api_Example.Data;
 using Microsoft.AspNetCore.StaticFiles;
 
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
@@ -13,35 +14,42 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
     [Route("student")]
     public class StudentGetSlika : ControllerBase
     {
-        [HttpGet("slika")]
-        public async Task <FileContentResult> GetByID (int id, CancellationToken cancellationToken)
-        {
-            var folderPath = "slike-studenata";
-            byte[] slika;
 
+        private ApplicationDbContext _context;
+
+        public StudentGetSlika(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet("slika-velika")]
+        public async Task<FileContentResult> GetByIDVelika(int id, CancellationToken cancellationToken)
+        {
+
+            var student = await _context.Student.FindAsync(id);
+
+            byte[] slika;
             try
             {
-                var fileName = $"{folderPath}/{id}-velika.jpg";
-                slika = await System.IO.File.ReadAllBytesAsync (fileName, cancellationToken);
-                return File (slika, GetMimeType(fileName));
+                var fileName = student.SlikaKorisnikaVelika;
+                slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
+                return File(slika, GetMimeType(fileName));
             }
-
             catch (Exception ex)
             {
                 var fileName = $"wwwroot/profile_images/empty.png";
                 slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
-                return File (slika, GetMimeType(fileName));
+                return File(slika, GetMimeType(fileName));
             }
-
         }
 
-        static string GetMimeType (string fileName)
+        static string GetMimeType(string fileName)
         {
             // Create a new instance of FileExtensionContentTypeProvider
             var provider = new FileExtensionContentTypeProvider();
 
             // Try to get the MIME type
-            if (provider.TryGetContentType (fileName, out var contentType))
+            if (provider.TryGetContentType(fileName, out var contentType))
             {
                 return contentType;
             }
@@ -50,4 +58,6 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
             return "application/octet-stream";
         }
     }
+
+
 }

@@ -88,6 +88,7 @@ export class StudentMaticnaKnjigaComponent implements OnInit {
         })
     }
   }
+
   zatvori() {
     this.upisNoviSemestar = null;
   }

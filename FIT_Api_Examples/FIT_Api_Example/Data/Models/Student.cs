@@ -13,4 +13,6 @@ public class Student : KorisnickiNalog
     public Opstina OpstinaRodjenja { get; set; }
     public DateTime DatumRodjenja { get; set; }
     public bool Obrisan { get; set; }
+    public string SlikaKorisnikaMala { get; set; }
+    public string SlikaKorisnikaVelika { get; set; }
 }

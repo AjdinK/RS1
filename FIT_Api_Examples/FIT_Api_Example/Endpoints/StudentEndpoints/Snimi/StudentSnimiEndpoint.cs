@@ -9,6 +9,8 @@ using System.Drawing;
 using SkiaSharp;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections;
+using FIT_Api_Example.SignalR;
+using Microsoft.AspNetCore.SignalR;
 
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.Snimi;
 
@@ -19,15 +21,19 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
 
-    public StudentSnimiEndpoint(ApplicationDbContext applicationDbContext, MyAuthService authService)
+    private readonly IHubContext<SignalRHub> _hubContext;
+
+    public StudentSnimiEndpoint(ApplicationDbContext applicationDbContext, MyAuthService authService, IHubContext<SignalRHub> hubContext)
     {
         _applicationDbContext = applicationDbContext;
         _authService = authService;
+        _hubContext = hubContext;
     }
 
     [HttpPost("snimi")]
     public override async Task<int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
     {
+       
         Data.Models.Student? student;
         if (request.ID == 0)
         {
@@ -71,11 +77,18 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
                 Directory.CreateDirectory(folderPath);
             }
 
-            await System.IO.File.WriteAllBytesAsync($"{folderPath}/{request.ID}-velika.jpg", slika_bajtovi_resized_velika, cancellationToken);
-            await System.IO.File.WriteAllBytesAsync($"{folderPath}/{request.ID}-mala.jpg", slika_bajtovi_resized_mala, cancellationToken);
+            student.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+            student.SlikaKorisnikaVelika = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+
+            await System.IO.File.WriteAllBytesAsync(student.SlikaKorisnikaMala, slika_bajtovi_resized_velika, cancellationToken);
+            await System.IO.File.WriteAllBytesAsync(student.SlikaKorisnikaVelika, slika_bajtovi_resized_mala, cancellationToken);
 
             //1- file system od web servera ili neki treci servis kao sto je azure blob store ili aws 
         }
+  
+        
+        await _hubContext.Clients.All.SendAsync("prijem_poruke_js", "student updated " + student.BrojIndeksa,
+                cancellationToken: cancellationToken);
 
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
 

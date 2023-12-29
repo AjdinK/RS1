@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {MojConfig} from "./moj-config";
 import {MyAuthService} from "./services/MyAuthService";
+import {SignalRService} from "./services/signalR.service";
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,16 @@ import {MyAuthService} from "./services/MyAuthService";
 })
 export class AppComponent implements OnInit{
 
-  constructor(public router: Router, private httpClient: HttpClient, public myAuthService: MyAuthService) {
+  constructor(
+    public router: Router,
+    private httpClient: HttpClient,
+    public myAuthService: MyAuthService,
+    private signalRService: SignalRService
+  ) {
   }
 
   ngOnInit(): void {
+    this.signalRService.otvori_ws_konekciju()
   }
 
 
