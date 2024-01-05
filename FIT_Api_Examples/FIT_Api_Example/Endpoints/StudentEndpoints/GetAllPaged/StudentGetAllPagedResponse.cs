@@ -1,13 +1,13 @@
 ﻿using FIT_Api_Example.Helper;
 
-namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetAll;
+namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetAllPaged;
 
-public class StudentGetAllResponse
+public class StudentGetAllPagedResponse
 {
-    public List<StudentGetAllResponseStudent> Studenti { get; set; }
+    public PagedList<StudentGetAllPagedResponseStudent> Studenti { get; set; }
 }
 
-public class StudentGetAllResponseStudent
+public class StudentGetAllPagedResponseStudent
 {
     public int ID{ get; set; }
     public string Ime{ get; set; }

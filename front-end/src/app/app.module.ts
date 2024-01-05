@@ -17,6 +17,10 @@ import { HomeStudentComponent } from './components/home-student/home-student.com
 import { HomeNastavnikComponent } from './components/home-nastavnik/home-nastavnik.component';
 import { Authorize2fComponent } from './components/authorize2f/authorize2f.component';
 import { StudentMaticnaKnjigaComponent } from './components/student/student-maticna-knjiga/student-maticna-knjiga.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTableModule} from "@angular/material/table";
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,20 +38,28 @@ import { StudentMaticnaKnjigaComponent } from './components/student/student-mati
     imports: [
         BrowserModule,
         FormsModule,
-      HttpClientModule,
-      RouterModule.forRoot([
-        {path:'', redirectTo:'sedmica4', pathMatch: 'full'},
-        {path:'home-student', component: HomeStudentComponent},
-        {path:'home-nastavnik', component: HomeNastavnikComponent},
-        {path:'sedmica4', component: Sedmica4Component},
-        {path:'sedmica5', component: Sedmica5Component},
-        {path:'sedmica5-js', component: Sedmica5PretragaJsComponent, canActivate: [AutorizacijaGuard]},
-        {path:'sedmica5-backend', component: Sedmica5PretragaBackendComponent, canActivate: [AutorizacijaGuard]},
-        {path:'sedmica6', component: Sedmica6EditComponent, canActivate: [AutorizacijaGuard]},
-        {path:'2f-authorize', component: Authorize2fComponent, canActivate: [AutorizacijaGuard]},
-        {path:'student/maticna-knjiga/:studentid', component: StudentMaticnaKnjigaComponent, canActivate: [AutorizacijaGuard]},
-        {path:'auth/login', component: Sedmica7LoginComponent},
-      ])
+        HttpClientModule,
+        RouterModule.forRoot([
+            {path: '', redirectTo: 'sedmica4', pathMatch: 'full'},
+            {path: 'home-student', component: HomeStudentComponent},
+            {path: 'home-nastavnik', component: HomeNastavnikComponent},
+            {path: 'sedmica4', component: Sedmica4Component},
+            {path: 'sedmica5', component: Sedmica5Component},
+            {path: 'sedmica5-js', component: Sedmica5PretragaJsComponent, canActivate: [AutorizacijaGuard]},
+            {path: 'sedmica5-backend', component: Sedmica5PretragaBackendComponent, canActivate: [AutorizacijaGuard]},
+            {path: 'sedmica6', component: Sedmica6EditComponent, canActivate: [AutorizacijaGuard]},
+            {path: '2f-authorize', component: Authorize2fComponent, canActivate: [AutorizacijaGuard]},
+            {
+                path: 'student/maticna-knjiga/:studentid',
+                component: StudentMaticnaKnjigaComponent,
+                canActivate: [AutorizacijaGuard]
+            },
+            {path: 'auth/login', component: Sedmica7LoginComponent},
+        ]),
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatButtonModule,
+        MatTableModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MyAuthInterceptor, multi: true },

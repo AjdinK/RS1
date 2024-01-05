@@ -17,18 +17,18 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
 
         private ApplicationDbContext _context;
 
-        public StudentGetSlika (ApplicationDbContext context)
+        public StudentGetSlika(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpGet("slika-velika")]
-        public async Task<FileContentResult> GetByIDVelika (int id, CancellationToken cancellationToken)
+        public async Task<FileContentResult> GetByIDVelika(int id, CancellationToken cancellationToken)
         {
 
             var student = await _context.Student.FindAsync(id);
-            byte[] slika;
 
+            byte[] slika;
             try
             {
                 var fileName = student.SlikaKorisnikaVelika;
@@ -58,4 +58,6 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
             return "application/octet-stream";
         }
     }
+
+
 }

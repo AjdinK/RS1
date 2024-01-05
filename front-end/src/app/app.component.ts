@@ -17,11 +17,13 @@ export class AppComponent implements OnInit{
     private httpClient: HttpClient,
     public myAuthService: MyAuthService,
     private signalRService: SignalRService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.signalRService.otvori_ws_konekciju()
   }
+
 
   idi(s: string) {
     this.router.navigate([s])
@@ -29,11 +31,15 @@ export class AppComponent implements OnInit{
 
   logout() {
 
+
+
     let token = window.localStorage.getItem("my-auth-token")??"";
     window.localStorage.setItem("my-auth-token","");
 
     let url=MojConfig.adresa_servera+`/auth/logout`
-    this.httpClient.post(url, {}, {
+    this.httpClient.post(url, {
+      signalRConnectionID:SignalRService.ConnectionID
+    }, {
       headers:{
         "my-auth-token": token
       }

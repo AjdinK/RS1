@@ -16,36 +16,31 @@
   </div>
 </form>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>id</th>
-    <th>akademskaGodina</th>
-    <th>godinaStudija</th>
-    <th>obnova</th>
-    <th>zimskiSemestarUpis</th>
-    <th>zimskiSemestarOvjera</th>
-    <th>korisnik</th>
-    <th>Akcija</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of podaci?.upisaneGodine">
-    <td>{{ item.id }}</td>
-    <td>{{ item.akademskaGodina }}</td>
-    <td>{{ item.godinaStudija }}</td>
-    <td>{{ item.obnova }}</td>
-    <td>{{ item.zimskiSemestarUpis |date }}</td>
-    <td>{{ item.zimskiSemestarOvjera |date }}</td>
-    <td>{{ item.korisnikEvidentirao.ime }}</td>
-    <td>
-      <button  class="btn btn-warning" (click)="ovjera(item)">Ovjeri zimski semstar</button>
-    </td>
-  </tr>
-  </tbody>
+<table mat-table [dataSource]="getDataSource()" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> id. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="akademskaGodina">
+    <th mat-header-cell *matHeaderCellDef> akademskaGodina. </th>
+    <td mat-cell *matCellDef="let element"> {{element.akademskaGodina}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="godinaStudija">
+    <th mat-header-cell *matHeaderCellDef> godinaStudija. </th>
+    <td mat-cell *matCellDef="let element"> {{element.godinaStudija}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="obnova">
+    <th mat-header-cell *matHeaderCellDef> obnova. </th>
+    <td mat-cell *matCellDef="let element"> {{element.obnova}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
-
 
 <div *ngIf="upisNoviSemestar">
 

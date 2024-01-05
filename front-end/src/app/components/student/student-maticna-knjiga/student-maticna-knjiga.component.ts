@@ -27,6 +27,8 @@ export class StudentMaticnaKnjigaComponent implements OnInit {
   modalTitle = "";
   akademskeGodinePodaci: AkademskeGodineGetResponseAkGodine[] = [];
 
+  displayedColumns: string[] = ['id', 'akademskaGodina', 'godinaStudija', 'obnova'];
+
   constructor(
     public activatedRoute: ActivatedRoute,
     private studentMaticnaKnjigaGetEndpoint: StudentMaticnaKnjigaGetEndpoint,
@@ -91,5 +93,9 @@ export class StudentMaticnaKnjigaComponent implements OnInit {
 
   zatvori() {
     this.upisNoviSemestar = null;
+  }
+
+  getDataSource():StudentMaticnaKnjigaGetResponseUpisaneGodine[] {
+      return this.podaci?.upisaneGodine??[]
   }
 }

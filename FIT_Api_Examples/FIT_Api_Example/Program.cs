@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
+
 using Microsoft.Extensions.Configuration;
 using FIT_Api_Example.Services;
 using FIT_Api_Example.SignalR;
@@ -13,7 +14,8 @@ var config = new ConfigurationBuilder()
     .Build();
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext <ApplicationDbContext> (options =>
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("db1")));
 
 /*
@@ -21,8 +23,9 @@ builder.Services.AddDbContext<LogDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("dbLog")));
 */
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x=>x.OperationFilter<AutorizacijaSwaggerHeader>());
 builder.Services.AddTransient<MyAuthService>();
@@ -51,9 +54,13 @@ app.UseCors(
         .AllowCredentials()
 ); //This needs to set everything allowed
 
+
 app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.MapHub<SignalRHub>("/hub-putanja");
+
 app.Run();

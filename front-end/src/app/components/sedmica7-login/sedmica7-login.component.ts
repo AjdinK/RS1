@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthLoginResponse} from "./authLoginResponse";
 import {Router} from "@angular/router";
 import {MyAuthService} from "../../services/MyAuthService";
+import {SignalRService} from "../../services/signalR.service";
 
 @Component({
   selector: 'app-sedmica7-login',
@@ -15,7 +16,8 @@ export class Sedmica7LoginComponent implements OnInit {
 
   public loginRequest: AuthLoginRequest = {
     lozinka:"",
-    korisnickoIme:""
+    korisnickoIme:"",
+    signalRConnectionID:"",
   };
   constructor(
     public httpClient:HttpClient,
@@ -28,6 +30,9 @@ export class Sedmica7LoginComponent implements OnInit {
 
   signIn() {
     let url=MojConfig.adresa_servera+`/auth/login`;
+
+    this.loginRequest.signalRConnectionID = SignalRService.ConnectionID;
+  debugger
     this.httpClient.post<AuthLoginResponse>(url, this.loginRequest).subscribe((x)=>{
       if (!x.isLogiran){
         alert("pogresan username/pass")

@@ -21,7 +21,7 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
 
-    private readonly IHubContext <SignalRHub> _hubContext;
+    private readonly IHubContext<SignalRHub> _hubContext;
 
     public StudentSnimiEndpoint(ApplicationDbContext applicationDbContext, MyAuthService authService, IHubContext<SignalRHub> hubContext)
     {
@@ -85,8 +85,11 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 
             //1- file system od web servera ili neki treci servis kao sto je azure blob store ili aws 
         }
-        await _hubContext.Clients.All.SendAsync("prijem_poruke_js", "student updated " + student.BrojIndeksa,
+  
+        
+        await _hubContext.Clients.Groups("iris").SendAsync("prijem_poruke_js", "student updated " + student.BrojIndeksa,
                 cancellationToken: cancellationToken);
+
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
         return student.ID;

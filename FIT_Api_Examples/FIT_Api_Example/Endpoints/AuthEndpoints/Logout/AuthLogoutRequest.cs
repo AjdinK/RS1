@@ -1,8 +1,7 @@
 ﻿namespace FIT_Api_Example.Endpoints.AuthEndpoints.Login;
 
-public class AuthLoginRequest
+public class AuthLogoutRequest
 {
     public string SignalRConnectionID { get; set; }
-    public string KorisnickoIme { get; set; }
-    public string Lozinka { get; set; }
+    
 }
