@@ -25,14 +25,13 @@ export class Sedmica7LoginComponent implements OnInit {
     private myAuthService:MyAuthService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   signIn() {
-    let url=MojConfig.adresa_servera+`/auth/login`;
 
+    let url=MojConfig.adresa_servera+`/auth/login`;
     this.loginRequest.signalRConnectionID = SignalRService.ConnectionID;
-  debugger
+    debugger
     this.httpClient.post<AuthLoginResponse>(url, this.loginRequest).subscribe((x)=>{
       if (!x.isLogiran){
         alert("pogresan username/pass")
@@ -49,8 +48,6 @@ export class Sedmica7LoginComponent implements OnInit {
         else{
           this.router.navigate(["/home-nastavnik"])
         }
-
-
       }
     })
   }

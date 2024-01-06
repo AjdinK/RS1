@@ -70,6 +70,4 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
         //4- vratiti token string
         return new MyAuthInfo(noviToken);
     }
-
-
 }

@@ -32,7 +32,7 @@ public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
         if (autentifikacijaToken == null)
             return new NoResponse();
 
-        await _hubContext.Groups.AddToGroupAsync(
+        await _hubContext.Groups.RemoveFromGroupAsync(
             request.SignalRConnectionID,
             autentifikacijaToken.korisnickiNalog.KorisnickoIme,
             cancellationToken
@@ -42,6 +42,4 @@ public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
         return new NoResponse();
     }
-
-
 }
