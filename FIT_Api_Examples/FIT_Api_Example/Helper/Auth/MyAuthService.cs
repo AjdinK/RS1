@@ -15,51 +15,51 @@ namespace FIT_Api_Example.Helper.Auth
             _applicationDbContext = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
         }
+
         public bool IsLogiran()
         {
-            return GetAuthInfo().isLogiran;
+            return GetAuthInfo().IsLogiran;
         }
 
         public bool IsAdmin()
         {
-            return GetAuthInfo().korisnickiNalog?.isAdmin??false;
+            return GetAuthInfo().KorisnickiNalog?.isAdmin?? false;
         }
 
         public bool IsStudentskaSluzba()
         {
-            return GetAuthInfo().korisnickiNalog?.isStudentskaSluzba ?? false;
+            return GetAuthInfo().KorisnickiNalog?.isStudentskaSluzba ?? false;
         }
 
         public bool IsNastavnik()
         {
-            return GetAuthInfo().korisnickiNalog?.isNastavnik ?? false;
+            return GetAuthInfo().KorisnickiNalog?.isNastavnik ?? false;
         }
 
 
         public MyAuthInfo GetAuthInfo()
         {
-            string? authToken = _httpContextAccessor.HttpContext!.Request.Headers["my-auth-token"];
+            string? AuthToken = _httpContextAccessor.HttpContext!.Request.Headers ["my-auth-token"];
 
-            AutentifikacijaToken? autentifikacijaToken = _applicationDbContext.AutentifikacijaToken
+            AutentifikacijaToken? AutentifikacijaToken = _applicationDbContext.AutentifikacijaToken
                 .Include(x=>x.korisnickiNalog)
-                .SingleOrDefault(x => x.vrijednost == authToken);
+                .SingleOrDefault(x => x.vrijednost == AuthToken);
 
-            return new MyAuthInfo(autentifikacijaToken);
-
+            return new MyAuthInfo (AutentifikacijaToken);
         }
     }
 
     public class MyAuthInfo
     {
-        public MyAuthInfo (AutentifikacijaToken? autentifikacijaToken)
+        public AutentifikacijaToken? AutentifikacijaToken { get; set; }
+        public MyAuthInfo (AutentifikacijaToken? AutentifikacijaToken)
         {
-            this.autentifikacijaToken = autentifikacijaToken;
+            this.AutentifikacijaToken = AutentifikacijaToken;
         }
-        public AutentifikacijaToken? autentifikacijaToken { get; set; }
-        public bool isLogiran => korisnickiNalog != null;
+        public bool IsLogiran => KorisnickiNalog != null;
 
         [JsonIgnore]
-        public KorisnickiNalog? korisnickiNalog => autentifikacijaToken?.korisnickiNalog;
+        public KorisnickiNalog? KorisnickiNalog => AutentifikacijaToken?.korisnickiNalog;
       
     }
 }

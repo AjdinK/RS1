@@ -33,7 +33,7 @@ namespace FIT_Api_Example.Services
 
             var x = new LogKretanjePoSistemu
             {
-                Korisnik = authService.GetAuthInfo().korisnickiNalog!,
+                Korisnik = authService.GetAuthInfo().KorisnickiNalog!,
                 Vrijeme = DateTime.Now,
                 QueryPath = request.GetEncodedPathAndQuery(),
                 PostData = detalji + "" + bodyText,

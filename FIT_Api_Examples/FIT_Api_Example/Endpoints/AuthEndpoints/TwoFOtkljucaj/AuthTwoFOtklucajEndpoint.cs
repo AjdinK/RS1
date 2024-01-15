@@ -13,20 +13,20 @@ public class AuthTwoFOtklucajEndpoint : MyBaseEndpoint<AuthTwoFOtkljucajRequest,
     private readonly MyAuthService _authService;
 
 
-    public AuthTwoFOtklucajEndpoint(ApplicationDbContext applicationDbContext, MyAuthService authService)
+    public AuthTwoFOtklucajEndpoint (ApplicationDbContext applicationDbContext, MyAuthService authService)
     {
         _applicationDbContext = applicationDbContext;
         _authService = authService;
     }
 
     [HttpPost("2f-otklucaj")]
-    public override async Task<NoResponse> Obradi([FromBody] AuthTwoFOtkljucajRequest request, CancellationToken cancellationToken)
+    public override async Task <NoResponse> Obradi([FromBody] AuthTwoFOtkljucajRequest request, CancellationToken cancellationToken)
     {
-        if (!_authService.GetAuthInfo().isLogiran)
+        if (!_authService.GetAuthInfo().IsLogiran)
         {
             throw new Exception("nije logirani");
         }
-        var token = _authService.GetAuthInfo().autentifikacijaToken;
+        var token = _authService.GetAuthInfo().AutentifikacijaToken;
 
         if (token is null)
             throw new ArgumentNullException(nameof(token));
