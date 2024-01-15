@@ -22,7 +22,8 @@ public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  St
     public override async Task<StudentPretragaResponse> Obradi([FromQuery]StudentPretragaRequest request, CancellationToken cancellationToken)
     {
        
-        var student = await _applicationDbContext.Student.Where(x =>
+        var student = await _applicationDbContext.Student
+        .Where(x =>
                 request.Pretraga == null || 
                 (x.Ime + " " + x.Prezime).StartsWith(request.Pretraga) ||
                 (x.Prezime + " " + x.Ime).StartsWith(request.Pretraga) 

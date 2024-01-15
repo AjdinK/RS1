@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
+import { TestRouterComponent } from './test-router/test-router.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import {MatTableModule} from "@angular/material/table";
     HomeStudentComponent,
     HomeNastavnikComponent,
     Authorize2fComponent,
-    StudentMaticnaKnjigaComponent
+    StudentMaticnaKnjigaComponent,
+    TestRouterComponent
   ],
     imports: [
         BrowserModule,
@@ -55,6 +57,7 @@ import {MatTableModule} from "@angular/material/table";
                 canActivate: [AutorizacijaGuard]
             },
             {path: 'auth/login', component: Sedmica7LoginComponent},
+          {path:'test-router' , component : TestRouterComponent}
         ]),
         BrowserAnimationsModule,
         MatSlideToggleModule,

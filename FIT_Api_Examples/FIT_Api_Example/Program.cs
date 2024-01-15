@@ -29,9 +29,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x=>x.OperationFilter<AutorizacijaSwaggerHeader>());
 builder.Services.AddTransient<MyAuthService>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<MyActionLogService>();
 builder.Services.AddTransient<MyEmailSenderService>();
-builder.Services.AddHttpContextAccessor();
 builder.Services.AddSignalR();
 
 var app = builder.Build();

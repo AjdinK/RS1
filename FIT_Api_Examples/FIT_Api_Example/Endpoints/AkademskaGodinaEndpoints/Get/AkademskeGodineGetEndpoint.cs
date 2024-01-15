@@ -21,7 +21,8 @@ public class AkademskeGodineGetEndpoint : MyBaseEndpoint<NoRequest, AkademskeGod
     [HttpGet()]
     public override async Task<AkademskeGodineGetResponse> Obradi([FromQuery]NoRequest request, CancellationToken cancellationToken)
     {
-        var podaci = await _applicationDbContext.AkademskaGodina.Select(x=>new AkademskeGodineGetResponseAkGodine
+        var podaci = await _applicationDbContext.AkademskaGodina
+            .Select(x=>new AkademskeGodineGetResponseAkGodine
         {
             Id = x.ID,
             Opis = x.Opis
