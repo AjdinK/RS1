@@ -36,7 +36,6 @@ namespace FIT_Api_Example.Helper.Auth
             return GetAuthInfo().KorisnickiNalog?.isNastavnik ?? false;
         }
 
-
         public MyAuthInfo GetAuthInfo()
         {
             string? AuthToken = _httpContextAccessor.HttpContext!.Request.Headers ["my-auth-token"];
@@ -56,10 +55,11 @@ namespace FIT_Api_Example.Helper.Auth
         {
             this.AutentifikacijaToken = AutentifikacijaToken;
         }
-        public bool IsLogiran => KorisnickiNalog != null;
 
         [JsonIgnore]
         public KorisnickiNalog? KorisnickiNalog => AutentifikacijaToken?.korisnickiNalog;
-      
+
+        public bool IsLogiran => KorisnickiNalog != null;
+
     }
 }
