@@ -24,27 +24,27 @@ public class StudentGetAllEndpoint: MyBaseEndpoint<StudentGetAllRequest,  Studen
   
     public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentGetAllRequest request, CancellationToken cancellationToken)
     {
-        var student = await _applicationDbContext.Student
-            .OrderByDescending(x => x.ID)
-            .Where(x => x.Obrisan == false)
-            .Select(x=>new StudentGetAllResponseStudent()
-            {
-                ID = x.ID,
-                DatumRodjenja = x.DatumRodjenja,
-                Ime = x.Ime,
-                Prezime =  x.Prezime,
-                KorisnickoIme = x.KorisnickoIme,
-                OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
-                OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
-                SlikaKorisnika = x.SlikaKorisnika,
-                OpstinaRodjenjaID = x.OpstinaRodjenjaID
-            })
-            
-            .ToListAsync(cancellationToken: cancellationToken);
+            var student = await _applicationDbContext.Student
+                .OrderByDescending(x => x.ID)
+                .Where(x => x.Obrisan == false)
+                .Select(x => new StudentGetAllResponseStudent()
+                {
+                    ID = x.ID,
+                    DatumRodjenja = x.DatumRodjenja,
+                    Ime = x.Ime,
+                    Prezime = x.Prezime,
+                    KorisnickoIme = x.KorisnickoIme,
+                    OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
+                    OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
+                    SlikaKorisnika = x.SlikaKorisnika,
+                    OpstinaRodjenjaID = x.OpstinaRodjenjaID
+                })
 
-        return new StudentGetAllResponse
-        {
-            Studenti = student
-        };
+                .ToListAsync(cancellationToken: cancellationToken);
+
+            return new StudentGetAllResponse
+            {
+                Studenti = student
+            };
     }
 }

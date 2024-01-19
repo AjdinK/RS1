@@ -16,7 +16,7 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.Snimi;
 
 [Route("student")]
 [MyAuthorization]
-public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
+public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
@@ -31,7 +31,7 @@ public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
     }
 
     [HttpPost("snimi")]
-    public override async Task<int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
+    public override async Task <int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
     {
        
         Data.Models.Student? student;

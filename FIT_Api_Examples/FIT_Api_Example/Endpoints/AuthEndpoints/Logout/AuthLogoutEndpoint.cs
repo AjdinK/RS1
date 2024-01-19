@@ -11,13 +11,14 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.AuthEndpoints.Logout;
 
 [Route("auth")]
-public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
+public class AuthLogoutEndpoint : MyBaseEndpoint <AuthLogoutRequest, NoResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
-    private readonly IHubContext<SignalRHub> _hubContext;
+    private readonly IHubContext <SignalRHub> _hubContext;
 
-    public AuthLogoutEndpoint(ApplicationDbContext applicationDbContext, MyAuthService authService, IHubContext<SignalRHub> hubContext)
+    public AuthLogoutEndpoint (ApplicationDbContext applicationDbContext,
+        MyAuthService authService, IHubContext<SignalRHub> hubContext)
     {
         _applicationDbContext = applicationDbContext;
         _authService = authService;
@@ -25,16 +26,16 @@ public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
     }
 
     [HttpPost("logout")]
-    public override async Task<NoResponse> Obradi([FromBody] AuthLogoutRequest request, CancellationToken cancellationToken)
+    public override async Task <NoResponse> Obradi ([FromBody] AuthLogoutRequest request, CancellationToken cancellationToken)
     {
-        AutentifikacijaToken? autentifikacijaToken = _authService.GetAuthInfo().autentifikacijaToken;
+        AutentifikacijaToken? autentifikacijaToken = _authService.GetAuthInfo().AutentifikacijaToken;
 
         if (autentifikacijaToken == null)
             return new NoResponse();
 
         await _hubContext.Groups.RemoveFromGroupAsync(
             request.SignalRConnectionID,
-            autentifikacijaToken.korisnickiNalog.KorisnickoIme,
+            autentifikacijaToken.KorisnickiNalog.KorisnickoIme,
             cancellationToken
         );
 

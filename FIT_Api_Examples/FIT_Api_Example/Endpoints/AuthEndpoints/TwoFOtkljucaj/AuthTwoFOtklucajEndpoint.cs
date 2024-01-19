@@ -39,6 +39,4 @@ public class AuthTwoFOtklucajEndpoint : MyBaseEndpoint<AuthTwoFOtkljucajRequest,
 
         return new NoResponse();
     }
-
-
 }

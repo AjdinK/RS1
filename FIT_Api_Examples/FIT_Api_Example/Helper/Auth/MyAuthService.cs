@@ -21,6 +21,10 @@ namespace FIT_Api_Example.Helper.Auth
             return GetAuthInfo().IsLogiran;
         }
 
+        public bool ISStudent () {
+            return GetAuthInfo().KorisnickiNalog?.isStudent?? false;
+        }
+
         public bool IsAdmin()
         {
             return GetAuthInfo().KorisnickiNalog?.isAdmin?? false;
@@ -36,13 +40,13 @@ namespace FIT_Api_Example.Helper.Auth
             return GetAuthInfo().KorisnickiNalog?.isNastavnik ?? false;
         }
 
-        public MyAuthInfo GetAuthInfo()
+        public MyAuthInfo GetAuthInfo ()
         {
             string? AuthToken = _httpContextAccessor.HttpContext!.Request.Headers ["my-auth-token"];
 
             AutentifikacijaToken? AutentifikacijaToken = _applicationDbContext.AutentifikacijaToken
-                .Include(x=>x.korisnickiNalog)
-                .SingleOrDefault(x => x.vrijednost == AuthToken);
+                .Include(x => x.KorisnickiNalog)
+                .SingleOrDefault(x => x.Vrijednost == AuthToken);
 
             return new MyAuthInfo (AutentifikacijaToken);
         }
@@ -57,7 +61,7 @@ namespace FIT_Api_Example.Helper.Auth
         }
 
         [JsonIgnore]
-        public KorisnickiNalog? KorisnickiNalog => AutentifikacijaToken?.korisnickiNalog;
+        public KorisnickiNalog? KorisnickiNalog => AutentifikacijaToken?.KorisnickiNalog;
 
         public bool IsLogiran => KorisnickiNalog != null;
 

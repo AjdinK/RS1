@@ -11,20 +11,20 @@ namespace FIT_Api_Example.Helper.Auth
 {
     public class MyAuthorizationAttribute : TypeFilterAttribute
     {
-        public MyAuthorizationAttribute () : base(typeof(MyAuthorizationAsyncActionFilter)) {}
+        public MyAuthorizationAttribute () : base (typeof (MyAuthorizationAsyncActionFilter) ) {}
     }
 
     public class MyAuthorizationAsyncActionFilter : IAsyncActionFilter
     {
-        public async Task OnActionExecutionAsync(
-            ActionExecutingContext context, ActionExecutionDelegate next)
+        public async Task OnActionExecutionAsync (
+             ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var authService = context.HttpContext.RequestServices.GetService <MyAuthService> ()!;
-            var actionLogService = context.HttpContext.RequestServices.GetService <MyActionLogService> ()!;
+            var actionLogService = context.HttpContext.RequestServices.GetService<MyActionLogService>()!;
 
             if (!authService.IsLogiran())
             {
-                context.Result = new UnauthorizedObjectResult ("niste logirani na sistem");
+                context.Result = new UnauthorizedObjectResult("niste logirani na sistem");
                 return;
             }
 

@@ -10,13 +10,14 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.AuthEndpoints.Login;
 
 [Route("auth")]
-public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
+public class AuthLoginEndpoint : MyBaseEndpoint <AuthLoginRequest, MyAuthInfo>
 {
     private readonly ApplicationDbContext _applicationDbContext;
+
     private readonly MyEmailSenderService _emailSenderService;
     private readonly IHubContext<SignalRHub> _hubContext;
 
-    public AuthLoginEndpoint(ApplicationDbContext applicationDbContext, MyEmailSenderService emailSenderService, IHubContext<SignalRHub> hubContext)
+    public AuthLoginEndpoint (ApplicationDbContext applicationDbContext, MyEmailSenderService emailSenderService, IHubContext<SignalRHub> hubContext)
     {
         _applicationDbContext = applicationDbContext;
         _emailSenderService = emailSenderService;
@@ -24,7 +25,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
     }
 
     [HttpPost("login")]
-    public override async Task<MyAuthInfo> Obradi([FromBody] AuthLoginRequest request, CancellationToken cancellationToken)
+    public override async Task <MyAuthInfo> Obradi([FromBody] AuthLoginRequest request, CancellationToken cancellationToken)
     {
         //1- provjera logina
         KorisnickiNalog? logiraniKorisnik = await _applicationDbContext.KorisnickiNalog
@@ -34,7 +35,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
         if (logiraniKorisnik == null)
         {
             //pogresan username i password
-            return new MyAuthInfo(null);
+            return new MyAuthInfo (null);
         }
 
         string? twoFKey = null;
@@ -45,16 +46,16 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
             _emailSenderService.Posalji("xeceyo7099@mcenb.com", "2f", $"Vasi 2f kljuc je {twoFKey}", false);
         }
 
-        //2- generisati random string
+        //2- generisati random string za authToken
         string randomString = TokenGenerator.Generate(10);
 
         //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
         var noviToken = new AutentifikacijaToken()
         {
-            ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
-            vrijednost = randomString,
-            korisnickiNalog = logiraniKorisnik,
-            vrijemeEvidentiranja = DateTime.Now,
+            IpAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+            Vrijednost = randomString,
+            KorisnickiNalog = logiraniKorisnik,
+            VrijemeEvidentiranja = DateTime.Now,
             TwoFKey= twoFKey
         };
 
@@ -63,7 +64,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
 
         await _hubContext.Groups.AddToGroupAsync(
             request.SignalRConnectionID,
-            noviToken.korisnickiNalog.KorisnickoIme,
+            noviToken.KorisnickiNalog.KorisnickoIme,
             cancellationToken
         );
 

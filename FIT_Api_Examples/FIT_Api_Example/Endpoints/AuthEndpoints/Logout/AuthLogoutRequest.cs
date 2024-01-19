@@ -3,5 +3,4 @@
 public class AuthLogoutRequest
 {
     public string SignalRConnectionID { get; set; }
-    
 }
