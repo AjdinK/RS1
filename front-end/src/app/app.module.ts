@@ -12,7 +12,7 @@ import { Sedmica6EditComponent } from './components/sedmica6-edit/sedmica6-edit.
 import { RouterModule } from '@angular/router';
 import { Sedmica7LoginComponent } from './components/sedmica7-login/sedmica7-login.component';
 import { MyAuthInterceptor } from '../helper/auth/my-auth-interceptor.service';
-import { AutorizacijaGuard } from '../helper/auth/autorizacija-guard.service';
+//import { AutorizacijaGuard } from '../helper/auth/autorizacija-guard.service';
 import { HomeStudentComponent } from './components/home-student/home-student.component';
 import { HomeNastavnikComponent } from './components/home-nastavnik/home-nastavnik.component';
 import { Authorize2fComponent } from './components/authorize2f/authorize2f.component';
@@ -48,27 +48,27 @@ import { MatTableModule } from '@angular/material/table';
       {
         path: 'sedmica5-js',
         component: Sedmica5PretragaJsComponent,
-        canActivate: [AutorizacijaGuard],
+        //canActivate: [AutorizacijaGuard],
       },
       {
         path: 'sedmica5-backend',
         component: Sedmica5PretragaBackendComponent,
-        canActivate: [AutorizacijaGuard],
+        //canActivate: [AutorizacijaGuard],
       },
       {
         path: 'sedmica6',
         component: Sedmica6EditComponent,
-        canActivate: [AutorizacijaGuard],
+        //canActivate: [AutorizacijaGuard],
       },
       {
         path: '2f-authorize',
         component: Authorize2fComponent,
-        canActivate: [AutorizacijaGuard],
+        //canActivate: [AutorizacijaGuard],
       },
       {
         path: 'student/maticna-knjiga/:studentid',
         component: StudentMaticnaKnjigaComponent,
-        canActivate: [AutorizacijaGuard],
+        //canActivate: [AutorizacijaGuard],
       },
       { path: 'auth/login', component: Sedmica7LoginComponent },
     ]),
@@ -79,7 +79,7 @@ import { MatTableModule } from '@angular/material/table';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: MyAuthInterceptor, multi: true },
-    AutorizacijaGuard,
+    //AutorizacijaGuard,
   ],
   bootstrap: [AppComponent],
 })

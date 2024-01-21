@@ -5,6 +5,7 @@ import { AutentifikacijaToken } from '../../helper/auth/autentifikacijaToken';
 @Injectable({ providedIn: 'root' })
 export class MyAuthService {
   constructor(private httpClient: HttpClient) {}
+
   isLogiran(): boolean {
     return this.getAuthorizationToken() != null;
   }
