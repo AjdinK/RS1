@@ -1,32 +1,25 @@
 <h2>Ovo je sedmica4 component</h2>
 <h2>Hello FIT</h2>
-ime : {{ime}}
-brojac : {{brojac}}
-<br>
-<input value="{{ime}}" (input)="izmjenaImena($event)">
-<br>
-<input [(ngModel)]="ime">
-<br>
+ime : {{ ime }} brojac : {{ brojac }}
+<br />
+<input value="{{ ime }}" (input)="izmjenaImena($event)" />
+<br />
+<input [(ngModel)]="ime" />
+<br />
 <button (click)="uvecaj()">Dugme 1 ++</button>
 <button (click)="testirajDugme2()">Dugme 2 alert</button>
 
 <div *ngIf="isVidljiv()" [ngStyle]="styleZaDiv()">
-  {{ime}}
+  {{ ime }}
 </div>
-
 
 <div style="border: 1px solid red" *ngFor="let x of imena">
-  {{x}}
+  {{ x }}
 </div>
-<br>
+<br />
 
-Novo ime<br>
-<input [(ngModel)]="novoIme"><br>
+Novo ime<br />
+<input [(ngModel)]="novoIme" /><br />
 <button (click)="dodajNovoIme()">Dodaj novo ime</button>
 
-
-<img src="/src/assets/slika1.png"> <br><br>
-
-<button class ="btn btn-primary" (click)="dugme('/test-router')"> Go to test (router)</button><br><br>
-<a class="btn btn-primary" routerLink='/test-router'> Go to test (router link) </a>
-
+<img src="/src/assets/slika1.png" /> <br /><br />

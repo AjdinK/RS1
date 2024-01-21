@@ -40,7 +40,7 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'sedmica4', pathMatch: 'full' },
+      { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
       { path: 'home-student', component: HomeStudentComponent },
       { path: 'home-nastavnik', component: HomeNastavnikComponent },
       { path: 'sedmica4', component: Sedmica4Component },

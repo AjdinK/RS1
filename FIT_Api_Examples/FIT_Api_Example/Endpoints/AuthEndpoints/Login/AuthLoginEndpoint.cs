@@ -43,7 +43,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
         if (logiraniKorisnik.Is2FActive)
         {
             twoFKey = TokenGenerator.Generate(6);
-            _emailSenderService.Posalji("xeceyo7099@mcenb.com",
+            _emailSenderService.Posalji("ajdin.kuduzovic@gmail.com", //test email 
             "2f",
             $"Vasi 2f kljuc je {twoFKey}",
             false);
