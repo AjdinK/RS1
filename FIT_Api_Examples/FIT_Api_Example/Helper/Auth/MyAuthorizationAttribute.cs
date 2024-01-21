@@ -11,15 +11,15 @@ namespace FIT_Api_Example.Helper.Auth
 {
     public class MyAuthorizationAttribute : TypeFilterAttribute
     {
-        public MyAuthorizationAttribute () : base (typeof (MyAuthorizationAsyncActionFilter) ) {}
+        public MyAuthorizationAttribute() : base(typeof(MyAuthorizationAsyncActionFilter)) { }
     }
 
     public class MyAuthorizationAsyncActionFilter : IAsyncActionFilter
     {
-        public async Task OnActionExecutionAsync (
+        public async Task OnActionExecutionAsync(
              ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var authService = context.HttpContext.RequestServices.GetService <MyAuthService> ()!;
+            var authService = context.HttpContext.RequestServices.GetService<MyAuthService>()!;
             var actionLogService = context.HttpContext.RequestServices.GetService<MyActionLogService>()!;
 
             if (!authService.IsLogiran())

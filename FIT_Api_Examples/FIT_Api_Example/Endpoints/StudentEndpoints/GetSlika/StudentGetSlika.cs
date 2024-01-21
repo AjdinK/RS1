@@ -27,8 +27,8 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetSlika
         {
 
             var student = await _context.Student.FindAsync(id);
-
             byte[] slika;
+
             try
             {
                 var fileName = student.SlikaKorisnikaVelika;

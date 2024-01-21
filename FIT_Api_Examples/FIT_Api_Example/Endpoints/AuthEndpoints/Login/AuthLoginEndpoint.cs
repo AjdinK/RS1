@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.AuthEndpoints.Login;
 
 [Route("auth")]
-public class AuthLoginEndpoint : MyBaseEndpoint <AuthLoginRequest, MyAuthInfo>
+public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
 {
     private readonly ApplicationDbContext _applicationDbContext;
 
     private readonly MyEmailSenderService _emailSenderService;
     private readonly IHubContext<SignalRHub> _hubContext;
 
-    public AuthLoginEndpoint (ApplicationDbContext applicationDbContext, MyEmailSenderService emailSenderService, IHubContext<SignalRHub> hubContext)
+    public AuthLoginEndpoint(ApplicationDbContext applicationDbContext, MyEmailSenderService emailSenderService, IHubContext<SignalRHub> hubContext)
     {
         _applicationDbContext = applicationDbContext;
         _emailSenderService = emailSenderService;
@@ -25,7 +25,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint <AuthLoginRequest, MyAuthInfo>
     }
 
     [HttpPost("login")]
-    public override async Task <MyAuthInfo> Obradi([FromBody] AuthLoginRequest request, CancellationToken cancellationToken)
+    public override async Task<MyAuthInfo> Obradi([FromBody] AuthLoginRequest request, CancellationToken cancellationToken)
     {
         //1- provjera logina
         KorisnickiNalog? logiraniKorisnik = await _applicationDbContext.KorisnickiNalog
@@ -35,15 +35,18 @@ public class AuthLoginEndpoint : MyBaseEndpoint <AuthLoginRequest, MyAuthInfo>
         if (logiraniKorisnik == null)
         {
             //pogresan username i password
-            return new MyAuthInfo (null);
+            return new MyAuthInfo(null);
         }
 
         string? twoFKey = null;
 
         if (logiraniKorisnik.Is2FActive)
         {
-            twoFKey = TokenGenerator.Generate(4);
-            _emailSenderService.Posalji("xeceyo7099@mcenb.com", "2f", $"Vasi 2f kljuc je {twoFKey}", false);
+            twoFKey = TokenGenerator.Generate(6);
+            _emailSenderService.Posalji("xeceyo7099@mcenb.com",
+            "2f",
+            $"Vasi 2f kljuc je {twoFKey}",
+            false);
         }
 
         //2- generisati random string za authToken
@@ -56,7 +59,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint <AuthLoginRequest, MyAuthInfo>
             Vrijednost = randomString,
             KorisnickiNalog = logiraniKorisnik,
             VrijemeEvidentiranja = DateTime.Now,
-            TwoFKey= twoFKey
+            TwoFKey = twoFKey
         };
 
         _applicationDbContext.Add(noviToken);

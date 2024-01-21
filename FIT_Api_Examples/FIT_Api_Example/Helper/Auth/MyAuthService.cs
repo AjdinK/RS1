@@ -10,7 +10,7 @@ namespace FIT_Api_Example.Helper.Auth
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public MyAuthService (ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
+        public MyAuthService(ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
         {
             _applicationDbContext = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
@@ -21,48 +21,48 @@ namespace FIT_Api_Example.Helper.Auth
             return GetAuthInfo().IsLogiran;
         }
 
-        public bool ISStudent () {
-            return GetAuthInfo().KorisnickiNalog?.isStudent?? false;
+        public bool IsStudent()
+        {
+            return GetAuthInfo().KorisnickiNalog?.IsStudent ?? false;
         }
 
         public bool IsAdmin()
         {
-            return GetAuthInfo().KorisnickiNalog?.isAdmin?? false;
+            return GetAuthInfo().KorisnickiNalog?.IsAdmin ?? false;
         }
 
         public bool IsStudentskaSluzba()
         {
-            return GetAuthInfo().KorisnickiNalog?.isStudentskaSluzba ?? false;
+            return GetAuthInfo().KorisnickiNalog?.IsStudentskaSluzba ?? false;
         }
 
         public bool IsNastavnik()
         {
-            return GetAuthInfo().KorisnickiNalog?.isNastavnik ?? false;
+            return GetAuthInfo().KorisnickiNalog?.IsNastavnik ?? false;
         }
 
-        public MyAuthInfo GetAuthInfo ()
+        public MyAuthInfo GetAuthInfo()
         {
-            string? AuthToken = _httpContextAccessor.HttpContext!.Request.Headers ["my-auth-token"];
+            string? AuthToken = _httpContextAccessor.HttpContext!.Request.Headers["my-auth-token"];
 
             AutentifikacijaToken? AutentifikacijaToken = _applicationDbContext.AutentifikacijaToken
                 .Include(x => x.KorisnickiNalog)
                 .SingleOrDefault(x => x.Vrijednost == AuthToken);
 
-            return new MyAuthInfo (AutentifikacijaToken);
+            return new MyAuthInfo(AutentifikacijaToken);
         }
     }
 
     public class MyAuthInfo
     {
         public AutentifikacijaToken? AutentifikacijaToken { get; set; }
-        public MyAuthInfo (AutentifikacijaToken? AutentifikacijaToken)
+        public MyAuthInfo(AutentifikacijaToken? AutentifikacijaToken)
         {
             this.AutentifikacijaToken = AutentifikacijaToken;
         }
 
         [JsonIgnore]
         public KorisnickiNalog? KorisnickiNalog => AutentifikacijaToken?.KorisnickiNalog;
-
         public bool IsLogiran => KorisnickiNalog != null;
 
     }

@@ -9,7 +9,7 @@ public static class Class
         return Regex.Replace(input, "<.*?>", String.Empty);
     }
 
-    public static List<T> GetRandomElements<T>(this IEnumerable<T> list, int elementsCount)
+    public static List<T> GetRandomElements <T>(this IEnumerable<T> list, int elementsCount)
     {
         return list.OrderBy(arg => Guid.NewGuid()).Take(elementsCount).ToList();
     }
@@ -27,7 +27,7 @@ public static class Class
         return builder.ToString();
     }
 
-    public static byte[] ParsirajBase64(this string base64string)
+    public static byte[] ParsirajBase64 (this string base64string)
     {
         base64string = base64string.Split(',')[1];
         return System.Convert.FromBase64String(base64string);

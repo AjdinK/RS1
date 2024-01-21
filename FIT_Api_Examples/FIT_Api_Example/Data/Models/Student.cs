@@ -7,8 +7,7 @@ public class Student : KorisnickiNalog
 {
     public string BrojIndeksa { get; set; }
     public bool Obrisan { get; set; }
-    public string SlikaKorisnikaMala { get; set; }
-    public string SlikaKorisnikaVelika { get; set; }
+
 
     [ForeignKey(nameof(OpstinaRodjenja))]
     public int OpstinaRodjenjaID { get; set; }

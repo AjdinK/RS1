@@ -2,5 +2,5 @@
 
 public class AuthTwoFOtkljucajRequest
 {
-    public string Kljuc { get; set; }
+   public string Kljuc { get; set; }
 }

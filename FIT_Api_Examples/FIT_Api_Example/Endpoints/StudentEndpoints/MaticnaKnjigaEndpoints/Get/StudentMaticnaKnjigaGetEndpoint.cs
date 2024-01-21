@@ -33,8 +33,8 @@ public class StudentMaticnaKnjigaGetEndpoint : MyBaseEndpoint<int, StudentMaticn
             Prezime = student.Prezime,
             UpisaneGodine = await _applicationDbContext
                 .UpisAkGodine
-                .Where(x=>x.StudentId == id)
-                .Select(x=>new StudentMaticnaKnjigaGetResponseUpisaneGodine
+                .Where(x => x.StudentId == id)
+                .Select(x => new StudentMaticnaKnjigaGetResponseUpisaneGodine
                 {
                     AkademskaGodina = x.AkademskaGodina.Opis,
                     GodinaStudija = x.Godinastudina + "",
@@ -51,8 +51,6 @@ public class StudentMaticnaKnjigaGetEndpoint : MyBaseEndpoint<int, StudentMaticn
                 })
                 .ToListAsync(cancellationToken)
         };
-        
-
 
         return result;
     }

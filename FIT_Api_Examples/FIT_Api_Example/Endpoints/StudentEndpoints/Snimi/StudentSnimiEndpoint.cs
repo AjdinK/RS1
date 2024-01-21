@@ -33,7 +33,7 @@ public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
     [HttpPost("snimi")]
     public override async Task <int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
     {
-       
+
         Data.Models.Student? student;
         if (request.ID == 0)
         {
@@ -83,10 +83,10 @@ public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
             await System.IO.File.WriteAllBytesAsync(student.SlikaKorisnikaMala, slika_bajtovi_resized_velika, cancellationToken);
             await System.IO.File.WriteAllBytesAsync(student.SlikaKorisnikaVelika, slika_bajtovi_resized_mala, cancellationToken);
 
-            //1- file system od web servera ili neki treci servis kao sto je azure blob store ili aws 
+            //1- file system od web servera ili neki treci servis kao sto je azure blob store ili aws
         }
-  
-        
+
+
         await _hubContext.Clients.Groups("iris").SendAsync("prijem_poruke_js", "student updated " + student.BrojIndeksa,
                 cancellationToken: cancellationToken);
 

@@ -16,7 +16,7 @@ public class AutentifikacijaToken
     public string? TwoFKey { get; set; }
     public bool Is2FOtkljucano { get; set; }
 
-    [ForeignKey(nameof(KorisnickiNalog))]
+    [ForeignKey (nameof(KorisnickiNalog))]
     public int KorisnickiNalogId { get; set; }
     public KorisnickiNalog KorisnickiNalog { get; set; }
 }

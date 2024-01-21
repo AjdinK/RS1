@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FIT_Api_Example.Endpoints.AuthEndpoints.Get;
 
 [Route("auth")]
-public class AutGetEndpoint : MyBaseEndpoint <NoRequest, MyAuthInfo>
+public class AutGetEndpoint : MyBaseEndpoint<NoRequest, MyAuthInfo>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
@@ -18,10 +18,9 @@ public class AutGetEndpoint : MyBaseEndpoint <NoRequest, MyAuthInfo>
     }
 
     [HttpPost("get")]
-    public override async Task <MyAuthInfo> Obradi([FromBody] NoRequest request, CancellationToken cancellationToken)
+    public override async Task<MyAuthInfo> Obradi([FromBody] NoRequest request, CancellationToken cancellationToken)
     {
-        AutentifikacijaToken? autentifikacijaToken = _authService.GetAuthInfo().AutentifikacijaToken;
-
-        return new MyAuthInfo (autentifikacijaToken);
+        AutentifikacijaToken? AutentifikacijaToken = _authService.GetAuthInfo().AutentifikacijaToken;
+        return new MyAuthInfo(AutentifikacijaToken);
     }
 }

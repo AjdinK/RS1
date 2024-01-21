@@ -11,7 +11,7 @@ namespace FIT_Api_Examples.Helper.AutentifikacijaAutorizacija
 {
     public class AutorizacijaAttribute : TypeFilterAttribute
     {
-        public AutorizacijaAttribute(bool studentskaSluzba, bool prodekan, bool dekan, bool studenti, bool nastavnici)
+        public AutorizacijaAttribute (bool studentskaSluzba, bool prodekan, bool dekan, bool studenti, bool nastavnici)
             : base(typeof(MyAuthorizeImpl))
         {
             Arguments = new object[] { studentskaSluzba, prodekan, dekan, studenti, nastavnici };

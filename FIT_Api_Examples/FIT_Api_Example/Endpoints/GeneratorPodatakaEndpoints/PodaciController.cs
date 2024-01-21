@@ -27,7 +27,6 @@ public class PodaciController : ControllerBase
         //data.Add("KorisnickiNalog", _dbContext.KorisnickiNalog.Count());
         data.Add("Opstina", _dbContext.Opstina.Count());
         data.Add("Predmet", _dbContext.Predmet.Count());
-
         return Ok(data);
     }
 
@@ -78,9 +77,9 @@ public class PodaciController : ControllerBase
 
         nastavnici.Add(new Nastavnik { Is2FActive = false, Ime = "Denis", Prezime = "Music", KorisnickoIme = "denis", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", });
         nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Emina", Prezime = "Junuz", KorisnickoIme = "emina", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", });
-        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Iris", Prezime = "Memic-Fisic", KorisnickoIme = "iris", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", isProdekan = true });
-        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Nina", Prezime = "Bijedic", KorisnickoIme = "nina", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", isDekan = true });
-        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Adil", Prezime = "Joldic", KorisnickoIme = "adil", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", isAdmin = true });
+        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Iris", Prezime = "Memic-Fisic", KorisnickoIme = "iris", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", IsProdekan = true });
+        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Nina", Prezime = "Bijedic", KorisnickoIme = "nina", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", IsDekan = true });
+        nastavnici.Add(new Nastavnik { Is2FActive = true, Ime = "Adil", Prezime = "Joldic", KorisnickoIme = "adil", Lozinka = "test", SlikaKorisnika = Config.SlikeURL + "empty.png", IsAdmin = true });
 
 
         Random rnd = new Random();
