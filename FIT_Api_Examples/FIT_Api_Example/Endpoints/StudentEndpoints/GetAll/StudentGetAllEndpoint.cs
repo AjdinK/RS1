@@ -9,7 +9,7 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetAll;
 
 [Route("student")]
 [MyAuthorization]
-public class StudentGetAllEndpoint: MyBaseEndpoint<StudentGetAllRequest,  StudentGetAllResponse>
+public class StudentGetAllEndpoint : MyBaseEndpoint<StudentGetAllRequest, StudentGetAllResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
@@ -21,30 +21,30 @@ public class StudentGetAllEndpoint: MyBaseEndpoint<StudentGetAllRequest,  Studen
     }
 
     [HttpGet("get-all")]
-  
+
     public override async Task<StudentGetAllResponse> Obradi([FromQuery] StudentGetAllRequest request, CancellationToken cancellationToken)
     {
-            var student = await _applicationDbContext.Student
-                .OrderByDescending(x => x.ID)
-                .Where(x => x.Obrisan == false)
-                .Select(x => new StudentGetAllResponseStudent()
-                {
-                    ID = x.ID,
-                    DatumRodjenja = x.DatumRodjenja,
-                    Ime = x.Ime,
-                    Prezime = x.Prezime,
-                    KorisnickoIme = x.KorisnickoIme,
-                    OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
-                    OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
-                    SlikaKorisnika = x.SlikaKorisnika,
-                    OpstinaRodjenjaID = x.OpstinaRodjenjaID
-                })
-
-                .ToListAsync(cancellationToken: cancellationToken);
-
-            return new StudentGetAllResponse
+        var student = await _applicationDbContext.Student
+            .OrderByDescending(x => x.ID)
+            .Where(x => x.Obrisan == false)
+            .Select(x => new StudentGetAllResponseStudent()
             {
-                Studenti = student
-            };
+                ID = x.ID,
+                DatumRodjenja = x.DatumRodjenja,
+                Ime = x.Ime,
+                Prezime = x.Prezime,
+                KorisnickoIme = x.KorisnickoIme,
+                OpstinaRodjenjaDrzava = x.OpstinaRodjenja.drzava.Naziv,
+                OpstinaRodjenjaNaziv = x.OpstinaRodjenja.description,
+                SlikaKorisnika = x.SlikaKorisnika,
+                OpstinaRodjenjaID = x.OpstinaRodjenjaID
+            })
+
+            .ToListAsync(cancellationToken: cancellationToken);
+
+        return new StudentGetAllResponse
+        {
+            Studenti = student
+        };
     }
 }

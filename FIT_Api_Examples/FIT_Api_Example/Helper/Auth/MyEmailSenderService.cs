@@ -28,7 +28,7 @@ namespace FIT_Api_Example.Helper.Auth
             // START
             email.From = new MailAddress(from);
             email.To.Add(to);
-          //  email.CC.Add(SendMailFrom);
+            //  email.CC.Add(SendMailFrom);
             email.Subject = messageSubject;
             email.Body = messageBody;
             email.IsBodyHtml = isBodyHtml;

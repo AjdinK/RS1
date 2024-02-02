@@ -30,7 +30,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
         //1- provjera logina
         KorisnickiNalog? logiraniKorisnik = await _applicationDbContext.KorisnickiNalog
             .FirstOrDefaultAsync(k =>
-                k.KorisnickoIme == request.KorisnickoIme && k.Lozinka == request.Lozinka, cancellationToken);
+            k.KorisnickoIme == request.KorisnickoIme && k.Lozinka == request.Lozinka, cancellationToken);
 
         if (logiraniKorisnik == null)
         {
@@ -43,7 +43,7 @@ public class AuthLoginEndpoint : MyBaseEndpoint<AuthLoginRequest, MyAuthInfo>
         if (logiraniKorisnik.Is2FActive)
         {
             twoFKey = TokenGenerator.Generate(6);
-            _emailSenderService.Posalji("ajdin.kuduzovic@gmail.com", //test email 
+            _emailSenderService.Posalji("ajdin.kuduzovic@gmail.com", //test email
             "2f",
             $"Vasi 2f kljuc je {twoFKey}",
             false);

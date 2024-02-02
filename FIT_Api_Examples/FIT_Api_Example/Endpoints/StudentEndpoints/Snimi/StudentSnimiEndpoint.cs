@@ -16,7 +16,7 @@ namespace FIT_Api_Example.Endpoints.StudentEndpoints.Snimi;
 
 [Route("student")]
 [MyAuthorization]
-public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
+public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
@@ -31,7 +31,7 @@ public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
     }
 
     [HttpPost("snimi")]
-    public override async Task <int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
+    public override async Task<int> Obradi([FromBody] StudentSnimiRequest request, CancellationToken cancellationToken)
     {
 
         Data.Models.Student? student;
@@ -44,7 +44,10 @@ public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
         }
         else
         {
-            student = _applicationDbContext.Student.Include(s => s.OpstinaRodjenja.drzava).FirstOrDefault(s => s.ID == request.ID);
+            student = _applicationDbContext.Student
+            .Include(s => s.OpstinaRodjenja.drzava)
+            .FirstOrDefault(s => s.ID == request.ID);
+
             if (student == null)
                 throw new Exception("pogresan ID");
         }
@@ -62,11 +65,11 @@ public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
             if (slika_bajtovi == null)
                 throw new Exception("pogresan base64 format");
 
-            byte[]? slika_bajtovi_resized_velika = resize(slika_bajtovi, 200);
+            byte[]? slika_bajtovi_resized_velika = Class.resize(slika_bajtovi, 200);
             if (slika_bajtovi_resized_velika == null)
                 throw new Exception("pogresan format slike");
 
-            byte[]? slika_bajtovi_resized_mala = resize(slika_bajtovi, 50);
+            byte[]? slika_bajtovi_resized_mala = Class.resize(slika_bajtovi, 50);
             if (slika_bajtovi_resized_mala == null)
                 throw new Exception("pogresan format slike");
 
@@ -86,38 +89,10 @@ public class StudentSnimiEndpoint : MyBaseEndpoint <StudentSnimiRequest, int>
             //1- file system od web servera ili neki treci servis kao sto je azure blob store ili aws
         }
 
-
         await _hubContext.Clients.Groups("iris").SendAsync("prijem_poruke_js", "student updated " + student.BrojIndeksa,
                 cancellationToken: cancellationToken);
-
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
         return student.ID;
-    }
-
-    public static byte[]? resize(byte[] slikaBajtovi, int size, int quality = 75)
-    {
-        using var input = new MemoryStream(slikaBajtovi);
-        using var inputStream = new SKManagedStream(input);
-        using var original = SKBitmap.Decode(inputStream);
-        int width, height;
-        if (original.Width > original.Height)
-        {
-            width = size;
-            height = original.Height * size / original.Width;
-        }
-        else
-        {
-            width = original.Width * size / original.Height;
-            height = size;
-        }
-
-        using var resized = original
-            .Resize(new SKImageInfo(width, height), SKBitmapResizeMethod.Lanczos3);
-        if (resized == null) return null;
-
-        using var image = SKImage.FromBitmap(resized);
-        return image.Encode(SKEncodedImageFormat.Jpeg, quality)
-            .ToArray();
     }
 }
