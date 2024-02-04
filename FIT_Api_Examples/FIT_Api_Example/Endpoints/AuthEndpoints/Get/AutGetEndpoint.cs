@@ -18,7 +18,8 @@ public class AutGetEndpoint : MyBaseEndpoint<NoRequest, MyAuthInfo>
     }
 
     [HttpPost("get")]
-    public override async Task<MyAuthInfo> Obradi([FromBody] NoRequest request, CancellationToken cancellationToken)
+    public override async Task<MyAuthInfo> Obradi
+                    ([FromBody] NoRequest request, CancellationToken cancellationToken)
     {
         AutentifikacijaToken? AutentifikacijaToken = _authService.GetAuthInfo().AutentifikacijaToken;
         return new MyAuthInfo(AutentifikacijaToken);

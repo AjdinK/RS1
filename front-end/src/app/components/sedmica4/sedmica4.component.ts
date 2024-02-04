@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sedmica4',
@@ -7,8 +6,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./sedmica4.component.css']
 })
 export class Sedmica4Component {
-  constructor(public router : Router) {
-  }
 
   title = 'front-end';
 
@@ -20,6 +17,7 @@ export class Sedmica4Component {
 
   uvecaj(){
     this.brojac++;
+
     this.ime = this.ime + "."
   }
 
@@ -54,11 +52,6 @@ export class Sedmica4Component {
   dodajNovoIme() {
     // @ts-ignore
     this.imena.push(this.novoIme);
-  }
-
-  dugme (componentNaziv : string) {
-    this.router.navigate([componentNaziv]);
-
   }
 
 }

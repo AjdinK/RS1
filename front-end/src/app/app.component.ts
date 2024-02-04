@@ -31,6 +31,8 @@ export class AppComponent implements OnInit{
 
   logout() {
 
+
+
     let token = window.localStorage.getItem("my-auth-token")??"";
     window.localStorage.setItem("my-auth-token","");
 

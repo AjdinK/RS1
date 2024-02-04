@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.Snimi;
 
 [Route("student")]
-[MyAuthorization]
+//[MyAuthorization]
 public class StudentSnimiEndpoint : MyBaseEndpoint<StudentSnimiRequest, int>
 {
     private readonly ApplicationDbContext _applicationDbContext;

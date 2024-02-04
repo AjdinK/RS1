@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.Pretraga;
 
 [Route("student")]
-[MyAuthorization]
+//[MyAuthorization]
 public class StudentPretragaEndpoint: MyBaseEndpoint<StudentPretragaRequest,  StudentPretragaResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;

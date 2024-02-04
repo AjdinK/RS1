@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FIT_Api_Example.Endpoints.StudentEndpoints.GetAll;
 
 [Route("student")]
-[MyAuthorization]
+//[MyAuthorization]
 public class StudentGetAllEndpoint : MyBaseEndpoint<StudentGetAllRequest, StudentGetAllResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;

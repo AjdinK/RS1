@@ -4,3 +4,5 @@ export interface AuthLoginResponse {
   autentifikacijaToken: AutentifikacijaToken
   isLogiran: boolean
 }
+
+
