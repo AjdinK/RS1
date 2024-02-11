@@ -12,7 +12,6 @@ export class StudentSnimiEndpoint implements  MyBaseEndpoint<StudentSnimiRequest
 
       return this.httpClient.post<number>(url, request);
     }
-
 }
 
 export interface StudentSnimiRequest {

@@ -1,3 +1,10 @@
+export interface MaticnaKnjigaVM {
+  student_id: number;
+  ime: string;
+  prezime: string;
+  cijenaSkolarine: number;
+  listaUpisi: ListaUpisi[];
+}
 
 export interface ListaUpisi {
   id: number;
@@ -10,10 +17,4 @@ export interface ListaUpisi {
   evidentirao_korisnik: string;
 }
 
-export interface MaticnaKnjigaVM {
-  student_id: number;
-  ime: string;
-  prezime: string;
-  listaUpisi: ListaUpisi[];
-  cijenaSkolarine: number;
-}
+

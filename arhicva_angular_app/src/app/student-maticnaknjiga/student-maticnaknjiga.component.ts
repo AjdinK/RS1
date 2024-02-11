@@ -48,7 +48,8 @@ export class StudentMaticnaknjigaComponent implements OnInit {
 
 
   private fetchMaticnaKnjigaDetalji() {
-    this.httpKlijent.get<MaticnaKnjigaVM>(MojConfig.adresa_servera+ "/MaticnaKnjigaDetalji/GetById?studentid="+this.studentid, MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.httpKlijent.get<MaticnaKnjigaVM>
+    (MojConfig.adresa_servera+ "/MaticnaKnjigaDetalji/GetById?studentid="+this.studentid, MojConfig.http_opcije()).subscribe((x:any)=>{
       this.podaci = x
     });
   }
