@@ -18,7 +18,8 @@ public class AuthTwoFOtklucajEndpoint : MyBaseEndpoint<AuthTwoFOtkljucajRequest,
     }
 
     [HttpPost("2f-otklucaj")]
-    public override async Task<NoResponse> Obradi([FromBody] AuthTwoFOtkljucajRequest request, CancellationToken cancellationToken)
+    public override async Task<NoResponse> Obradi([FromBody] AuthTwoFOtkljucajRequest request,
+        CancellationToken cancellationToken)
     {
         if (!_authService.GetAuthInfo().IsLogiran)
         {

@@ -4,14 +4,10 @@ import {AutentifikacijaToken} from "../../helper/auth/autentifikacijaToken";
 
 @Injectable({providedIn: 'root'})
 export class MyAuthService{
-  constructor(private httpClient: HttpClient) {
-  }
-  isLogiran():boolean{
-    return this.getAuthorizationToken() != null;
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getAuthorizationToken():AutentifikacijaToken | null {
-    let tokenString = window.localStorage.getItem("my-auth-token")??"";
+    let tokenString = window.localStorage.getItem("my-auth-token")?? "";
     try {
       return JSON.parse(tokenString);
     }
@@ -19,6 +15,19 @@ export class MyAuthService{
       return null;
     }
   }
+  setLogiraniKorisnik(x: AutentifikacijaToken | null) {
+
+    if (x == null){
+      window.localStorage.setItem("my-auth-token", '');
+    }
+    else {
+      window.localStorage.setItem("my-auth-token", JSON.stringify(x));
+    }
+  }
+  isLogiran():boolean{
+    return this.getAuthorizationToken() != null;
+  }
+
   isAdmin():boolean {
     return this.getAuthorizationToken()?.korisnickiNalog.isAdmin ?? false
   }
@@ -45,15 +54,5 @@ export class MyAuthService{
   isProdekan():boolean{
     return this.getAuthorizationToken()?.korisnickiNalog.isProdekan ?? false
   }
-  setLogiraniKorisnik(x: AutentifikacijaToken | null) {
-
-    if (x == null){
-      window.localStorage.setItem("my-auth-token", '');
-    }
-    else {
-      window.localStorage.setItem("my-auth-token", JSON.stringify(x));
-    }
-  }
-
 
 }

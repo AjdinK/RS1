@@ -49,8 +49,6 @@ export class Sedmica7LoginComponent implements OnInit {
         else{
           this.router.navigate(["/home-nastavnik"])
         }
-
-
       }
     })
   }
